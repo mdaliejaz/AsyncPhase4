@@ -1,0 +1,102 @@
+class Request(object):
+    def __init__(self, requestID, client, objectX, objectY, action,
+                 isClient, isReadOnly):
+        '''
+            Request class.
+        '''
+        self.requestID = requestID
+        self.objectX = objectX
+        self.objectY = objectY
+        self.action = action
+        self.isClient = isClient
+        self.fromClient = client
+        self.isReadOnly = isReadOnly
+        self.sessionIdX = None
+        self.sessionIdY = None
+        self.ts = None
+
+    def __str__(self):
+        return "\n\tRequest ID = {}\n\tSubject ID = {" \
+               "}\n\tResource ID = {}\n\tAction = {}\n\t" \
+               "From Client = {}".format(
+            self.requestID, self.objectX, self.objectY, self.action,
+            self.isClient)
+
+
+class DBResponse(object):
+    '''
+        DB response class which hold the response which the DB
+        sends back to the worker.
+    '''
+
+    def __init__(self, request, evaluation, readDbSubjectMap,
+                 readDbResourceMap):
+        self.request = request
+        self.evaluation = evaluation
+        # Maps which contain fields read from DB
+        # which are not in tentative maps and used for policy evaluation
+        self.readDbSubjectMap = readDbSubjectMap
+        self.readDbResourceMap = readDbResourceMap
+
+    def __str__(self):
+        return "{}\n\tEvaluation Result = {}" \
+               "\n\tSubject Map read from DB = {}" \
+               "\n\tResource Map read from DB = {}".format(
+            self.request, self.evaluation, self.readDbSubjectMap,
+            self.readDbResourceMap)
+
+
+class Response(object):
+    '''
+        Response class which holds the db response and the toUpdate
+        attribute maps. It also contains the maps of attributes to
+        evaluate the policy
+    '''
+
+    # def __init__(self, dbresponse, toUpdateSubjectMap, toUpdateResourceMap,
+    #              readSubjectAttributeMap, readResourceAttributeMap):
+    #     self.dbresponse = dbresponse
+    #     # These maps are different from the ones in DB response
+    #     # These maps store the updated attributes only needed
+    #     #     to evaluate policy
+    #     self.toUpdateSubjectMap = toUpdateSubjectMap
+    #     self.toUpdateResourceMap = toUpdateResourceMap
+    #     self.readSubjectAttributeMap = readSubjectAttributeMap
+    #     self.readResourceAttributeMap = readResourceAttributeMap
+
+    def __init__(self, request, decision, updatedObj, rdonlydObj):
+        self.request = request
+        self.decision = decision
+        self.updatedObj = updatedObj
+        self.rdonlydObj = rdonlydObj
+
+    def __str__(self):
+        return "{}" \
+               "\n\tMap with updated subject attributes = {}" \
+               "\n\tMap with updated resource attributes = {}" \
+               "\n\tMap with read subject attributes = {}" \
+               "\n\tMap with read resource attributes = {}".format(
+            self.dbresponse, self.toUpdateSubjectMap, self.toUpdateResourceMap,
+            self.readSubjectAttributeMap, self.readResourceAttributeMap)
+
+
+class PolicyRule(object):
+    '''
+        Class to store each policy rule. Contains 4 maps which are self
+        explnatory.
+    '''
+
+    def __init__(self, subjectCondition, resourceCondition, subjectUpdate,
+                 resourceUpdate):
+        self.subjectCondition = subjectCondition
+        self.resourceCondition = resourceCondition
+        self.subjectUpdate = subjectUpdate
+        self.resourceUpdate = resourceUpdate
+
+    def __str__(self):
+        return "\n\tSubject Condition = {}" \
+               "\n\tResource Condition = {}" \
+               "\n\tSubject Update = {}" \
+               "\n\tSubject Update = {}".format(
+            self.subjectCondition, self.resourceCondition,
+            self.subjectUpdate, self.resourceUpdate)

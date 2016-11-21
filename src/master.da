@@ -1,0 +1,59 @@
+import sys
+import da
+import configparser
+import logging
+import logging.config
+import logging.handlers
+import coordinator as coord
+import database as db
+import client as cl
+import time
+
+
+def main():
+    # Read config file and parse it
+    config = configparser.ConfigParser()
+    configFile = str(sys.argv[1])
+    config.read(configFile)
+
+    # Initalize loggers
+    logConfFile = str(config.get("setup", "logConfFile"))
+    logging.config.fileConfig(logConfFile, defaults={
+        'logfilename': str(config.get("setup", "logFile"))})
+    logger = logging.getLogger('Log.' + __name__)
+
+    logger.info("Starting the DistAlgo Project with config file: %s",
+                configFile)
+
+    ncoordinators = int(config.get("setup", "ncoordinators"))
+    nclients = int(config.get("setup", "nclients"))
+    nworkerspercoord = int(config.get("setup", "nworkerspercoord"))
+
+    coordinators = new(coord.Coordinator, num=ncoordinators)
+    dbInstance = new(db.Database, num=1)
+    clients = new(cl.Client, num=nclients)
+
+    logger.info("Number of coordinators = %s", ncoordinators)
+    logger.info("Number of clients = %s", nclients)
+    logger.info("Number of workers per coordinator = %s", nworkerspercoord)
+
+    listcoord = list(coordinators)
+    setup(dbInstance, (config,))
+    setup(coordinators, (listcoord, dbInstance, config))
+    # Setup each of the clients
+    num = 1
+    for client in clients:
+        setup(client, (listcoord, config, num))
+        num = num + 1
+
+    start(dbInstance)
+    start(coordinators)
+    start(clients)
+
+    # wait for all clients to complete
+    for c in clients: c.join()
+    logger.info("All processes completed. Terminating...")
+    print("All processes completed. Terminating...")
+    # Sleep for maxdb latency to allow db commits to finish
+    time.sleep(int(config.get("setup", "maxDbLatency")) + 1)
+    da.send(('done',), to=(dbInstance | coordinators))

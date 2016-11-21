@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!-- sample policy.  CSE 535, Fall 2016, Scott Stoller.  2016-10-03 -->
+<policy>
+
+    <rule name="access bank A first time">
+        <subjectCondition position="employee" history=""></subjectCondition>
+        <resourceCondition id="bank A"></resourceCondition>
+        <!-- the action authorized by this rule. -->
+        <action name="read"></action>
+        <subjectUpdate history="bank A"></subjectUpdate>
+    </rule>
+
+    <rule name="access bank A again">
+        <subjectCondition position="employee"
+                          history="$resource.id"></subjectCondition>
+        <resourceCondition id="bank A"></resourceCondition>
+        <action name="read"></action>
+    </rule>
+
+    <rule name="access bank B first time">
+        <subjectCondition position="employee" history=""></subjectCondition>
+        <resourceCondition id="bank B"></resourceCondition>
+        <action name="read"></action>
+        <subjectUpdate history="bank B"></subjectUpdate>
+    </rule>
+
+    <rule name="access bank B again">
+        <subjectCondition position="employee"
+                          history="bank B"></subjectCondition>
+        <resourceCondition id="bank B"></resourceCondition>
+        <action name="read"></action>
+    </rule>
+
+    <rule name="viewers collectively can view each movie at most 2 times">
+        <subjectCondition position="viewer"></subjectCondition>
+        <resourceCondition type="movie"
+                           viewCount="&lt;2"></resourceCondition>
+        <action name="viewOnResource"></action>
+        <resourceUpdate viewCount="++"></resourceUpdate>
+    </rule>
+
+    <rule name="stress test for 1000 access">
+        <subjectCondition position="viewer"></subjectCondition>
+        <resourceCondition type="movie"
+                           viewCount="&lt;1000"></resourceCondition>
+        <action name="stressTest"></action>
+        <resourceUpdate viewCount="++"></resourceUpdate>
+    </rule>
+
+    <rule name="listeners collectively can listen a song at most 5 times">
+        <subjectCondition position="listener"></subjectCondition>
+        <resourceCondition type="song" viewCount="&lt;5"></resourceCondition>
+        <action name="view"></action>
+        <resourceUpdate viewCount="++"></resourceUpdate>
+    </rule>
+
+    <rule name="Tom can watch Star Wars max 2 times">
+        <subjectCondition name="Tom" viewCount="&lt;2"></subjectCondition>
+        <resourceCondition movie="StarWars"></resourceCondition>
+        <action name="viewOnSubject"></action>
+        <subjectUpdate viewCount="++"></subjectUpdate>
+    </rule>
+
+    <rule name="Only resource updates">
+        <subjectCondition name="Tom" viewCount="&lt;4"></subjectCondition>
+        <resourceCondition type="movie"
+                           viewCount="&lt;4"></resourceCondition>
+        <action name="conflict1"></action>
+        <resourceUpdate viewCount="++"></resourceUpdate>
+    </rule>
+
+    <rule name="Both Subject and resource updates">
+        <subjectCondition name="Tom" viewCount="&lt;4"></subjectCondition>
+        <resourceCondition type="movie"
+                           viewCount="&lt;4"></resourceCondition>
+        <action name="conflict2"></action>
+        <subjectUpdate viewCount="++"></subjectUpdate>
+        <resourceUpdate viewCount="++"></resourceUpdate>
+    </rule>
+
+    <rule name="Only Subject updates">
+        <subjectCondition name="Tom" viewCount="&lt;4"></subjectCondition>
+        <resourceCondition type="movie"
+                           viewCount="&lt;4"></resourceCondition>
+        <action name="conflict3"></action>
+        <subjectUpdate viewCount="++"></subjectUpdate>
+    </rule>
+
+</policy>

@@ -1,0 +1,100 @@
+import sys
+import da
+import uuid
+import worker
+import time
+import queue
+import logging
+import logging.config
+import logging.handlers
+from util import Request
+from collections import deque
+
+
+class Coordinator(process):
+    def setup(coordinators, dbInstance, config):
+        '''
+            Coordinator setup. Setup and start the workers.
+            Initialize maps and other data structures.
+        '''
+        self.logger = logging.getLogger('Log.' + __name__)
+
+        # new parameters for phase4
+        # self.versionCache = {}
+        self.coordSessionID = uuid.uuid4()  # Session id for co-ordinator
+        # restarts
+        # self.PCA = {} # To handle starvation of write requests
+
+        self.coordinators = coordinators
+
+        self.nworkerspercoord = int(config.get("setup", "nworkerspercoord"))
+        self.workers = new(worker.Worker, num=self.nworkerspercoord)
+        self.workerList = list(self.workers)
+        self.workerSequence = -1
+        setup(self.workers, (self.coordinators, dbInstance, config,))
+        start(self.workers)
+
+    def swap(request):
+        temp = request.objectX
+        request.objectX = request.objectY
+        request.objectY = temp
+
+        temp = request.sessionIdX
+        request.sessionIdX = request.sessionIdY
+        request.sessionIdY = temp
+
+    def receive(msg=('EVALUATE', request), from_=p):
+        '''
+            Subject coordinator instance, receives from client and sends to
+            resource coordinator. It also sends the tentative cache.
+        '''
+        # logger.info("Subject Coordinator: Received request with following "
+        #             "parameters from Client:"
+        #             "\n\tSubject ID = %s\n\tResource ID = %s\n\tAction = %s",
+        #             str(subjectID),
+        #             str(resourceID),
+        #             str(action))
+        request.sessionIdX = self.coordSessionID
+        if request.isClient == True:
+            request.ts = time.now()
+
+        if request.isReadOnly == True:
+            pass
+        else:
+            pass
+
+        # Update cached updates in request object
+
+        if request.isClient == True:
+            request.isClient = False
+            # Swap objects and sessions Id
+            swap(request)
+            send(('EVALUATE', request), to=(coordinators[request.objectX]))
+        else:
+            workerSequence = (workerSequence + 1) % len(workerList)
+            send(('WORKER_ASSIGN', request), to=workerList[workerSequence])
+
+    def receive(msg=('SENDATTR', request), from_=p):
+        if request.sessionIdX != self.coordSessionID:
+            return
+            # Implementation
+
+    def receive(msg=('RESULT', response), from_= worker):
+        if response.request.sessionIdX != self.coordSessionID:
+            return
+
+        # updated obj
+        # Non updated object
+        # Check conflict
+
+        # if not conflict:
+        #    pass
+        # els'e
+        #   restart in restart rdonlyObj is objectX
+        #   pass
+
+    def run():
+        logger.info("Starting Coordinator with %d workers",
+                    self.nworkerspercoord)
+        await(received(('done',)))
+        da.send(('done',), to=(self.workers))

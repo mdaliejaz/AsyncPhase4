@@ -1,0 +1,32 @@
+2016-11-21 18:51:56.603 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-11-21 18:51:56.691 - Log.master - INFO - Number of coordinators = 2
+2016-11-21 18:51:56.691 - Log.master - INFO - Number of clients = 1
+2016-11-21 18:51:56.691 - Log.master - INFO - Number of workers per coordinator = 1
+2016-11-21 18:51:56.729 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-11-21 18:51:56.730 - Log.worker - DEBUG - Content of Policy File: {}
+2016-11-21 18:51:56.748 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-11-21 18:51:56.748 - Log.worker - DEBUG - Content of Policy File: {}
+2016-11-21 18:51:56.755 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-11-21 18:51:56.755 - Log.database - INFO - Initialized DB with:
+	Subject Attributes = {'1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
+	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}}
+2016-11-21 18:51:56.756 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-11-21 18:51:56.756 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-11-21 18:51:56.757 - Log.client - INFO - Started Client 1
+2016-11-21 18:51:56.757 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
+2016-11-21 18:52:23.847 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-11-21 18:52:23.927 - Log.master - INFO - Number of coordinators = 2
+2016-11-21 18:52:23.927 - Log.master - INFO - Number of clients = 1
+2016-11-21 18:52:23.927 - Log.master - INFO - Number of workers per coordinator = 1
+2016-11-21 18:52:23.955 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-11-21 18:52:23.956 - Log.worker - DEBUG - Content of Policy File: {}
+2016-11-21 18:52:23.973 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-11-21 18:52:23.974 - Log.worker - DEBUG - Content of Policy File: {}
+2016-11-21 18:52:23.979 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-11-21 18:52:23.980 - Log.database - INFO - Initialized DB with:
+	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}}
+	Resource Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}}
+2016-11-21 18:52:23.980 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-11-21 18:52:23.981 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-11-21 18:52:23.982 - Log.client - INFO - Started Client 1
+2016-11-21 18:52:23.982 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0

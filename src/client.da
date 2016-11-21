@@ -1,0 +1,86 @@
+import sys
+import da
+from util import Request
+import logging
+import logging.config
+import logging.handlers
+import queue
+import random
+import time
+
+
+class Client(process):
+    def setup(coordinators, config, num):
+        '''
+            Client setup. Generates a sequence of request and puts into a
+            queue.
+        '''
+        self.logger = logging.getLogger('Log.' + __name__)
+        self.size = len(coordinators)
+        self.requestQueue = queue.Queue()
+        self.exit = False
+
+        sequenceList = []
+        sequence = config.get("client" + str(num), "sequence")
+        if (sequence == "random"):
+            sequenceList = getRandomsequenceList(config, "client" + str(num))
+        else:
+            sequenceList = sequence.split(',')
+
+        # change subject/resource to object 1 and 2
+        for seq in sequenceList:
+            requestQueue.put([int(config.get(seq, "subjectID")),
+                              int(config.get(seq, "resourceID")),
+                              config.get(seq, "action")])
+        # Mark the end of queue
+        requestQueue.put(None)
+
+    def getRandomsequenceList(config, client):
+        '''
+            If sequence is defined as random in config file then
+            generate the random sequence using the seed given
+        '''
+        numReq = int(config.get(client, "numReq"))
+        requestList = config.get(client, "requestList").split(',')
+        random.seed(int(config.get(client, "seed")))
+        sequenceList = []
+
+        for _ in range(0, numReq):
+            randInt = random.randint(0, len(requestList) - 1)
+            sequenceList.append(requestList[randInt])
+
+        return sequenceList
+
+    def sendToSubjectCoordinator():
+        # might write logic and decision on which coordinator to send to goes
+        #  here
+        elem = requestQueue.get()
+        if (elem == None):
+            self.exit = True
+            return
+        coordID = (elem[0]) % self.size
+        logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
+                    "%d, action: %s} to coordinator %d", self.num, elem[0],
+                    elem[1], elem[2], coordID)
+        send(('CLIENT', elem[0], elem[1], elem[2], None),
+             to=coordinators[coordID])
+        # start timer
+        # if timeout rescedule
+
+    def receive(msg=('RESULT_CLIENT', result, subjectID, resourceID, action)):
+        # stop timer
+        if result == 'success':
+            logger.info("Allow access to client %d for Request{Subject ID: "
+                        "%d, Resource ID: %d, action: %s}", self.num, subjectID,
+                        resourceID, action)
+        else:
+            logger.info("Deny access to client %d for Request{Subject ID: "
+                        "%d, Resource ID: %d, action: %s}", self.num, subjectID,
+                        resourceID, action)
+
+        sendToSubjectCoordinator()
+
+    def run():
+        logger.info("Started Client %d", self.num)
+        sendToSubjectCoordinator()
+        await(self.exit == True)
