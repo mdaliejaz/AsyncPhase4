@@ -1,5 +1,5 @@
 class Request(object):
-    def __init__(self, requestID, client, objectX, objectY, action,
+    def __init__(self, requestID, objectX, objectY, action,
                  isClient, isReadOnly):
         '''
             Request class.
@@ -9,7 +9,7 @@ class Request(object):
         self.objectY = objectY
         self.action = action
         self.isClient = isClient
-        self.fromClient = client
+        self.fromClient = None
         self.isReadOnly = isReadOnly
         self.sessionIdX = None
         self.sessionIdY = None

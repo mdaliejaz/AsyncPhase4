@@ -58,7 +58,7 @@ class Worker(process):
                     "not in cache for Request:%s", request)
         # send(('GET_FROM_DB', request), to=dbInstance)
         if request.updatedObj == None:
-            send(("RESULT_CLIENT", response), to=request.client)
+            send(("RESULT_CLIENT", response), to=request.fromClient)
             send(("SENDATTR", request), to=coordinators[request.objectX % size])
             send(("SENDATTR", request), to=coordinators[request.objectY % size])
         else:

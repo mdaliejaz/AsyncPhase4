@@ -62,8 +62,9 @@ class Client(process):
         logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
                     "%d, action: %s} to coordinator %d", self.num, elem[0],
                     elem[1], elem[2], coordID)
-        send(('CLIENT', elem[0], elem[1], elem[2], None),
-             to=coordinators[coordID])
+                
+        request = Request(1234, elem[0], elem[1], elem[2], True, True)
+        send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
         # if timeout rescedule
 
