@@ -9,7 +9,7 @@ import logging.config
 import logging.handlers
 from util import Request
 from collections import deque
-
+from datetime import datetime, date, time
 
 class Coordinator(process):
     def setup(coordinators, dbInstance, config):
@@ -42,8 +42,8 @@ class Coordinator(process):
         temp = request.sessionIdX
         request.sessionIdX = request.sessionIdY
         request.sessionIdY = temp
-
-    def receive(msg=('EVALUATE', request), from_=p):
+            
+    def receive(msg=("EVALUATE", request), from_=p):
         '''
             Subject coordinator instance, receives from client and sends to
             resource coordinator. It also sends the tentative cache.
@@ -57,7 +57,7 @@ class Coordinator(process):
         request.sessionIdX = self.coordSessionID
         if request.isClient == True:
             request.fromClient = p
-            request.ts = time.now()
+            request.ts = datetime.now()
 
         if request.isReadOnly == True:
             pass
@@ -70,7 +70,7 @@ class Coordinator(process):
             request.isClient = False
             # Swap objects and sessions Id
             swap(request)
-            send(('EVALUATE', request), to=(coordinators[request.objectX]))
+            send(('EVALUATE', request), to=(coordinators[request.objectX % len(coordinators)]))
         else:
             workerSequence = (workerSequence + 1) % len(workerList)
             send(('WORKER_ASSIGN', request), to=workerList[workerSequence])

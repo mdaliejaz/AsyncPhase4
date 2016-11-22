@@ -54,30 +54,37 @@ class Client(process):
     def sendToSubjectCoordinator():
         # might write logic and decision on which coordinator to send to goes
         #  here
+        
         elem = requestQueue.get()
         if (elem == None):
             self.exit = True
             return
         coordID = (elem[0]) % self.size
+        print(coordID)
+        print(coordinators[coordID])
         logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
                     "%d, action: %s} to coordinator %d", self.num, elem[0],
                     elem[1], elem[2], coordID)
                 
         request = Request(1234, elem[0], elem[1], elem[2], True, True)
+        print(request)
+        
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
         # if timeout rescedule
 
-    def receive(msg=('RESULT_CLIENT', result, subjectID, resourceID, action)):
+    def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
-        if result == 'success':
-            logger.info("Allow access to client %d for Request{Subject ID: "
-                        "%d, Resource ID: %d, action: %s}", self.num, subjectID,
-                        resourceID, action)
+        if response.decision:
+            print("YES")
+#             logger.info("Allow access to client %d for Request{Subject ID: "
+#                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
+#                         resourceID, action)
         else:
-            logger.info("Deny access to client %d for Request{Subject ID: "
-                        "%d, Resource ID: %d, action: %s}", self.num, subjectID,
-                        resourceID, action)
+            pass
+#             logger.info("Deny access to client %d for Request{Subject ID: "
+#                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
+#                         resourceID, action)
 
         sendToSubjectCoordinator()
 

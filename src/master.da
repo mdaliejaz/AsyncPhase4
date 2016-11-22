@@ -30,6 +30,7 @@ def main():
     nworkerspercoord = int(config.get("setup", "nworkerspercoord"))
 
     coordinators = new(coord.Coordinator, num=ncoordinators)
+    print(coordinators)
     dbInstance = new(db.Database, num=1)
     clients = new(cl.Client, num=nclients)
 
