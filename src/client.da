@@ -66,6 +66,7 @@ class Client(process):
                     "%d, action: %s} to coordinator %d", self.num, elem[0],
                     elem[1], elem[2], coordID)
                 
+        #request = Request(1234, elem[0], elem[1], elem[2], True, False)
         request = Request(1234, elem[0], elem[1], elem[2], True, True)
         print(request)
         

@@ -21,109 +21,101 @@ class Database(process):
         self.maxDbLatency = int(config.get("setup", "maxDbLatency"))
 
         self.root = ET.parse(dbInitFile).getroot()
-        self.subjectMap = {}
-        self.resourceMap = {}
+        self.objectMap = {}
         # Initialize a random wait time after which it must commit
         self.waitTime = random.randint(minDbLatency, maxDbLatency)
 
-    def receive(msg=('GET_FROM_DB', request), from_=p):
-        '''
-            Fetch required attributes from DB which are not in cache
-            If attribute not in Db write a empty value
-        '''
-        logger.info("Received request from Worker to get attributes for "
-                    "following request:%s", request)
-        evaluation = True
-        subjAttribDiff = {}
-        resourceAttribDiff = {}
-        subjectID = str(request.subjectID)
-        resourceID = str(request.resourceID)
-
-        # if no subjectID in Db then write it with empty values
-        if subjectID not in self.subjectMap:
-            self.subjectMap[subjectID] = {}
-        if resourceID not in self.resourceMap:
-            self.resourceMap[resourceID] = {}
-
-        try:
-            subjAttribDiffSet = request.requiredSubjAtrribs - set(
-                request.subjectAttributeMap.keys())
-            resourceAttribDiffSet = request.requiredResourceAtrribs - set(
-                request.resourceAttributeMap.keys())
-
-            for subj in subjAttribDiffSet:
-                try:
-                    subjAttribDiff[subj] = self.subjectMap[subjectID][subj]
-                except:
-                    # If attribute not present write empty value
-                    self.subjectMap[subjectID][subj] = ""
-                    subjAttribDiff[subj] = ""
-
-            for resource in resourceAttribDiffSet:
-                try:
-                    resourceAttribDiff[resource] = self.resourceMap[resourceID][
-                        resource]
-                except:
-                    # If attribute not present write empty value
-                    self.resourceMap[resourceID][resource] = ""
-                    resourceAttribDiff[resource] = ""
-        except:
-            # Should never reach here
-            evaluation = False
-
-        response = DBResponse(request, evaluation, subjAttribDiff,
-                              resourceAttribDiff)
-        logger.info("Sending following response to Worker with updated "
-                    "attributes from database:%s", response)
-        send(('DB_RESPONSE', response), to=p)
-
-    def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
-        '''
-            Request to commit cache to DB. Threading.timer is used
-            to wait for the random amount of time initialized and then
-            results are written to DB.
-        '''
-        logger.info("Received to update database for %s attributes with map: "
-                    "%s. Accounting DB latency, will wait for latency of "
-                    "value %s units duration before committing to DB",
-                    instance, updateMap, str(self.waitTime))
-        Timer(waitTime, updateFunc, [updateMap, instance]).start()
-
-    def updateFunc(updateMap, instance):
-        '''
-            Update into DB function
-        '''
-        key = next(iter(updateMap))
-        value = updateMap[key]
-        if (instance == "resource"):
-            self.resourceMap[key].update(value)
-        else:
-            self.subjectMap[key].update(value)
-        logger.info("Successfully updated database for %s attributes "
-                    "with map: %s", instance, updateMap)
+#     def receive(msg=('GET_FROM_DB', request), from_=p):
+#         '''
+#             Fetch required attributes from DB which are not in cache
+#             If attribute not in Db write a empty value
+#         '''
+#         logger.info("Received request from Worker to get attributes for "
+#                     "following request:%s", request)
+#         evaluation = True
+#         subjAttribDiff = {}
+#         resourceAttribDiff = {}
+#         subjectID = str(request.subjectID)
+#         resourceID = str(request.resourceID)
+# 
+#         # if no subjectID in Db then write it with empty values
+#         if subjectID not in self.subjectMap:
+#             self.subjectMap[subjectID] = {}
+#         if resourceID not in self.resourceMap:
+#             self.resourceMap[resourceID] = {}
+# 
+#         try:
+#             subjAttribDiffSet = request.requiredSubjAtrribs - set(
+#                 request.subjectAttributeMap.keys())
+#             resourceAttribDiffSet = request.requiredResourceAtrribs - set(
+#                 request.resourceAttributeMap.keys())
+# 
+#             for subj in subjAttribDiffSet:
+#                 try:
+#                     subjAttribDiff[subj] = self.subjectMap[subjectID][subj]
+#                 except:
+#                     # If attribute not present write empty value
+#                     self.subjectMap[subjectID][subj] = ""
+#                     subjAttribDiff[subj] = ""
+# 
+#             for resource in resourceAttribDiffSet:
+#                 try:
+#                     resourceAttribDiff[resource] = self.resourceMap[resourceID][
+#                         resource]
+#                 except:
+#                     # If attribute not present write empty value
+#                     self.resourceMap[resourceID][resource] = ""
+#                     resourceAttribDiff[resource] = ""
+#         except:
+#             # Should never reach here
+#             evaluation = False
+# 
+#         response = DBResponse(request, evaluation, subjAttribDiff,
+#                               resourceAttribDiff)
+#         logger.info("Sending following response to Worker with updated "
+#                     "attributes from database:%s", response)
+#         send(('DB_RESPONSE', response), to=p)
+# 
+#     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
+#         '''
+#             Request to commit cache to DB. Threading.timer is used
+#             to wait for the random amount of time initialized and then
+#             results are written to DB.
+#         '''
+#         logger.info("Received to update database for %s attributes with map: "
+#                     "%s. Accounting DB latency, will wait for latency of "
+#                     "value %s units duration before committing to DB",
+#                     instance, updateMap, str(self.waitTime))
+#         Timer(waitTime, updateFunc, [updateMap, instance]).start()
+# 
+#     def updateFunc(updateMap, instance):
+#         '''
+#             Update into DB function
+#         '''
+#         key = next(iter(updateMap))
+#         value = updateMap[key]
+#         if (instance == "resource"):
+#             self.resourceMap[key].update(value)
+#         else:
+#             self.subjectMap[key].update(value)
+#         logger.info("Successfully updated database for %s attributes "
+#                     "with map: %s", instance, updateMap)
 
     def run():
         '''
-            Read from dbInit xml file and store in subject and 
-            resource maps.
+            Read from dbInit xml file and store in object maps
         '''
         logger.info("Started Database Instance with dbInitFile = %s, "
                     "Min DB Latency = %s and Max DB Latency = %s",
                     self.dbInitFile, self.minDbLatency, self.maxDbLatency)
 
-        for subject in root.iter('subject'):
-            for attributes in subject:
-                subjectMap[subject.attrib['id']] = attributes.attrib
+        for object in root.iter('object'):
+            for attributes in object:
+                objectMap[object.attrib['id']] = attributes.attrib
         
-        for resource in root.iter('resource'):
-            for attributes in resource:
-                resourceMap[resource.attrib['id']] = attributes.attrib
         
         logger.info("Initialized DB with:"
-                    "\n\tSubject Attributes = %s"
-                    "\n\tResource Attributes = %s", subjectMap, resourceMap)
+                    "\n\Object Attributes = %s", objectMap)
         await(received(('done',)))
         logger.info("Dumping final contents of DB:"
-                    "\n\tSubject Attributes = %s"
-                    "\n\tResource Attributes = %s", self.subjectMap,
-                    self.resourceMap)
+                    "\n\Object Attributes = %s", self.objectMap)

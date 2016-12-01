@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <data>
-    <subject id="1111">
+    <object id="1111">
         <attribute position="employee" history=""/>
-    </subject>
-    <subject id="2222">
+    </object>
+    <object id="2222">
         <attribute position="viewer"/>
-    </subject>
-    <subject id="3333">
+    </object>
+    <object id="3333">
         <attribute position="listener"/>
-    </subject>
-    <subject id="4444">
+    </object>
+    <object id="4444">
         <attribute name="Tom" viewCount="0"/>
-    </subject>
-    <resource id="999">
+    </object>
+    <object id="999">
         <attribute id="bank A"/>
-    </resource>
-    <resource id="888">
+    </object>
+    <object id="888">
         <attribute type="movie" viewCount="0"/>
-    </resource>
-    <resource id="777">
+    </object>
+    <object id="777">
         <attribute type="song" viewCount="0"/>
-    </resource>
-    <resource id="666">
+    </object>
+    <object id="666">
         <attribute movie="StarWars"/>
-    </resource>
+    </object>
 </data>
