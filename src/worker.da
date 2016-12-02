@@ -8,6 +8,26 @@ from util import PolicyRule
 from util import Response
 import time
 
+def swap(request):
+    temp = request.objectX
+    request.objectX = request.objectY
+    request.objectY = temp
+
+    temp = request.sessionIdX
+    request.sessionIdX = request.sessionIdY
+    request.sessionIdY = temp
+
+    temp = request.defReadAttrX
+    request.defReadAttrX = request.defReadAttrY
+    request.defReadAttrY = temp
+    
+    temp = request.mightReadAttrX
+    request.mightReadAttrX = request.mightReadAttrY
+    request.mightReadAttrY = temp
+
+    temp = request.cachedUpdatesX
+    request.cachedUpdatesX = request.cachedUpdatesY
+    request.cachedUpdatesY = temp
 
 class Worker(process):
     '''
@@ -48,7 +68,7 @@ class Worker(process):
         elif response.updatedObj == request.objectY:
             response.rdonlydObj = request.objectX
         else:
-            response.rdonlydObj = None
+            response.updatedObj = None
 
         
         '''
@@ -61,7 +81,8 @@ class Worker(process):
         if response.updatedObj is None:
             send(("RESULT_CLIENT", response), to=request.fromClient)
             send(("SENDATTR", request), to=coordinators[request.objectX % size])
-            send(("SENDATTR", request), to=coordinators[request.objectY % size])
+            swap(request)
+            send(("SENDATTR", request), to=coordinators[request.objectX % size])
         else:
             send(("RESULT", request), to=coordinators[response.updatedObj %
                                                     size])

@@ -9,8 +9,34 @@ import logging.config
 import logging.handlers
 from util import Request
 from collections import deque
-from datetime import datetime, date, time
 
+def swap(request):
+    temp = request.objectX
+    request.objectX = request.objectY
+    request.objectY = temp
+
+    temp = request.sessionIdX
+    request.sessionIdX = request.sessionIdY
+    request.sessionIdY = temp
+
+    temp = request.defReadAttrX
+    request.defReadAttrX = request.defReadAttrY
+    request.defReadAttrY = temp
+    
+    temp = request.mightReadAttrX
+    request.mightReadAttrX = request.mightReadAttrY
+    request.mightReadAttrY = temp
+
+    temp = request.cachedUpdatesX
+    request.cachedUpdatesX = request.cachedUpdatesY
+    request.cachedUpdatesY = temp
+        
+class Version(object):
+    def __init__(self):
+        self.rts = 0
+        self.wts = 0
+        self.pendingMightRead = [] # tuple (value, req.ts)
+    
 class Coordinator(process):
     def setup(coordinators, dbInstance, config):
         '''
@@ -20,7 +46,7 @@ class Coordinator(process):
         self.logger = logging.getLogger('Log.' + __name__)
 
         # new parameters for phase4
-        # self.versionCache = {}
+        self.versionCache = {}
         self.coordSessionID = uuid.uuid4()  # Session id for co-ordinator
         # restarts
         # self.PCA = {} # To handle starvation of write requests
@@ -34,19 +60,31 @@ class Coordinator(process):
         setup(self.workers, (self.coordinators, dbInstance, config,))
         start(self.workers)
 
-    def swap(request):
-        temp = request.objectX
-        request.objectX = request.objectY
-        request.objectY = temp
-
-        temp = request.sessionIdX
-        request.sessionIdX = request.sessionIdY
-        request.sessionIdY = temp
-            
+    def latestVersionBefore(objID, attr, ts):
+        if objID not in self.versionCache:
+            self.versionCache[objID] = {}
+        if attr not in self.versionCache[objID]:
+            self.versionCache[objID][attr] = []
+        
+        for v in versionCache[objID][attr]:
+            if v.wts < ts:
+                return v
+        
+        v = Version()
+        versionCache[objID][attr].append(v)
+        
+        return v
+    
+    def getCachedUpdates(request):
+        res = []
+        for attr in list(set().union(request.defReadAttrX, request.mightReadAttrX)):
+            res.append(latestVersionBefore(request.objectX, attr, request.ts))
+        return res
+    
+                            
     def receive(msg=("EVALUATE", request), from_=p):
         '''
-            Subject coordinator instance, receives from client and sends to
-            resource coordinator. It also sends the tentative cache.
+            Subject coordinator instance, receives from 
         '''
         # logger.info("Subject Coordinator: Received request with following "
         #             "parameters from Client:"
@@ -57,14 +95,23 @@ class Coordinator(process):
         request.sessionIdX = self.coordSessionID
         if request.isClient == True:
             request.fromClient = p
-            request.ts = datetime.now()
+            request.ts = time.time()
 
         if request.isReadOnly == True:
-            pass
+            # await check PCA
+            for attr in request.defReadAttrX:
+                latestVersionBefore(request.objectX, attr, request.ts). \
+                    rts = request.ts
+                
+            for attr in request.mightReadAttrX:
+                latestVersionBefore(request.objectX, attr, request.ts). \
+                    pendingMightRead.append((request.requestID, request.ts))
         else:
-            pass
+            for attr in list(set().union(request.defReadAttrX, request.mightReadAttrX)):
+                latestVersionBefore(request.objectX, attr, request.ts). \
+                    pendingMightRead.append((request.requestID, request.ts))
 
-        # Update cached updates in request object
+        request.cachedUpdatesX = getCachedUpdates(request)
 
         if request.isClient == True:
             request.isClient = False
@@ -73,13 +120,24 @@ class Coordinator(process):
             send(('EVALUATE', request), to=(coordinators[request.objectX % len(coordinators)]))
         else:
             workerSequence = (workerSequence + 1) % len(workerList)
+            if request.objectSwap == False:
+                swap(request)
             send(('WORKER_ASSIGN', request), to=workerList[workerSequence])
 
     def receive(msg=('SENDATTR', request), from_=p):
         if request.sessionIdX != self.coordSessionID:
-            return
+            return # To check
             # Implementation
 
+        print(request.mightReadAttrX)
+        for attr in request.mightReadAttrX:
+            v = latestVersionBefore(request.objectX, attr, request.ts)
+            pendingMightRead = [i for i in v.pendingMightRead if i[0] != request.requestID]
+            v.pendingMightRead = pendingMightRead
+                
+            if attr in request.readAttrX:
+                v.rts = request.ts
+            
     def receive(msg=('RESULT', response), from_= worker):
         if response.request.sessionIdX != self.coordSessionID:
             return

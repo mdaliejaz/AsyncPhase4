@@ -18,6 +18,10 @@ class Request(object):
         self.defReadAttrY = defReadAttrY
         self.mightReadAttrX = mightReadAttrX
         self.mightReadAttrY = mightReadAttrY
+        self.cachedUpdatesX = None
+        self.cachedUpdatesY = None
+        self.readAttrX = []
+        self.readAttrY = []
         self.objectSwap = objectSwap
         self.ts = None
 
