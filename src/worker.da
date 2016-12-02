@@ -8,6 +8,7 @@ from util import PolicyRule
 from util import Response
 import time
 
+
 def swap(request):
     temp = request.objectX
     request.objectX = request.objectY
@@ -20,7 +21,7 @@ def swap(request):
     temp = request.defReadAttrX
     request.defReadAttrX = request.defReadAttrY
     request.defReadAttrY = temp
-    
+
     temp = request.mightReadAttrX
     request.mightReadAttrX = request.mightReadAttrY
     request.mightReadAttrY = temp
@@ -28,6 +29,7 @@ def swap(request):
     temp = request.cachedUpdatesX
     request.cachedUpdatesX = request.cachedUpdatesY
     request.cachedUpdatesY = temp
+
 
 class Worker(process):
     '''
@@ -43,11 +45,11 @@ class Worker(process):
         # readPolicy(self.policyFile)
 
     def receive(msg=('WORKER_ASSIGN', request)):
-#         logger.info("Received message from coordinator for Request:"
-#                     "\n\tSubject ID: %d"
-#                     "\n\tResource ID: %d"
-#                     "\n\tAction: %s}",
-#                     request.subjectID, request.subjectID, request.action)
+        #         logger.info("Received message from coordinator for Request:"
+        #                     "\n\tSubject ID: %d"
+        #                     "\n\tResource ID: %d"
+        #                     "\n\tAction: %s}",
+        #                     request.subjectID, request.subjectID, request.action)
         '''
             Logging for response queue delay
         '''
@@ -62,7 +64,7 @@ class Worker(process):
         response.request = request
         response.decision = True
         response.updatedObj = None
-        
+
         if response.updatedObj == request.objectX:
             response.rdonlydObj = request.objectY
         elif response.updatedObj == request.objectY:
@@ -70,7 +72,6 @@ class Worker(process):
         else:
             response.updatedObj = None
 
-        
         '''
             Update the sets in the request objects for the union of common
             attributes across all policy rules for that action.
@@ -85,7 +86,7 @@ class Worker(process):
             send(("SENDATTR", request), to=coordinators[request.objectX % size])
         else:
             send(("RESULT", request), to=coordinators[response.updatedObj %
-                                                    size])
+                                                      size])
 
     def run():
         logger.info("Started worker to evaluate policy in file: %s",
@@ -95,147 +96,147 @@ class Worker(process):
         # Wait till "done" is received to kill gracefully.
         await(received(('done',)))
 
-            # def conditionSatisfied(policyValue, mapValue):
-            #     '''
-            #         Check if policy condition is satisfied. Handles cases
-            #         for <, > and simple strings
-            #     '''
-            #     if ((len(policyValue) > 0 and len(mapValue) > 0) and
-            #             (policyValue[0] == ">" or policyValue[0] == "<")):
-            #         try:
-            #             policyNum = int(policyValue[1:])
-            #             dbNum = int(mapValue)
-            #             if (policyValue[0] == "<"):
-            #                 return policyNum > dbNum
-            #             else:
-            #                 return policyNum < dbNum
-            #         except:
-            #             return False
-            #     else:
-            #         return policyValue == mapValue
-            #
-            # def validateRule(conditions, attribMap, attribSet, subjAttribReqd,
-            #                  resourceAttribReqd):
-            #     '''
-            #         Validates a policy rule. The subject and resource attribute
-            #         maps are needed to handle the '$' scenario. In such a cases
-            #         we replace the $ atrribute with the value present in maps.
-            #     '''
-            #     for k in conditions.keys():
-            #         attribSet.add(k)
-            #         policyVal = conditions[k]
-            #
-            #         if (conditions[k].startswith('$')):
-            #             policyVal = checkDollar(conditions[k],
-            #                                     subjAttribReqd, resourceAttribReqd)
-            #         if not conditionSatisfied(policyVal, attribMap[k]):
-            #             return False
-            #     return True
-            #
-            # def checkDollar(value, subjAttribReqd, resourceAttribReqd):
-            #     '''
-            #         Check for $ in attribute value and perform the required
-            #         substitution. Return None if no $ is present in attribute value.
-            #     '''
-            #     if (value.startswith('$')):
-            #         instance, attrib = value.split('.')
-            #         instance = instance[1:]
-            #         if (instance == "resource"):
-            #             return resourceAttribReqd[attrib]
-            #         else:
-            #             return subjAttribReqd[attrib]
-            #
-            #     return None
-            #
-            #
-            # def receive(msg=('DB_RESPONSE', dbresponse)):
-            #     '''
-            #         Receives response from DB, validates rules and send updated
-            #         attributes to subject co-ordinator.
-            #     '''
-            #     logger.info("Received following DB response:%s", dbresponse)
-            #     subjAttribReqd = mergeMaps(dbresponse.readDbSubjectMap,
-            #                                dbresponse.request.subjectAttributeMap)
-            #     resourceAttribReqd = mergeMaps(dbresponse.readDbResourceMap,
-            #                                    dbresponse.request.resourceAttributeMap)
-            #
-            #     ruleMatch = False
-            #     readSubjAttrib = set()
-            #     readResourceAttrib = set()
-            #
-            #     for rule in policyMap[dbresponse.request.action]:
-            #         if (validateRule(rule.subjectCondition, subjAttribReqd,
-            #                          readSubjAttrib, subjAttribReqd,
-            #                          resourceAttribReqd) and
-            #                 validateRule(rule.resourceCondition, resourceAttribReqd,
-            #                              readResourceAttrib, subjAttribReqd,
-            #                              resourceAttribReqd)):
-            #             ruleMatch = True
-            #             break
-            #
-            #     readDbSubjMap = {}
-            #     readDbresourceMap = {}
-            #     readSubjMap = {}
-            #     readresourceMap = {}
-            #     # Check read attribute is from tentative cache or 'db read'
-            #     for val in readSubjAttrib:
-            #         if val in dbresponse.readDbSubjectMap:
-            #             readDbSubjMap[val] = dbresponse.readDbSubjectMap[val]
-            #         else:
-            #             readSubjMap[val] = dbresponse.request.subjectAttributeMap[val]
-            #
-            #     for val in readResourceAttrib:
-            #         if val in dbresponse.readDbResourceMap:
-            #             readDbresourceMap[val] = dbresponse.readDbResourceMap[val]
-            #         else:
-            #             readresourceMap[val] = dbresponse.request.resourceAttributeMap[
-            #                 val]
-            #
-            #     toUpdateSubjectMap = {}
-            #     toUpdateResourceMap = {}
-            #     # If no rule has matched
-            #     if ruleMatch == False:
-            #         dbresponse.evaluation = False
-            #     else:
-            #         # These are the attributes updated
-            #         toUpdateSubjectMap = getUpdatedMaps(rule.subjectUpdate,
-            #                                             subjAttribReqd,
-            #                                             subjAttribReqd,
-            #                                             resourceAttribReqd)
-            #         toUpdateResourceMap = getUpdatedMaps(rule.resourceUpdate,
-            #                                              resourceAttribReqd,
-            #                                              subjAttribReqd,
-            #                                              resourceAttribReqd)
-            #
-            #     dbresponse.readDbSubjectMap = readDbSubjMap
-            #     dbresponse.readDbResourceMap = readDbresourceMap
-            #     response = Response(dbresponse, toUpdateSubjectMap, toUpdateResourceMap,
-            #                         readSubjMap, readresourceMap)
-            #     logger.info("Sending following Worker Response to Subject "
-            #                 "Coordinator:%s", response)
-            #     id = int(dbresponse.request.subjectID) % self.size
-            #     # send response back to subject co-ordinator
-            #     send(('WORKER_RESPONSE', response), to=(coordinators[id]))
-            #
+        # def conditionSatisfied(policyValue, mapValue):
+        #     '''
+        #         Check if policy condition is satisfied. Handles cases
+        #         for <, > and simple strings
+        #     '''
+        #     if ((len(policyValue) > 0 and len(mapValue) > 0) and
+        #             (policyValue[0] == ">" or policyValue[0] == "<")):
+        #         try:
+        #             policyNum = int(policyValue[1:])
+        #             dbNum = int(mapValue)
+        #             if (policyValue[0] == "<"):
+        #                 return policyNum > dbNum
+        #             else:
+        #                 return policyNum < dbNum
+        #         except:
+        #             return False
+        #     else:
+        #         return policyValue == mapValue
+        #
+        # def validateRule(conditions, attribMap, attribSet, subjAttribReqd,
+        #                  resourceAttribReqd):
+        #     '''
+        #         Validates a policy rule. The subject and resource attribute
+        #         maps are needed to handle the '$' scenario. In such a cases
+        #         we replace the $ atrribute with the value present in maps.
+        #     '''
+        #     for k in conditions.keys():
+        #         attribSet.add(k)
+        #         policyVal = conditions[k]
+        #
+        #         if (conditions[k].startswith('$')):
+        #             policyVal = checkDollar(conditions[k],
+        #                                     subjAttribReqd, resourceAttribReqd)
+        #         if not conditionSatisfied(policyVal, attribMap[k]):
+        #             return False
+        #     return True
+        #
+        # def checkDollar(value, subjAttribReqd, resourceAttribReqd):
+        #     '''
+        #         Check for $ in attribute value and perform the required
+        #         substitution. Return None if no $ is present in attribute value.
+        #     '''
+        #     if (value.startswith('$')):
+        #         instance, attrib = value.split('.')
+        #         instance = instance[1:]
+        #         if (instance == "resource"):
+        #             return resourceAttribReqd[attrib]
+        #         else:
+        #             return subjAttribReqd[attrib]
+        #
+        #     return None
+        #
+        #
+        # def receive(msg=('DB_RESPONSE', dbresponse)):
+        #     '''
+        #         Receives response from DB, validates rules and send updated
+        #         attributes to subject co-ordinator.
+        #     '''
+        #     logger.info("Received following DB response:%s", dbresponse)
+        #     subjAttribReqd = mergeMaps(dbresponse.readDbSubjectMap,
+        #                                dbresponse.request.subjectAttributeMap)
+        #     resourceAttribReqd = mergeMaps(dbresponse.readDbResourceMap,
+        #                                    dbresponse.request.resourceAttributeMap)
+        #
+        #     ruleMatch = False
+        #     readSubjAttrib = set()
+        #     readResourceAttrib = set()
+        #
+        #     for rule in policyMap[dbresponse.request.action]:
+        #         if (validateRule(rule.subjectCondition, subjAttribReqd,
+        #                          readSubjAttrib, subjAttribReqd,
+        #                          resourceAttribReqd) and
+        #                 validateRule(rule.resourceCondition, resourceAttribReqd,
+        #                              readResourceAttrib, subjAttribReqd,
+        #                              resourceAttribReqd)):
+        #             ruleMatch = True
+        #             break
+        #
+        #     readDbSubjMap = {}
+        #     readDbresourceMap = {}
+        #     readSubjMap = {}
+        #     readresourceMap = {}
+        #     # Check read attribute is from tentative cache or 'db read'
+        #     for val in readSubjAttrib:
+        #         if val in dbresponse.readDbSubjectMap:
+        #             readDbSubjMap[val] = dbresponse.readDbSubjectMap[val]
+        #         else:
+        #             readSubjMap[val] = dbresponse.request.subjectAttributeMap[val]
+        #
+        #     for val in readResourceAttrib:
+        #         if val in dbresponse.readDbResourceMap:
+        #             readDbresourceMap[val] = dbresponse.readDbResourceMap[val]
+        #         else:
+        #             readresourceMap[val] = dbresponse.request.resourceAttributeMap[
+        #                 val]
+        #
+        #     toUpdateSubjectMap = {}
+        #     toUpdateResourceMap = {}
+        #     # If no rule has matched
+        #     if ruleMatch == False:
+        #         dbresponse.evaluation = False
+        #     else:
+        #         # These are the attributes updated
+        #         toUpdateSubjectMap = getUpdatedMaps(rule.subjectUpdate,
+        #                                             subjAttribReqd,
+        #                                             subjAttribReqd,
+        #                                             resourceAttribReqd)
+        #         toUpdateResourceMap = getUpdatedMaps(rule.resourceUpdate,
+        #                                              resourceAttribReqd,
+        #                                              subjAttribReqd,
+        #                                              resourceAttribReqd)
+        #
+        #     dbresponse.readDbSubjectMap = readDbSubjMap
+        #     dbresponse.readDbResourceMap = readDbresourceMap
+        #     response = Response(dbresponse, toUpdateSubjectMap, toUpdateResourceMap,
+        #                         readSubjMap, readresourceMap)
+        #     logger.info("Sending following Worker Response to Subject "
+        #                 "Coordinator:%s", response)
+        #     id = int(dbresponse.request.subjectID) % self.size
+        #     # send response back to subject co-ordinator
+        #     send(('WORKER_RESPONSE', response), to=(coordinators[id]))
+        #
 
-            # def readPolicy(policyFile):
-            #     '''
-            #         Reads the policy XML file and stores it in memory (map)
-            #         This code is the same as what policy.py provided to us.
-            #     '''
-            #     root = ET.parse(policyFile).getroot()
-            #
-            #     for rule in root.iter('rule'):
-            #         sc = rule.find('subjectCondition').attrib
-            #         rc = rule.find('resourceCondition').attrib
-            #         act = rule.find('action').attrib
-            #         su = rule.find('subjectUpdate')
-            #         if su != None:
-            #             su = su.attrib
-            #         ru = rule.find('resourceUpdate')
-            #         if ru != None:
-            #             ru = ru.attrib
-            #
-            #         if (act["name"] not in self.policyMap):
-            #             self.policyMap[act["name"]] = []
-            #         self.policyMap[act["name"]].append(PolicyRule(sc, rc, su, ru))
+        # def readPolicy(policyFile):
+        #     '''
+        #         Reads the policy XML file and stores it in memory (map)
+        #         This code is the same as what policy.py provided to us.
+        #     '''
+        #     root = ET.parse(policyFile).getroot()
+        #
+        #     for rule in root.iter('rule'):
+        #         sc = rule.find('subjectCondition').attrib
+        #         rc = rule.find('resourceCondition').attrib
+        #         act = rule.find('action').attrib
+        #         su = rule.find('subjectUpdate')
+        #         if su != None:
+        #             su = su.attrib
+        #         ru = rule.find('resourceUpdate')
+        #         if ru != None:
+        #             ru = ru.attrib
+        #
+        #         if (act["name"] not in self.policyMap):
+        #             self.policyMap[act["name"]] = []
+        #         self.policyMap[act["name"]].append(PolicyRule(sc, rc, su, ru))

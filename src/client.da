@@ -98,17 +98,13 @@ class Client(process):
 
         if action in self.defReadAttrMap:
             if objectXType in self.defReadAttrMap[action]:
-                print("reached2")
                 defReadAttrX = self.defReadAttrMap[action][objectXType]
             if objectYType in self.defReadAttrMap[action]:
-                print("reached3")
                 defReadAttrY = self.defReadAttrMap[action][objectYType]
         if action in self.mightReadAttrMap:
             if objectXType in self.mightReadAttrMap[action]:
-                print("reached4")
                 mightReadAttrX = self.mightReadAttrMap[action][objectXType]
             if objectYType in self.mightReadAttrMap[action]:
-                print("reached5")
                 mightReadAttrY = self.mightReadAttrMap[action][objectYType]
 
         print(defReadAttrX)
