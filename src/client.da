@@ -56,25 +56,23 @@ class Client(process):
         return sequenceList
 
     def sendToSubjectCoordinator():
-        # might write logic and decision on which coordinator to send to goes
-        #  here
-
         elem = requestQueue.get()
         if (elem == None):
             self.exit = True
             return
 
         coordID = (elem[0]) % self.size
-        objectX = None
-        objectY = None
+        objectX = elem[0]
+        objectY = elem[1]
+        objectSwap = False
         isReadOnly = True
         defReadAttrX = []
         defReadAttrY = []
         mightReadAttrX = []
         mightReadAttrY = []
-        print(coordID)
-        # print(coordinators[coordID])
 
+        print(coordID)
+        print(coordinators[coordID])
         logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
                     "%d, action: %s} to coordinator %d", self.num, elem[0],
                     elem[1], elem[2], coordID)
@@ -87,12 +85,10 @@ class Client(process):
                 objectX = elem[1]
                 objectY = elem[0]
                 isReadOnly = False
+                objectSwap = True
             elif elem[0] in self.mightWriteObjectMap[elem[2]]:
-                objectX = elem[0]
-                objectY = elem[1]
                 isReadOnly = False
 
-        # request = Request(1234, elem[0], elem[1], elem[2], True, False)
         if elem[2] in self.defReadAttrMap:
             if objectX in self.defReadAttrMap[elem[2]]:
                 defReadAttrX = self.defReadAttrMap[elem[2]][objectX]
@@ -103,9 +99,10 @@ class Client(process):
             if objectY in self.mightReadAttrMap[elem[2]]:
                 mightReadAttrY = self.mightReadAttrMap[elem[2]][objectY]
 
-        request = Request(requestID, elem[1], elem[0], elem[2], True,
+        request = Request(requestID, objectX, objectY, elem[2], True,
                           isReadOnly, defReadAttrX, defReadAttrY,
                           mightReadAttrX, mightReadAttrY)
+        request.objectSwap = objectSwap
         print(request)
 
         send(('EVALUATE', request), to=coordinators[coordID])
