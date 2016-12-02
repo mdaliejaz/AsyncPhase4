@@ -7,6 +7,8 @@ import logging.handlers
 import queue
 import random
 import time
+import collections
+import uuid
 
 
 class Client(process):
@@ -19,6 +21,9 @@ class Client(process):
         self.size = len(coordinators)
         self.requestQueue = queue.Queue()
         self.exit = False
+        self.defReadAttrMap = collections.defaultdict(dict)
+        self.mightReadAttrMap = collections.defaultdict(dict)
+        self.mightWriteObjectMap = collections.defaultdict(dict)
 
         sequenceList = []
         sequence = config.get("client" + str(num), "sequence")
@@ -27,10 +32,9 @@ class Client(process):
         else:
             sequenceList = sequence.split(',')
 
-        # change subject/resource to object 1 and 2
         for seq in sequenceList:
-            requestQueue.put([int(config.get(seq, "subjectID")),
-                              int(config.get(seq, "resourceID")),
+            requestQueue.put([int(config.get(seq, "objectX")),
+                              int(config.get(seq, "objectY")),
                               config.get(seq, "action")])
         # Mark the end of queue
         requestQueue.put(None)
@@ -54,38 +58,81 @@ class Client(process):
     def sendToSubjectCoordinator():
         # might write logic and decision on which coordinator to send to goes
         #  here
-        
+
         elem = requestQueue.get()
         if (elem == None):
             self.exit = True
             return
+
         coordID = (elem[0]) % self.size
+        objectX = None
+        objectY = None
+        isReadOnly = True
+        defReadAttrX = []
+        defReadAttrY = []
+        mightReadAttrX = []
+        mightReadAttrY = []
         print(coordID)
-        print(coordinators[coordID])
+        # print(coordinators[coordID])
+
         logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
                     "%d, action: %s} to coordinator %d", self.num, elem[0],
                     elem[1], elem[2], coordID)
-                
-        #request = Request(1234, elem[0], elem[1], elem[2], True, False)
-        request = Request(1234, elem[0], elem[1], elem[2], True, True)
+
+        requestID = uuid.uuid4()
+
+        if elem[2] in self.mightWriteObjectMap:
+            if elem[1] in self.mightWriteObjectMap[elem[2]]:
+                coordID = (elem[1]) % self.size
+                objectX = elem[1]
+                objectY = elem[0]
+                isReadOnly = False
+            elif elem[0] in self.mightWriteObjectMap[elem[2]]:
+                objectX = elem[0]
+                objectY = elem[1]
+                isReadOnly = False
+
+        # request = Request(1234, elem[0], elem[1], elem[2], True, False)
+        if elem[2] in self.defReadAttrMap:
+            if objectX in self.defReadAttrMap[elem[2]]:
+                defReadAttrX = self.defReadAttrMap[elem[2]][objectX]
+            if objectY in self.defReadAttrMap[elem[2]]:
+                defReadAttrY = self.defReadAttrMap[elem[2]][objectY]
+            if objectX in self.mightReadAttrMap[elem[2]]:
+                mightReadAttrX = self.mightReadAttrMap[elem[2]][objectX]
+            if objectY in self.mightReadAttrMap[elem[2]]:
+                mightReadAttrY = self.mightReadAttrMap[elem[2]][objectY]
+
+        request = Request(requestID, elem[1], elem[0], elem[2], True,
+                          isReadOnly, defReadAttrX, defReadAttrY,
+                          mightReadAttrX, mightReadAttrY)
         print(request)
-        
+
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
         # if timeout rescedule
+
+    def staticAnalysis():
+        self.defReadAttrMap["read"]["person"] = ["position", "history"]
+        self.defReadAttrMap["read"]["bank"] = ["id"]
+        self.defReadAttrMap["view"]["person"] = ["position"]
+        self.defReadAttrMap["view"]["movie"] = ["viewCount"]
+        self.mightReadAttrMap["read"]["bank"] = ["account"]
+        self.mightWriteObjectMap["view"]["movie"] = True
+        self.mightWriteObjectMap["read"]["person"] = True
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
         if response.decision:
             print("YES")
-#             logger.info("Allow access to client %d for Request{Subject ID: "
-#                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
-#                         resourceID, action)
+        # logger.info("Allow access to client %d for Request{Subject ID: "
+        #                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
+        #                         resourceID, action)
         else:
             pass
-#             logger.info("Deny access to client %d for Request{Subject ID: "
-#                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
-#                         resourceID, action)
+        # logger.info("Deny access to client %d for Request{Subject ID: "
+        #                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
+        #                         resourceID, action)
 
         sendToSubjectCoordinator()
 
