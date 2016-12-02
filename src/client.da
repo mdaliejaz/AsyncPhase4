@@ -101,8 +101,7 @@ class Client(process):
 
         request = Request(requestID, objectX, objectY, elem[2], True,
                           isReadOnly, defReadAttrX, defReadAttrY,
-                          mightReadAttrX, mightReadAttrY)
-        request.objectSwap = objectSwap
+                          mightReadAttrX, mightReadAttrY, objectSwap)
         print(request)
 
         send(('EVALUATE', request), to=coordinators[coordID])
