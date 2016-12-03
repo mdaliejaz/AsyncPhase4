@@ -25,56 +25,48 @@ class Database(process):
         # Initialize a random wait time after which it must commit
         self.waitTime = random.randint(minDbLatency, maxDbLatency)
 
-#     def receive(msg=('GET_FROM_DB', request), from_=p):
-#         '''
-#             Fetch required attributes from DB which are not in cache
-#             If attribute not in Db write a empty value
-#         '''
-#         logger.info("Received request from Worker to get attributes for "
-#                     "following request:%s", request)
-#         evaluation = True
-#         subjAttribDiff = {}
-#         resourceAttribDiff = {}
-#         subjectID = str(request.subjectID)
-#         resourceID = str(request.resourceID)
-# 
-#         # if no subjectID in Db then write it with empty values
-#         if subjectID not in self.subjectMap:
-#             self.subjectMap[subjectID] = {}
-#         if resourceID not in self.resourceMap:
-#             self.resourceMap[resourceID] = {}
-# 
-#         try:
-#             subjAttribDiffSet = request.requiredSubjAtrribs - set(
-#                 request.subjectAttributeMap.keys())
-#             resourceAttribDiffSet = request.requiredResourceAtrribs - set(
-#                 request.resourceAttributeMap.keys())
-# 
-#             for subj in subjAttribDiffSet:
-#                 try:
-#                     subjAttribDiff[subj] = self.subjectMap[subjectID][subj]
-#                 except:
-#                     # If attribute not present write empty value
-#                     self.subjectMap[subjectID][subj] = ""
-#                     subjAttribDiff[subj] = ""
-# 
-#             for resource in resourceAttribDiffSet:
-#                 try:
-#                     resourceAttribDiff[resource] = self.resourceMap[resourceID][
-#                         resource]
-#                 except:
-#                     # If attribute not present write empty value
-#                     self.resourceMap[resourceID][resource] = ""
-#                     resourceAttribDiff[resource] = ""
-#         except:
-#             # Should never reach here
-#             evaluation = False
-# 
-#         response = DBResponse(request, evaluation, subjAttribDiff,
-#                               resourceAttribDiff)
-#         logger.info("Sending following response to Worker with updated "
-#                     "attributes from database:%s", response)
-#         send(('DB_RESPONSE', response), to=p)
+    def receive(msg=('GET_FROM_DB', request), from_=p):
+        '''
+            Fetch required attributes from DB which are not in cache
+            If attribute not in Db write a empty value
+        '''
+        logger.info("Received request from Worker to get attributes for "
+                    "following request:%s", request)
+        evaluation = True
+        objectXID = str(request.objectX)
+        objectYID = str(request.objectY)
+  
+        # if no subjectID in Db then write it with empty values
+        if objectXID not in self.objectMap:
+            self.objectMap[objectXID] = {}
+        if objectYID not in self.objectMap:
+            self.objectMap[objectYID] = {}
+  
+        try:
+            keyDbReqd = set(self.objectMap[objectXID].keys()) - set(request.cachedUpdatesX.keys())
+            XMap = {}
+            for k in keyDbReqd:
+                for i,tup in enumerate(objectMap[objectXID][k]):
+                    if tup[1] > request.ts:
+                        XMap[k] = objectMap[objectXID][k][i-1][0]
+ 
+            keyDbReqd = set(self.objectMap[objectYID].keys()) - set(request.cachedUpdatesY.keys())
+            
+            YMap = {}
+            for k in keyDbReqd:
+                for i,tup in enumerate(objectMap[objectYID][k]):
+                    if tup[1] > request.ts:
+                        YMap[k] = objectMap[objectYID][k][i-1][0]
+                        
+        except:
+            # Should never reach here
+            evaluation = False
+  
+        response = DBResponse(request, evaluation, XMap,
+                              YMap)
+        logger.info("Sending following response to Worker with updated "
+                    "attributes from database:%s", response)
+        send(('DB_RESPONSE', response), to=p)
 # 
 #     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
 #         '''
@@ -110,9 +102,10 @@ class Database(process):
                     self.dbInitFile, self.minDbLatency, self.maxDbLatency)
 
         for object in root.iter('object'):
+            objectMap[object.attrib['id']] = {}
             for attributes in object:
-                objectMap[object.attrib['id']] = attributes.attrib
-        
+                for k,v in attributes.attrib.items():
+                    objectMap[object.attrib['id']][k] = [(v,0)]
         
         logger.info("Initialized DB with:"
                     "\n\Object Attributes = %s", objectMap)

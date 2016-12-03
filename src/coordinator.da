@@ -56,15 +56,19 @@ class Coordinator(process):
         return v
 
     def getCachedUpdates(request, obj):
-        res = []
+        res = {}
         if obj == "X":
             for attr in list(
                     set().union(request.defReadAttrX, request.mightReadAttrX)):
-                res.append(latestVersionBefore(request.objectX, attr, request.ts))
+                v = latestVersionBefore(request.objectX, attr, request.ts)
+                if v.wts != 0:
+                    res[attr] = v.val
         else:
             for attr in list(
                     set().union(request.defReadAttrY, request.mightReadAttrY)):
-                res.append(latestVersionBefore(request.objectY, attr, request.ts))
+                v = latestVersionBefore(request.objectX, attr, request.ts)
+                if v.wts != 0:
+                    res[attr] = v.val
         
         return res
 
@@ -246,6 +250,7 @@ class Coordinator(process):
                     # update read timestamps.
                     send(("SENDATTR", (response.request, rID)), to=coordinators[rID % size])
                     
+                    # remove from PCA
                     for k,v in response.updates:
                         li = PCA[objID][k]
                         new_li = [i for i in li if i[0] != response.request.requestID]

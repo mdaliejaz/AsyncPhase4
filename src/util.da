@@ -18,8 +18,8 @@ class Request(object):
         self.defReadAttrY = defReadAttrY
         self.mightReadAttrX = mightReadAttrX
         self.mightReadAttrY = mightReadAttrY
-        self.cachedUpdatesX = []
-        self.cachedUpdatesY = []
+        self.cachedUpdatesX = {}
+        self.cachedUpdatesY = {}
         self.readAttrX = []
         self.readAttrY = []
         self.objectSwap = objectSwap
@@ -79,6 +79,7 @@ class Response(object):
         self.decision = decision
         self.updatedObj = updatedObj
         self.rdonlydObj = rdonlydObj
+        self.updates = {}
 
     def __str__(self):
         return "{}" \
