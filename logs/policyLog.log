@@ -1,1179 +1,418 @@
-2016-11-21 19:21:11.872 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:21:11.973 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:21:11.973 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:21:11.974 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:21:12.033 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:21:12.033 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:21:12.045 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:21:12.045 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:21:12.050 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:21:12.050 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-21 19:21:12.051 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:21:12.052 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:21:12.053 - Log.client - INFO - Started Client 1
-2016-11-21 19:21:12.053 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:29:09.306 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:29:09.399 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:29:09.399 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:29:09.400 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:29:09.436 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:29:09.437 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:29:09.456 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:29:09.456 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:29:09.461 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:29:09.461 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}}
-2016-11-21 19:29:09.462 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:29:09.462 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:29:09.464 - Log.client - INFO - Started Client 1
-2016-11-21 19:29:09.464 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:31:42.921 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:31:43.004 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:31:43.004 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:31:43.004 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:31:43.045 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:31:43.046 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:31:43.063 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:31:43.063 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:31:43.069 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:31:43.069 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}}
-2016-11-21 19:31:43.070 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:31:43.070 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:31:43.071 - Log.client - INFO - Started Client 1
-2016-11-21 19:31:43.072 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:32:14.627 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:32:14.706 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:32:14.706 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:32:14.707 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:32:14.755 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:32:14.756 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:32:14.774 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:32:14.775 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:32:14.783 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:32:14.783 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}}
-2016-11-21 19:32:14.784 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:32:14.785 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:32:14.786 - Log.client - INFO - Started Client 1
-2016-11-21 19:32:14.787 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:33:05.639 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:33:05.714 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:33:05.715 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:33:05.715 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:33:05.747 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:33:05.747 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:33:05.769 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:33:05.770 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:33:05.777 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:33:05.778 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}}
-2016-11-21 19:33:05.779 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:33:05.779 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:33:05.780 - Log.client - INFO - Started Client 1
-2016-11-21 19:33:05.782 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:35:40.477 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:35:40.561 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:35:40.562 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:35:40.562 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:35:40.593 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:35:40.593 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:35:40.614 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:35:40.614 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:35:40.620 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:35:40.620 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}}
-2016-11-21 19:35:40.621 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:35:40.621 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:35:40.622 - Log.client - INFO - Started Client 1
-2016-11-21 19:35:40.622 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:36:01.687 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:36:01.772 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:36:01.772 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:36:01.772 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:36:01.801 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:36:01.801 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:36:01.827 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:36:01.827 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:36:01.833 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:36:01.833 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 19:36:01.834 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:36:01.834 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:36:01.835 - Log.client - INFO - Started Client 1
-2016-11-21 19:36:01.835 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:36:50.633 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:36:50.721 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:36:50.722 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:36:50.722 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:36:50.773 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:36:50.773 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:36:50.793 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:36:50.793 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:36:50.799 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:36:50.800 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}}
-2016-11-21 19:36:50.801 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:36:50.802 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:36:50.803 - Log.client - INFO - Started Client 1
-2016-11-21 19:36:50.803 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:38:19.900 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:38:19.977 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:38:19.978 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:38:19.978 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:38:19.982 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:38:19.983 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 19:38:19.983 - Log.client - INFO - Started Client 1
-2016-11-21 19:38:19.984 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:38:19.994 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:38:19.993 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:38:19.994 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:38:19.995 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:38:19.994 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:38:19.995 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:39:47.555 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:39:47.630 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:39:47.631 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:39:47.631 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:39:47.640 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:39:47.640 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 19:39:47.640 - Log.client - INFO - Started Client 1
-2016-11-21 19:39:47.646 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:39:47.656 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:39:47.655 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:39:47.655 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:39:47.656 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:39:47.656 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:39:47.658 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:39:59.408 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:39:59.467 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:39:59.469 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:39:59.469 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:39:59.475 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:39:59.476 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
-2016-11-21 19:39:59.476 - Log.client - INFO - Started Client 1
-2016-11-21 19:39:59.480 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:39:59.488 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:39:59.488 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:39:59.487 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:39:59.489 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:39:59.487 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:39:59.489 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:40:46.807 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:40:46.868 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:40:46.869 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:40:46.869 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:40:46.879 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:40:46.880 - Log.client - INFO - Started Client 1
-2016-11-21 19:40:46.881 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}}
-2016-11-21 19:40:46.886 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:40:46.895 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:40:46.896 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:40:46.895 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:40:46.898 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:40:46.899 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:40:46.898 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:41:14.777 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:41:14.853 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:41:14.854 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:41:14.854 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:41:14.859 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:41:14.859 - Log.client - INFO - Started Client 1
-2016-11-21 19:41:14.862 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 19:41:14.880 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:41:14.896 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:41:14.905 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:41:14.905 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:41:14.906 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:41:14.898 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:41:14.906 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:42:59.588 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:42:59.686 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:42:59.688 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:42:59.688 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:42:59.698 - Log.client - INFO - Started Client 1
-2016-11-21 19:42:59.712 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:42:59.712 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:42:59.713 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}}
-2016-11-21 19:42:59.724 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:42:59.725 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:42:59.725 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:42:59.725 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:42:59.725 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:42:59.726 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:43:21.275 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:43:21.363 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:43:21.365 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:43:21.365 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:43:21.372 - Log.client - INFO - Started Client 1
-2016-11-21 19:43:21.374 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:43:21.380 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:43:21.392 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '1111': {'history': '', 'position': 'employee'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 19:43:21.402 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:43:21.401 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:43:21.402 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:43:21.403 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:43:21.403 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:43:21.403 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:43:30.309 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:43:30.395 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:43:30.398 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:43:30.399 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:43:30.405 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:43:30.406 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '1111': {'history': '', 'position': 'employee'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}}
-2016-11-21 19:43:30.412 - Log.client - INFO - Started Client 1
-2016-11-21 19:43:30.413 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:43:30.420 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:43:30.423 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:43:30.437 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:43:30.437 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:43:30.435 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:43:30.443 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:43:48.166 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:43:48.255 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:43:48.256 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:43:48.257 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:43:48.266 - Log.client - INFO - Started Client 1
-2016-11-21 19:43:48.267 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:43:48.267 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:43:48.267 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'history': '', 'position': 'employee'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}}
-2016-11-21 19:43:48.293 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:43:48.294 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:43:48.293 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:43:48.302 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:43:48.303 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:43:48.304 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:44:32.910 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:44:32.995 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:44:32.998 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:44:32.999 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:44:33.004 - Log.client - INFO - Started Client 1
-2016-11-21 19:44:33.005 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:44:33.005 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:44:33.007 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}}
-2016-11-21 19:44:33.021 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:44:33.020 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:44:33.021 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:44:33.022 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:44:33.022 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:44:33.023 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:45:40.210 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:45:40.292 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:45:40.293 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:45:40.293 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:45:40.298 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:45:40.298 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}}
-2016-11-21 19:45:40.299 - Log.client - INFO - Started Client 1
-2016-11-21 19:45:40.301 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:45:40.313 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:45:40.312 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:45:40.315 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:45:40.312 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:45:40.315 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:45:40.316 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:46:38.192 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:46:38.261 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:46:38.262 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:46:38.262 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:46:38.266 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:46:38.267 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}}
-2016-11-21 19:46:38.267 - Log.client - INFO - Started Client 1
-2016-11-21 19:46:38.271 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:46:38.279 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:46:38.278 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:46:38.280 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:46:38.280 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:46:38.281 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:46:38.282 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:47:07.020 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:47:07.083 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:47:07.085 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:47:07.085 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:47:07.089 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:47:07.089 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 19:47:07.090 - Log.client - INFO - Started Client 1
-2016-11-21 19:47:07.091 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:47:07.102 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:47:07.103 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:47:07.104 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:47:07.104 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:47:07.106 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:47:07.106 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:47:07.110 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-01 21:40:11.040 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-01 21:40:11.137 - Log.master - INFO - Number of coordinators = 2
+2016-12-01 21:40:11.138 - Log.master - INFO - Number of clients = 1
+2016-12-01 21:40:11.138 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-01 21:40:11.175 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-01 21:40:11.175 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-01 21:40:11.197 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-01 21:40:11.198 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-01 21:40:11.206 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-01 21:40:11.207 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '3333': {'position': 'listener'}, '888': {'type': 'movie', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}, '999': {'id': 'bank A'}, '2222': {'position': 'viewer'}}
+2016-12-01 21:40:11.208 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-01 21:40:11.208 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-01 21:40:11.209 - Log.client - INFO - Started Client 1
+2016-12-01 21:40:11.214 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = c37ec625-f6e8-4381-8eeb-fe9eef08c0dd
+	Subject ID = 1111
+	Resource ID = 999
+	Action = read
 	From Client = False
-2016-11-21 19:48:23.626 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:48:23.706 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:48:23.709 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:48:23.709 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:48:23.714 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:48:23.715 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}}
-2016-11-21 19:48:23.715 - Log.client - INFO - Started Client 1
-2016-11-21 19:48:23.717 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:48:23.733 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:48:23.732 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:48:23.733 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:48:23.733 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:48:23.735 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:48:23.738 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:48:23.744 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-01 21:40:54.101 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-01 21:40:54.192 - Log.master - INFO - Number of coordinators = 2
+2016-12-01 21:40:54.192 - Log.master - INFO - Number of clients = 1
+2016-12-01 21:40:54.192 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-01 21:40:54.247 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-01 21:40:54.248 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-01 21:40:54.268 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-01 21:40:54.269 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-01 21:40:54.275 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-01 21:40:54.276 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'position': 'employee', 'history': ''}, '888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '2222': {'position': 'viewer'}}
+2016-12-01 21:40:54.277 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-01 21:40:54.278 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-01 21:40:54.280 - Log.client - INFO - Started Client 1
+2016-12-01 21:40:54.285 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = d9d1a90a-fd12-4c4f-93f3-3be580dffb99
+	Subject ID = 1111
+	Resource ID = 999
+	Action = read
 	From Client = False
-2016-11-21 19:50:45.930 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:50:46.002 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:50:46.006 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:50:46.007 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:50:46.016 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:50:46.017 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}}
-2016-11-21 19:50:46.017 - Log.client - INFO - Started Client 1
-2016-11-21 19:50:46.018 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:50:46.041 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:50:46.042 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:50:46.043 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:50:46.046 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:50:46.048 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:50:46.049 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:51:36.210 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:51:36.278 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:51:36.279 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:51:36.279 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:51:36.285 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:51:36.286 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 19:51:36.285 - Log.client - INFO - Started Client 1
-2016-11-21 19:51:36.287 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:51:36.302 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:51:36.302 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:51:36.304 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:51:36.304 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:51:36.305 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:51:36.305 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:51:36.311 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-02 16:34:33.809 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-02 16:34:33.893 - Log.master - INFO - Number of coordinators = 2
+2016-12-02 16:34:33.893 - Log.master - INFO - Number of clients = 1
+2016-12-02 16:34:33.893 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-02 16:34:33.932 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 16:34:33.932 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 16:34:33.952 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 16:34:33.952 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 16:34:33.958 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-02 16:34:33.959 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'999': {'id': 'bank A'}, '2222': {'position': 'viewer'}, '888': {'type': 'movie', 'viewCount': '0'}, '1111': {'history': '', 'position': 'employee'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '3333': {'position': 'listener'}}
+2016-12-02 16:34:33.959 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 16:34:33.959 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 16:34:33.961 - Log.client - INFO - Started Client 1
+2016-12-02 16:34:33.965 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 89bbcedd-b0e4-4639-b786-0678217d81b0
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:52:23.509 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:52:23.570 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:52:23.571 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:52:23.571 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:52:23.575 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:52:23.575 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'history': '', 'position': 'employee'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
-2016-11-21 19:52:23.576 - Log.client - INFO - Started Client 1
-2016-11-21 19:52:23.577 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:52:23.586 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:52:23.586 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:52:23.587 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:52:23.588 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:52:23.589 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:52:23.590 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:56:54.184 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:56:54.254 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:56:54.255 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:56:54.255 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:56:54.261 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:56:54.262 - Log.client - INFO - Started Client 1
-2016-11-21 19:56:54.264 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}}
-2016-11-21 19:56:54.268 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:56:54.280 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:56:54.279 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:56:54.281 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:56:54.291 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:56:54.292 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:56:54.293 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:57:35.233 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:57:35.298 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:57:35.299 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:57:35.299 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:57:35.303 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:57:35.304 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '1111': {'history': '', 'position': 'employee'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}}
-2016-11-21 19:57:35.304 - Log.client - INFO - Started Client 1
-2016-11-21 19:57:35.307 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:57:35.318 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:57:35.317 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:57:35.317 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:57:35.319 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:57:35.319 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:57:35.319 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:57:35.324 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-02 17:24:22.667 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-02 17:24:22.751 - Log.master - INFO - Number of coordinators = 2
+2016-12-02 17:24:22.751 - Log.master - INFO - Number of clients = 1
+2016-12-02 17:24:22.751 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-02 17:24:22.784 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 17:24:22.785 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 17:24:22.805 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 17:24:22.805 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 17:24:22.811 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-02 17:24:22.811 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'3333': {'position': 'listener'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '777': {'type': 'song', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}}
+2016-12-02 17:24:22.812 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 17:24:22.812 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 17:24:22.813 - Log.client - INFO - Started Client 1
+2016-12-02 17:24:22.818 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 147e3840-138f-468f-9afb-beea318f1c1d
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:58:31.000 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:58:31.076 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:58:31.079 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:58:31.079 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:58:31.094 - Log.client - INFO - Started Client 1
-2016-11-21 19:58:31.096 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:58:31.096 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:58:31.097 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-21 19:58:31.107 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:31.111 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:31.118 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:31.124 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-02 17:24:41.733 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-02 17:24:41.818 - Log.master - INFO - Number of coordinators = 2
+2016-12-02 17:24:41.819 - Log.master - INFO - Number of clients = 1
+2016-12-02 17:24:41.819 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-02 17:24:41.854 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 17:24:41.855 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 17:24:41.879 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 17:24:41.879 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 17:24:41.885 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-02 17:24:41.885 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '888': {'type': 'movie', 'viewCount': '0'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
+2016-12-02 17:24:41.886 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 17:24:41.886 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 17:24:41.887 - Log.client - INFO - Started Client 1
+2016-12-02 17:24:41.892 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = a9920b9d-5db3-45a7-8fbb-0a9a0ee73138
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:58:31.129 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:31.130 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:31.131 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:38.595 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:58:38.656 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:58:38.657 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:58:38.657 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:58:38.661 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:58:38.662 - Log.client - INFO - Started Client 1
-2016-11-21 19:58:38.663 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}}
-2016-11-21 19:58:38.663 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:58:38.680 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:38.679 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:38.680 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:38.682 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:38.688 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:38.689 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:38.695 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-02 17:27:16.518 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-02 17:27:16.602 - Log.master - INFO - Number of coordinators = 2
+2016-12-02 17:27:16.602 - Log.master - INFO - Number of clients = 1
+2016-12-02 17:27:16.602 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-02 17:27:16.637 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 17:27:16.637 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 17:27:16.658 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 17:27:16.659 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 17:27:16.665 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-02 17:27:16.665 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '777': {'viewCount': '0', 'type': 'song'}, '888': {'viewCount': '0', 'type': 'movie'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '999': {'id': 'bank A'}, '1111': {'history': '', 'position': 'employee'}, '666': {'movie': 'StarWars'}}
+2016-12-02 17:27:16.666 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 17:27:16.666 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 17:27:16.667 - Log.client - INFO - Started Client 1
+2016-12-02 17:27:16.671 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 14bf0afe-f5b8-4fbe-a613-ba187deaf020
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:58:48.686 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:58:48.751 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:58:48.752 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:58:48.752 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:58:48.756 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:58:48.756 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}}
-2016-11-21 19:58:48.760 - Log.client - INFO - Started Client 1
-2016-11-21 19:58:48.762 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:58:48.778 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:48.784 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:48.780 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:48.785 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:48.789 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:48.789 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:48.793 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-02 21:44:04.602 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-02 21:44:04.692 - Log.master - INFO - Number of coordinators = 2
+2016-12-02 21:44:04.693 - Log.master - INFO - Number of clients = 1
+2016-12-02 21:44:04.693 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-02 21:44:04.726 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 21:44:04.727 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 21:44:04.750 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 21:44:04.750 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 21:44:04.755 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-02 21:44:04.755 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'position': 'employee', 'history': ''}, '888': {'type': 'movie', 'viewCount': '0'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '2222': {'position': 'viewer'}}
+2016-12-02 21:44:04.756 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 21:44:04.756 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 21:44:04.758 - Log.client - INFO - Started Client 1
+2016-12-02 21:44:04.763 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 4aaf1454-2b22-4049-9864-ed61d363e937
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:58:57.209 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:58:57.268 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:58:57.269 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:58:57.269 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:58:57.273 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:58:57.273 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}}
-2016-11-21 19:58:57.274 - Log.client - INFO - Started Client 1
-2016-11-21 19:58:57.276 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:58:57.288 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:57.287 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:57.288 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:57.289 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:58:57.290 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:58:57.291 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:58:57.294 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-02 22:00:30.224 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-02 22:00:30.317 - Log.master - INFO - Number of coordinators = 2
+2016-12-02 22:00:30.318 - Log.master - INFO - Number of clients = 1
+2016-12-02 22:00:30.318 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-02 22:00:30.356 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 22:00:30.357 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 22:00:30.376 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-02 22:00:30.376 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-02 22:00:30.383 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-02 22:00:30.383 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'666': {'movie': 'StarWars'}, '3333': {'position': 'listener'}, '999': {'id': 'bank A'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '888': {'type': 'movie', 'viewCount': '0'}, '1111': {'history': '', 'position': 'employee'}, '777': {'type': 'song', 'viewCount': '0'}}
+2016-12-02 22:00:30.384 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 22:00:30.384 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-02 22:00:30.385 - Log.client - INFO - Started Client 1
+2016-12-02 22:00:30.389 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = d5520d0c-10a1-4403-8e7f-49058d4f1e1f
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:59:07.269 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:59:07.328 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:59:07.329 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:59:07.330 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:59:07.341 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:59:07.342 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-21 19:59:07.344 - Log.client - INFO - Started Client 1
-2016-11-21 19:59:07.346 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:59:07.363 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:59:07.362 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:59:07.363 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:59:07.370 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:59:07.372 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:59:07.370 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:59:07.374 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 15:50:02.424 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 15:50:02.516 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 15:50:02.516 - Log.master - INFO - Number of clients = 1
+2016-12-03 15:50:02.516 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 15:50:02.553 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 15:50:02.553 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 15:50:02.572 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 15:50:02.572 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 15:50:02.578 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 15:50:02.578 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'position': 'employee', 'history': ''}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '777': {'type': 'song', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
+2016-12-03 15:50:02.579 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 15:50:02.579 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 15:50:02.580 - Log.client - INFO - Started Client 1
+2016-12-03 15:50:02.584 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = f44bd1bc-8be0-4dc4-a539-ddb4aa81265e
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 19:59:24.019 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 19:59:24.080 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 19:59:24.081 - Log.master - INFO - Number of clients = 1
-2016-11-21 19:59:24.081 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 19:59:24.085 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 19:59:24.085 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 19:59:24.086 - Log.client - INFO - Started Client 1
-2016-11-21 19:59:24.090 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 19:59:24.101 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:59:24.101 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 19:59:24.104 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:59:24.112 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 19:59:24.115 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:59:24.116 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 19:59:24.119 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 15:59:56.101 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 15:59:56.196 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 15:59:56.197 - Log.master - INFO - Number of clients = 1
+2016-12-03 15:59:56.197 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 15:59:56.258 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 15:59:56.259 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 15:59:56.276 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 15:59:56.276 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 15:59:56.282 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 15:59:56.282 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '666': {'movie': 'StarWars'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}}
+2016-12-03 15:59:56.283 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 15:59:56.283 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 15:59:56.284 - Log.client - INFO - Started Client 1
+2016-12-03 15:59:56.289 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 5ba76d34-382c-4fdf-b09e-9f4ec701c254
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:00:16.014 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:00:16.107 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:00:16.109 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:00:16.109 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:00:16.117 - Log.client - INFO - Started Client 1
-2016-11-21 20:00:16.118 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:00:16.121 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 20:00:16.119 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:00:16.133 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:00:16.132 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:00:16.132 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:00:16.133 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:00:16.134 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:00:16.133 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:00:16.139 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:00:22.619 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:00:22.703 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:00:22.704 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:00:22.704 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:00:22.736 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:00:22.736 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:00:22.758 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:00:22.759 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:00:22.764 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:00:22.765 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'history': '', 'position': 'employee'}, '888': {'viewCount': '0', 'type': 'movie'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '2222': {'position': 'viewer'}, '777': {'viewCount': '0', 'type': 'song'}}
+2016-12-03 16:00:22.766 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:00:22.765 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:00:22.767 - Log.client - INFO - Started Client 1
+2016-12-03 16:00:22.770 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 4f01eedf-e089-4ac2-99bf-3b28e7f3a71b
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:00:53.529 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:00:53.599 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:00:53.600 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:00:53.600 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:00:53.605 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:00:53.606 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}}
-2016-11-21 20:00:53.606 - Log.client - INFO - Started Client 1
-2016-11-21 20:00:53.607 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:00:53.619 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:00:53.620 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:00:53.617 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:00:53.619 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:00:53.621 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:00:53.623 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:00:53.632 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:00:58.844 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:00:58.923 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:00:58.923 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:00:58.924 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:00:58.955 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:00:58.956 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:00:58.974 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:00:58.974 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:00:58.984 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:00:58.984 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'position': 'employee', 'history': ''}, '888': {'viewCount': '0', 'type': 'movie'}, '3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}}
+2016-12-03 16:00:58.985 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:00:58.985 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:00:58.986 - Log.client - INFO - Started Client 1
+2016-12-03 16:00:58.990 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 9ed64495-6054-48d1-880d-204b97fe6e47
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:01:14.723 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:01:14.798 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:01:14.799 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:01:14.799 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:01:14.809 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:01:14.810 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-21 20:01:14.811 - Log.client - INFO - Started Client 1
-2016-11-21 20:01:14.812 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:01:14.827 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:01:14.826 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:01:14.827 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:01:14.829 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:01:14.832 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:01:14.834 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:01:14.840 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:01:10.130 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:01:10.220 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:01:10.220 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:01:10.220 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:01:10.248 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:01:10.248 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:01:10.270 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:01:10.271 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:01:10.276 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:01:10.277 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}}
+2016-12-03 16:01:10.278 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:01:10.278 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:01:10.279 - Log.client - INFO - Started Client 1
+2016-12-03 16:01:10.281 - Log.database - INFO - Dumping final contents of DB:
+\Object Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}}
+2016-12-03 16:01:40.903 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:01:40.985 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:01:40.986 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:01:40.986 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:01:41.017 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:01:41.018 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:01:41.035 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:01:41.036 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:01:41.042 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:01:41.042 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '1111': {'position': 'employee', 'history': ''}, '777': {'type': 'song', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
+2016-12-03 16:01:41.043 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:01:41.043 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:01:41.045 - Log.client - INFO - Started Client 1
+2016-12-03 16:01:41.046 - Log.database - INFO - Dumping final contents of DB:
+\Object Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '1111': {'position': 'employee', 'history': ''}, '777': {'type': 'song', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
+2016-12-03 16:16:54.276 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:16:54.360 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:16:54.360 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:16:54.360 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:16:54.398 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:16:54.398 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:16:54.415 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:16:54.416 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:16:54.422 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:16:54.422 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'2222': {'position': 'viewer'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '1111': {'history': '', 'position': 'employee'}, '666': {'movie': 'StarWars'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '3333': {'position': 'listener'}}
+2016-12-03 16:16:54.423 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:16:54.423 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:16:54.424 - Log.client - INFO - Started Client 1
+2016-12-03 16:16:54.426 - Log.database - INFO - Dumping final contents of DB:
+\Object Attributes = {'2222': {'position': 'viewer'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '1111': {'history': '', 'position': 'employee'}, '666': {'movie': 'StarWars'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '3333': {'position': 'listener'}}
+2016-12-03 16:17:54.086 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:17:54.190 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:17:54.190 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:17:54.190 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:17:54.239 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:17:54.239 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:17:54.261 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:17:54.262 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:17:54.268 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:17:54.268 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '777': {'viewCount': '0', 'type': 'song'}, '3333': {'position': 'listener'}, '999': {'id': 'bank A'}, '1111': {'position': 'employee', 'history': ''}, '888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}}
+2016-12-03 16:17:54.269 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:17:54.270 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:17:54.271 - Log.client - INFO - Started Client 1
+2016-12-03 16:17:54.271 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 16:17:54.275 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 4cc2b3ad-c293-4403-ac8d-67b9eab4ec6a
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:02:11.342 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:02:11.454 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:02:11.459 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:02:11.459 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:02:11.476 - Log.client - INFO - Started Client 1
-2016-11-21 20:02:11.477 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:02:11.479 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:02:11.479 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 20:02:11.505 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:02:11.506 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:02:11.506 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:02:11.507 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:02:11.505 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:02:11.506 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:02:11.519 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:18:01.783 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:18:01.868 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:18:01.868 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:18:01.868 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:18:01.911 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:18:01.912 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:18:01.932 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:18:01.933 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:18:01.943 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
+2016-12-03 16:18:01.944 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
+2016-12-03 16:18:01.944 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:18:01.945 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:18:01.946 - Log.client - INFO - Started Client 1
+2016-12-03 16:18:01.946 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 16:18:01.951 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 870c311c-538f-4674-b315-a1dfa1c2d966
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:02:34.461 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:02:34.526 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:02:34.528 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:02:34.528 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:02:34.534 - Log.client - INFO - Started Client 1
-2016-11-21 20:02:34.536 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:02:34.538 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 20:02:34.538 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:02:34.554 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:02:34.553 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:02:34.555 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:02:34.555 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:02:34.552 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:02:34.558 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:02:34.564 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:18:07.951 - Log.database - INFO - Dumping final contents of DB:
+\Object Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
+2016-12-03 16:18:23.001 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:18:23.094 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:18:23.094 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:18:23.094 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:18:23.149 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:18:23.149 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:18:23.167 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:18:23.168 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:18:23.174 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-03 16:18:23.175 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'1111': {'position': 'employee', 'history': ''}, '777': {'type': 'song', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '4444': {'viewCount': '0', 'name': 'Tom'}}
+2016-12-03 16:18:23.176 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:18:23.176 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:18:23.177 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 16:18:23.177 - Log.client - INFO - Started Client 1
+2016-12-03 16:18:23.181 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = a3950002-0049-4831-8aaf-dd6f386ff9c4
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:03:24.951 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:03:25.028 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:03:25.029 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:03:25.029 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:03:25.035 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:03:25.035 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}}
-2016-11-21 20:03:25.035 - Log.client - INFO - Started Client 1
-2016-11-21 20:03:25.036 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:03:25.047 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:03:25.046 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:03:25.047 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:03:25.047 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:03:25.048 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:03:25.049 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:03:25.053 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:18:29.068 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 16:18:29.153 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 16:18:29.153 - Log.master - INFO - Number of clients = 1
+2016-12-03 16:18:29.153 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 16:18:29.190 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:18:29.190 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:18:29.212 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 16:18:29.213 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 16:18:29.218 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-03 16:18:29.219 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '888': {'type': 'movie', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '666': {'movie': 'StarWars'}, '1111': {'position': 'employee', 'history': ''}}
+2016-12-03 16:18:29.220 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:18:29.220 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 16:18:29.221 - Log.client - INFO - Started Client 1
+2016-12-03 16:18:29.221 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 16:18:29.225 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 2dc68c1b-7344-418a-ad92-1e64bca0601b
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:03:59.441 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:03:59.517 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:03:59.519 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:03:59.519 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:03:59.532 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:03:59.533 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 20:03:59.533 - Log.client - INFO - Started Client 1
-2016-11-21 20:03:59.534 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:03:59.551 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:03:59.553 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:03:59.553 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:03:59.554 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:03:59.554 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:03:59.554 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:03:59.562 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 16:18:31.226 - Log.database - INFO - Dumping final contents of DB:
+\Object Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '888': {'type': 'movie', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '666': {'movie': 'StarWars'}, '1111': {'position': 'employee', 'history': ''}}
+2016-12-03 17:18:28.500 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 17:18:28.594 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 17:18:28.594 - Log.master - INFO - Number of clients = 1
+2016-12-03 17:18:28.595 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 17:18:28.634 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 17:18:28.635 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 17:18:28.658 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 17:18:28.658 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 17:18:28.664 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-03 17:18:28.665 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'3333': {'position': 'listener'}, '1111': {'history': '', 'position': 'employee'}, '999': {'id': 'bank A'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}}
+2016-12-03 17:18:28.666 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 17:18:28.666 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 17:18:28.667 - Log.client - INFO - Started Client 1
+2016-12-03 17:18:28.668 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 17:18:28.671 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 5164be5b-20c7-4b4a-858a-3adc21f2e45d
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False
-2016-11-21 20:04:21.287 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:04:21.358 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:04:21.359 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:04:21.360 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:04:21.369 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:04:21.370 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}}
-2016-11-21 20:04:21.371 - Log.client - INFO - Started Client 1
-2016-11-21 20:04:21.374 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:04:21.388 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:04:21.393 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:04:21.396 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:04:21.396 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:04:21.390 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:04:21.397 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:04:21.401 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:04:33.957 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:04:34.013 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:04:34.014 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:04:34.014 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:04:34.018 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:04:34.019 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 20:04:34.019 - Log.client - INFO - Started Client 1
-2016-11-21 20:04:34.023 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:04:34.031 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:04:34.033 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:04:34.033 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:04:34.034 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:04:34.033 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:04:34.035 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:04:34.038 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:05:10.529 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:05:10.612 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:05:10.615 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:05:10.615 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:05:10.621 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:05:10.621 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-21 20:05:10.622 - Log.client - INFO - Started Client 1
-2016-11-21 20:05:10.626 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:05:10.646 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:10.648 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:10.644 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:10.640 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:10.647 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:10.649 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:10.658 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:05:19.081 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:05:19.154 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:05:19.155 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:05:19.155 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:05:19.163 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:05:19.164 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'history': '', 'position': 'employee'}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}}
-2016-11-21 20:05:19.165 - Log.client - INFO - Started Client 1
-2016-11-21 20:05:19.166 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:05:19.178 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:19.179 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:19.181 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:19.182 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:19.182 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:19.182 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:19.186 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:05:35.439 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:05:35.517 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:05:35.519 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:05:35.519 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:05:35.526 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:05:35.527 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
-2016-11-21 20:05:35.527 - Log.client - INFO - Started Client 1
-2016-11-21 20:05:35.531 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:05:35.541 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:35.541 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:35.542 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:35.542 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:35.544 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:35.545 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:35.558 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:05:56.211 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:05:56.276 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:05:56.277 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:05:56.278 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:05:56.283 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:05:56.284 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-21 20:05:56.283 - Log.client - INFO - Started Client 1
-2016-11-21 20:05:56.284 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:05:56.295 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:56.294 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:56.295 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:56.297 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:05:56.296 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:05:56.297 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:05:56.301 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:06:10.308 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:06:10.368 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:06:10.369 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:06:10.369 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:06:10.373 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:06:10.374 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'history': '', 'position': 'employee'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}}
-2016-11-21 20:06:10.376 - Log.client - INFO - Started Client 1
-2016-11-21 20:06:10.378 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:06:10.389 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:06:10.389 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:06:10.388 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:06:10.391 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:06:10.389 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:06:10.390 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:06:10.405 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:06:10.411 - Log.master - INFO - All processes completed. Terminating...
-2016-11-21 20:08:45.461 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:08:45.550 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:08:45.551 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:08:45.551 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:08:45.616 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:08:45.617 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:08:45.638 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:08:45.638 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:08:45.644 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:08:45.644 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
-2016-11-21 20:08:45.645 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:08:45.645 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:08:45.646 - Log.client - INFO - Started Client 1
-2016-11-21 20:08:45.647 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:09:14.774 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:09:14.839 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:09:14.840 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:09:14.840 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:09:14.843 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:09:14.844 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
-2016-11-21 20:09:14.844 - Log.client - INFO - Started Client 1
-2016-11-21 20:09:14.845 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:09:14.856 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:09:14.855 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:09:14.856 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:09:14.857 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:09:14.856 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:09:14.858 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:09:14.864 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:09:14.872 - Log.master - INFO - All processes completed. Terminating...
-2016-11-21 20:09:20.880 - Log.database - INFO - Dumping final contents of DB:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '999': {'id': 'bank A'}}
-2016-11-21 20:10:13.226 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:10:13.310 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:10:13.311 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:10:13.311 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:10:13.317 - Log.client - INFO - Started Client 1
-2016-11-21 20:10:13.319 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:10:13.321 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:10:13.329 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'777': {'type': 'song', 'viewCount': '0'}, '888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}}
-2016-11-21 20:10:13.346 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:10:13.347 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:10:13.345 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:10:13.352 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:10:13.356 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:10:13.357 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:10:13.359 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:10:13.371 - Log.master - INFO - All processes completed. Terminating...
-2016-11-21 20:10:35.821 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:10:35.901 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:10:35.902 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:10:35.902 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:10:35.914 - Log.client - INFO - Started Client 1
-2016-11-21 20:10:35.915 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:10:35.916 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:10:35.917 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '1111': {'history': '', 'position': 'employee'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 20:10:35.933 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:10:35.933 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:10:35.934 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:10:35.934 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:10:35.934 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:10:35.932 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:10:35.944 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:10:35.953 - Log.master - INFO - All processes completed. Terminating...
-2016-11-21 20:10:41.959 - Log.database - INFO - Dumping final contents of DB:
-	Subject Attributes = {'4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '1111': {'history': '', 'position': 'employee'}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-21 20:11:00.365 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-21 20:11:00.427 - Log.master - INFO - Number of coordinators = 2
-2016-11-21 20:11:00.429 - Log.master - INFO - Number of clients = 1
-2016-11-21 20:11:00.429 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-21 20:11:00.433 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-21 20:11:00.434 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-21 20:11:00.436 - Log.client - INFO - Started Client 1
-2016-11-21 20:11:00.439 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-21 20:11:00.450 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:11:00.450 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:11:00.452 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:11:00.452 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-21 20:11:00.449 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-21 20:11:00.456 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-21 20:11:00.459 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-21 20:11:00.466 - Log.master - INFO - All processes completed. Terminating...
-2016-11-21 20:11:06.469 - Log.database - INFO - Dumping final contents of DB:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '4444': {'viewCount': '0', 'name': 'Tom'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}}
-2016-11-22 00:30:39.138 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 00:30:39.217 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 00:30:39.217 - Log.master - INFO - Number of clients = 1
-2016-11-22 00:30:39.217 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 00:30:39.248 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 00:30:39.249 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 00:30:39.268 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 00:30:39.268 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 00:30:39.274 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 00:30:39.274 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'position': 'employee', 'history': ''}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-22 00:30:39.276 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 00:30:39.276 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 00:30:39.277 - Log.client - INFO - Started Client 1
-2016-11-22 00:30:39.278 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 00:31:28.825 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 00:31:28.904 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 00:31:28.904 - Log.master - INFO - Number of clients = 1
-2016-11-22 00:31:28.904 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 00:31:28.931 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 00:31:28.931 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 00:31:28.952 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 00:31:28.953 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 00:31:28.958 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 00:31:28.958 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'viewCount': '0', 'name': 'Tom'}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}}
-2016-11-22 00:31:28.959 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 00:31:28.959 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 00:31:28.960 - Log.client - INFO - Started Client 1
-2016-11-22 00:31:28.960 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 00:31:28.965 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-22 00:32:05.556 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 00:32:05.661 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 00:32:05.661 - Log.master - INFO - Number of clients = 1
-2016-11-22 00:32:05.662 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 00:32:05.696 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 00:32:05.696 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 00:32:05.714 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 00:32:05.714 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 00:32:05.719 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 00:32:05.719 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}, '4444': {'name': 'Tom', 'viewCount': '0'}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '888': {'type': 'movie', 'viewCount': '0'}, '666': {'movie': 'StarWars'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-22 00:32:05.720 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 00:32:05.720 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 00:32:05.722 - Log.client - INFO - Started Client 1
-2016-11-22 00:32:05.722 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 03:13:28.321 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 03:13:28.430 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 03:13:28.430 - Log.master - INFO - Number of clients = 1
-2016-11-22 03:13:28.430 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 03:13:28.464 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 03:13:28.464 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 03:13:28.486 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 03:13:28.486 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 03:13:28.492 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 03:13:28.492 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}, '777': {'viewCount': '0', 'type': 'song'}, '666': {'movie': 'StarWars'}}
-2016-11-22 03:13:28.493 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 03:13:28.493 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 03:13:28.494 - Log.client - INFO - Started Client 1
-2016-11-22 03:13:28.494 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 03:13:28.499 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-22 14:03:16.987 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 14:03:17.096 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 14:03:17.096 - Log.master - INFO - Number of clients = 1
-2016-11-22 14:03:17.097 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 14:03:17.154 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 14:03:17.155 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 14:03:17.167 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 14:03:17.168 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 14:03:17.175 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 14:03:17.175 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-22 14:03:17.176 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 14:03:17.176 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 14:03:17.178 - Log.client - INFO - Started Client 1
-2016-11-22 14:03:17.179 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 14:03:17.184 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-22 15:08:50.374 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 15:08:50.458 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 15:08:50.459 - Log.master - INFO - Number of clients = 1
-2016-11-22 15:08:50.459 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 15:08:50.500 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 15:08:50.500 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 15:08:50.521 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 15:08:50.521 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 15:08:50.526 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 15:08:50.527 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'3333': {'position': 'listener'}, '4444': {'viewCount': '0', 'name': 'Tom'}, '2222': {'position': 'viewer'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}, '666': {'movie': 'StarWars'}}
-2016-11-22 15:08:50.527 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 15:08:50.528 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 15:08:50.529 - Log.client - INFO - Started Client 1
-2016-11-22 15:08:50.530 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 15:08:50.534 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-22 15:45:17.814 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 15:45:17.924 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 15:45:17.924 - Log.master - INFO - Number of clients = 1
-2016-11-22 15:45:17.924 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 15:45:17.961 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 15:45:17.961 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 15:45:17.980 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 15:45:17.980 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 15:45:17.986 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 15:45:17.987 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '4444': {'name': 'Tom', 'viewCount': '0'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'777': {'viewCount': '0', 'type': 'song'}, '999': {'id': 'bank A'}, '666': {'movie': 'StarWars'}, '888': {'viewCount': '0', 'type': 'movie'}}
-2016-11-22 15:45:17.987 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 15:45:17.987 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 15:45:17.989 - Log.master - INFO - All processes completed. Terminating...
-2016-11-22 15:45:17.989 - Log.client - INFO - Started Client 1
-2016-11-22 15:45:17.989 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 15:45:17.992 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
-	From Client = False
-2016-11-22 20:14:45.793 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
-2016-11-22 20:14:45.881 - Log.master - INFO - Number of coordinators = 2
-2016-11-22 20:14:45.881 - Log.master - INFO - Number of clients = 1
-2016-11-22 20:14:45.881 - Log.master - INFO - Number of workers per coordinator = 1
-2016-11-22 20:14:45.929 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 20:14:45.929 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 20:14:45.945 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
-2016-11-22 20:14:45.946 - Log.worker - DEBUG - Content of Policy File: {}
-2016-11-22 20:14:45.952 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 5
-2016-11-22 20:14:45.952 - Log.database - INFO - Initialized DB with:
-	Subject Attributes = {'4444': {'name': 'Tom', 'viewCount': '0'}, '2222': {'position': 'viewer'}, '3333': {'position': 'listener'}, '1111': {'position': 'employee', 'history': ''}}
-	Resource Attributes = {'666': {'movie': 'StarWars'}, '888': {'type': 'movie', 'viewCount': '0'}, '999': {'id': 'bank A'}, '777': {'type': 'song', 'viewCount': '0'}}
-2016-11-22 20:14:45.953 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 20:14:45.953 - Log.coordinator - INFO - Starting Coordinator with 1 workers
-2016-11-22 20:14:45.954 - Log.client - INFO - Started Client 1
-2016-11-22 20:14:45.954 - Log.client - INFO - Client 1 sending Request{Subject ID: 11102, Resource ID: 44402, action: view} to coordinator 0
-2016-11-22 20:14:45.958 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
-	Request ID = 1234
-	Subject ID = 44402
-	Resource ID = 11102
-	Action = view
+2016-12-03 17:18:42.935 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 17:18:43.056 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 17:18:43.057 - Log.master - INFO - Number of clients = 1
+2016-12-03 17:18:43.057 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 17:18:43.101 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 17:18:43.101 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 17:18:43.119 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 17:18:43.120 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 17:18:43.127 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-03 17:18:43.128 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'999': {'id': 'bank A'}, '888': {'viewCount': '0', 'type': 'movie'}, '666': {'movie': 'StarWars'}, '777': {'viewCount': '0', 'type': 'song'}, '1111': {'history': '', 'position': 'employee'}, '3333': {'position': 'listener'}, '2222': {'position': 'viewer'}, '4444': {'name': 'Tom', 'viewCount': '0'}}
+2016-12-03 17:18:43.129 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 17:18:43.129 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 17:18:43.130 - Log.client - INFO - Started Client 1
+2016-12-03 17:18:43.130 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 17:18:43.133 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = f37911bf-0b10-43cc-9e98-60c149cf68bc
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
 	From Client = False

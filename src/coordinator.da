@@ -10,35 +10,12 @@ import logging.handlers
 from util import Request
 from collections import deque
 
-
-def swap(request):
-    temp = request.objectX
-    request.objectX = request.objectY
-    request.objectY = temp
-
-    temp = request.sessionIdX
-    request.sessionIdX = request.sessionIdY
-    request.sessionIdY = temp
-
-    temp = request.defReadAttrX
-    request.defReadAttrX = request.defReadAttrY
-    request.defReadAttrY = temp
-
-    temp = request.mightReadAttrX
-    request.mightReadAttrX = request.mightReadAttrY
-    request.mightReadAttrY = temp
-
-    temp = request.cachedUpdatesX
-    request.cachedUpdatesX = request.cachedUpdatesY
-    request.cachedUpdatesY = temp
-
-
 class Version(object):
     def __init__(self):
         self.rts = 0
         self.wts = 0
-        self.pendingMightRead = []  # tuple (value, req.ts)
-
+        self.pendingMightRead = []  # tuple (requestID, req.ts)
+        self.value = None
 
 class Coordinator(process):
     def setup(coordinators, dbInstance, config):
@@ -50,9 +27,9 @@ class Coordinator(process):
 
         # new parameters for phase4
         self.versionCache = {}
+        self.size = len(coordinators)
         self.coordSessionID = uuid.uuid4()  # Session id for co-ordinator
-        # restarts
-        # self.PCA = {} # To handle starvation of write requests
+        self.PCA = {} # To handle starvation of write requests
 
         self.coordinators = coordinators
 
@@ -78,11 +55,17 @@ class Coordinator(process):
 
         return v
 
-    def getCachedUpdates(request):
+    def getCachedUpdates(request, obj):
         res = []
-        for attr in list(
-                set().union(request.defReadAttrX, request.mightReadAttrX)):
-            res.append(latestVersionBefore(request.objectX, attr, request.ts))
+        if obj == "X":
+            for attr in list(
+                    set().union(request.defReadAttrX, request.mightReadAttrX)):
+                res.append(latestVersionBefore(request.objectX, attr, request.ts))
+        else:
+            for attr in list(
+                    set().union(request.defReadAttrY, request.mightReadAttrY)):
+                res.append(latestVersionBefore(request.objectY, attr, request.ts))
+        
         return res
 
     def receive(msg=("EVALUATE", request), from_=p):
@@ -95,71 +78,207 @@ class Coordinator(process):
         #             str(subjectID),
         #             str(resourceID),
         #             str(action))
-        request.sessionIdX = self.coordSessionID
+        
         if request.isClient == True:
-            request.fromClient = p
+            request.sessionIdX = self.coordSessionID
+            if request.fromClient is None:
+                request.fromClient = p
             request.ts = time.time()
 
-        if request.isReadOnly == True:
-            # await check PCA
-            for attr in request.defReadAttrX:
-                latestVersionBefore(request.objectX, attr, request.ts). \
-                    rts = request.ts
+            if request.isReadOnly == True:
+                # await check PCA
+                for attr in request.defReadAttrX:
+                    latestVersionBefore(request.objectX, attr, request.ts). \
+                        rts = request.ts
+    
+                for attr in request.mightReadAttrX:
+                    latestVersionBefore(request.objectX, attr, request.ts). \
+                        pendingMightRead.append((request.requestID, request.ts))
+            else:
+                for attr in list(
+                        set().union(request.defReadAttrX, request.mightReadAttrX)):
+                    latestVersionBefore(request.objectX, attr, request.ts). \
+                        pendingMightRead.append((request.requestID, request.ts))
+    
+            request.cachedUpdatesX = getCachedUpdates(request, "X")
 
-            for attr in request.mightReadAttrX:
-                latestVersionBefore(request.objectX, attr, request.ts). \
-                    pendingMightRead.append((request.requestID, request.ts))
         else:
-            for attr in list(
-                    set().union(request.defReadAttrX, request.mightReadAttrX)):
-                latestVersionBefore(request.objectX, attr, request.ts). \
-                    pendingMightRead.append((request.requestID, request.ts))
-
-        request.cachedUpdatesX = getCachedUpdates(request)
-
+            request.sessionIdY = self.coordSessionID
+            
+            if request.isReadOnly == True:
+                # await check PCA
+                for attr in request.defReadAttrY:
+                    latestVersionBefore(request.objectY, attr, request.ts). \
+                        rts = request.ts
+    
+                for attr in request.mightReadAttrY:
+                    latestVersionBefore(request.objectY, attr, request.ts). \
+                        pendingMightRead.append((request.requestID, request.ts))
+            else:
+                for attr in list(
+                        set().union(request.defReadAttrY, request.mightReadAttrY)):
+                    latestVersionBefore(request.objectY, attr, request.ts). \
+                        pendingMightRead.append((request.requestID, request.ts))
+    
+            request.cachedUpdatesY = getCachedUpdates(request, "Y")
+            
+            
         if request.isClient == True:
             request.isClient = False
-            # Swap objects and sessions Id
-            swap(request)
             send(('EVALUATE', request),
-                 to=(coordinators[request.objectX % len(coordinators)]))
+                 to=(coordinators[request.objectY % len(coordinators)]))
         else:
             workerSequence = (workerSequence + 1) % len(workerList)
-            if request.objectSwap == False:
-                swap(request)
             send(('WORKER_ASSIGN', request), to=workerList[workerSequence])
 
-    def receive(msg=('SENDATTR', request), from_=p):
+
+    def receive(msg=('SENDATTR', request, obj), from_=p):
         if request.sessionIdX != self.coordSessionID:
             return  # To check
             # Implementation
 
-        print(request.mightReadAttrX)
-        for attr in request.mightReadAttrX:
-            v = latestVersionBefore(request.objectX, attr, request.ts)
-            pendingMightRead = [i for i in v.pendingMightRead if
-                                i[0] != request.requestID]
-            v.pendingMightRead = pendingMightRead
+        if obj == "X":
+            for attr in request.mightReadAttrX:
+                v = latestVersionBefore(request.objectX, attr, request.ts)
+                pendingMightRead = [i for i in v.pendingMightRead if
+                                    i[0] != request.requestID]
+                v.pendingMightRead = pendingMightRead
+    
+                if attr in request.readAttrX:
+                    v.rts = request.ts
+        else:
+            for attr in request.mightReadAttrY:
+                v = latestVersionBefore(request.objectY, attr, request.ts)
+                pendingMightRead = [i for i in v.pendingMightRead if
+                                    i[0] != request.requestID]
+                v.pendingMightRead = pendingMightRead
+    
+                if attr in request.readAttrY:
+                    v.rts = request.ts
 
-            if attr in request.readAttrX:
-                v.rts = request.ts
+    def readAwaitCheck(objID, updates, ts, reqID):
+        for k,_ in updates:
+            v = latestVersionBefore(objID, k, ts)
+            if len(v.pendingMightRead) == 0 or (len(v.pendingMightRead) == 1 and v.pendingMightRead[0][0] == reqID):
+                pass
+            else:
+                return False
+        return True
+        
+    def updateCache(objID, response):
+        for k,v in response.updates:
+            version = Version(k)
+    
+            if objID not in self.versionCache:
+                self.versionCache[objID] = {}
+            if k not in self.versionCache[objID]:
+                self.versionCache[objID][k] = []
 
-    def receive(msg=('RESULT', response), from_=worker):
+                ver = Version()
+                ver.wts = response.request.ts
+                ver.rts = response.request.ts
+                ver.value = v
+        
+            versionCache[objID][k].append(v)
+        
+        
+    def receive(msg=('RESULT', response, objID), from_=worker):
         if response.request.sessionIdX != self.coordSessionID:
-            return
+            return # Check # Important
 
-            # updated obj
-            # Non updated object
-            # Check conflict
+            # X = updated object
+            # Y = read only object
+            rID = None
+            if response.request.objectX == objID:
+                rID = "Y"
+            else:
+                rID = "X"
+                
+            conflict = checkConflicts(response)
+            
+            if not conflict:
+                
+                # Add to PCA
+                if objID not in self.PCA:
+                    self.PCA[objID] = {}
+                    
+                for k,v in response.updates:
+                    if k not in self.PCA[objID]:
+                        self.PCA[objID][k] = []
 
-            # if not conflict:
-            #    pass
-            # els'e
-            #   restart in restart rdonlyObj is objectX
-            #   pass
+                    PCA[objID][k].append((response.request.requestID, response.request.ts))
+    
+                # await for all pending reads
+                await(readAwaitCheck(objID, response.updates, response.request.ts, response.request.requestID) == True)
+                
+                conflict = checkConflicts(response)
+                if not conflict:
+                    updateCache(objID, response)
+                    
+                    # commit the updates
+                    # send (req.updates, to= database)
+                    
+                    # add updates to cachedUpdates
+                    # update data structure used by latestVersionBefore
+             
+                    # Update read timestamps
+                    if objID == response.request.objectX:
+                        defreadAttrs = getattr(response.request, "defReadAttrX")
+                        mightReadAttrs = getattr(response.request, "mightReadAttrX")
+                        readAttr = getattr(response.request, "readAttrX")
+                        
+                    else:
+                        defreadAttrs = getattr(response.request, "defReadAttrY")
+                        mightReadAttrs = getattr(response.request, "mightReadAttrY")
+                        readAttr = getattr(response.request, "readAttrY")
+                        
+                    for attr in list(set().union(defreadAttrs, mightReadAttrs)):
+                        v = latestVersionBefore(objID,attr,response.request.ts) 
+                        
+                        pendingMightRead = [i for i in v.pendingMightRead if
+                                    i[0] != response.request.requestID]
+                        v.pendingMightRead = pendingMightRead
+    
+                        if attr in readAttr:
+                            v.rts = response.request.ts
 
+                    send(("RESULT_CLIENT", response), to=response.request.fromClient)
+                    # update read timestamps.
+                    send(("SENDATTR", (response.request, rID)), to=coordinators[rID % size])
+                    
+                    for k,v in response.updates:
+                        li = PCA[objID][k]
+                        new_li = [i for i in li if i[0] != response.request.requestID]
+                        self.PCA[objID][k] = new_li
+                    
+
+                else:
+                    
+                    # remove from PCA
+                    for k,v in response.updates:
+                        li = PCA[objID][k]
+                        new_li = [i for i in li if i[0] != response.request.requestID]
+                        self.PCA[objID][k] = new_li
+
+                    PCA[objID][k].append((response.request.requestID, response.request.ts))
+                    
+                    # restart
+                    coordID = response.request.objectX % len(self.coordinators)
+                    send(('EVALUATE', response.request), to=coordinators[coordID])
+            else:
+                # restart
+                coordID = response.request.objectX % len(self.coordinators)
+                send(('EVALUATE', response.request), to=coordinators[coordID])
+
+    def checkConflicts(resp):
+        for attr, val in resp.updates:
+            v = latestVersionBefore(resp.request.objectX, attr, resp.request.ts)
+            if v.rts > resp.request.ts:
+                return True
+            return False
+            
     def run():
         logger.info("Starting Coordinator with %d workers",
                     self.nworkerspercoord)
         await(received(('done',)))
-        da.send(('done',), to=(self.workers))
+        send(('done',), to=(self.workers))

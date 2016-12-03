@@ -9,28 +9,6 @@ from util import Response
 import time
 
 
-def swap(request):
-    temp = request.objectX
-    request.objectX = request.objectY
-    request.objectY = temp
-
-    temp = request.sessionIdX
-    request.sessionIdX = request.sessionIdY
-    request.sessionIdY = temp
-
-    temp = request.defReadAttrX
-    request.defReadAttrX = request.defReadAttrY
-    request.defReadAttrY = temp
-
-    temp = request.mightReadAttrX
-    request.mightReadAttrX = request.mightReadAttrY
-    request.mightReadAttrY = temp
-
-    temp = request.cachedUpdatesX
-    request.cachedUpdatesX = request.cachedUpdatesY
-    request.cachedUpdatesY = temp
-
-
 class Worker(process):
     '''
         Setup up the worker by reading policy file
@@ -81,11 +59,10 @@ class Worker(process):
         # send(('GET_FROM_DB', request), to=dbInstance)
         if response.updatedObj is None:
             send(("RESULT_CLIENT", response), to=request.fromClient)
-            send(("SENDATTR", request), to=coordinators[request.objectX % size])
-            swap(request)
-            send(("SENDATTR", request), to=coordinators[request.objectX % size])
+            send(("SENDATTR", (request, "X")), to=coordinators[request.objectX % size])
+            send(("SENDATTR", (request, "Y")), to=coordinators[request.objectY % size])
         else:
-            send(("RESULT", request), to=coordinators[response.updatedObj %
+            send(("RESULT", (response, response.updatedObj)), to=coordinators[response.updatedObj %
                                                       size])
 
     def run():
