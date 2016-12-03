@@ -31,7 +31,7 @@ class Database(process):
             If attribute not in Db write a empty value
         '''
         logger.info("Received request from Worker to get attributes for "
-                    "following request:%s", request)
+                    "following request: %s", request)
         evaluation = True
         objectXID = str(request.objectX)
         objectYID = str(request.objectY)
@@ -48,7 +48,8 @@ class Database(process):
             for k in keyDbReqd:
                 for i,tup in enumerate(objectMap[objectXID][k]):
                     if tup[1] > request.ts:
-                        XMap[k] = objectMap[objectXID][k][i-1][0]
+                        break
+                XMap[k] = objectMap[objectXID][k][i-1][0]
  
             keyDbReqd = set(self.objectMap[objectYID].keys()) - set(request.cachedUpdatesY.keys())
             
@@ -56,7 +57,8 @@ class Database(process):
             for k in keyDbReqd:
                 for i,tup in enumerate(objectMap[objectYID][k]):
                     if tup[1] > request.ts:
-                        YMap[k] = objectMap[objectYID][k][i-1][0]
+                        break
+                YMap[k] = objectMap[objectYID][k][i-1][0]
                         
         except:
             # Should never reach here
@@ -108,7 +110,7 @@ class Database(process):
                     objectMap[object.attrib['id']][k] = [(v,0)]
         
         logger.info("Initialized DB with:"
-                    "\n\Object Attributes = %s", objectMap)
+                    "\n\Object Attributes = %s", self.objectMap)
         await(received(('done',)))
         logger.info("Dumping final contents of DB:"
                     "\n\Object Attributes = %s", self.objectMap)
