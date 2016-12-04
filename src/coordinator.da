@@ -157,9 +157,9 @@ class Coordinator(process):
             send(('WORKER_ASSIGN', request), to=workerList[workerSequence])
 
     def receive(msg=('SENDATTR', request, obj), from_=p):
-        if request.sessionIdX != self.coordSessionID:
+        if getattr(request, "sessionId" + obj) != self.coordSessionID:
             return  # To check
-            # Implementation
+        # # Implementation #TODO
 
         if obj == "X":
             for attr in request.mightReadAttrX:
@@ -208,15 +208,16 @@ class Coordinator(process):
             self.versionCache[objID][k].append(ver)
 
     def receive(msg=('RESULT', response, objID), from_=worker):
-        # if response.request.sessionIdX != self.coordSessionID:
-        #     pass
-        # return # Check # Important
-
         rID = None
         if response.request.objectX == objID:
             rID = "Y"
+            obj = "X"
         else:
             rID = "X"
+            obj = "Y"
+
+        if getattr(response.request, "sessionId" + obj) != self.coordSessionID:
+            return  # Check # Important # To implement #TODO
 
         conflict = checkConflicts(response)
 
