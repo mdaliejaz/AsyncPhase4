@@ -69,7 +69,12 @@ class Database(process):
         logger.info("Sending following response to Worker with updated "
                     "attributes from database:%s", response)
         send(('DB_RESPONSE', response), to=p)
-# 
+
+    def receive(msg=('COMMIT_TO_DB', response), from_=p):
+        for k,v in response.updateMap.items():
+            objectMap[response.request.requestID][k].append((v, response.request.ts))
+         
+     
 #     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
 #         '''
 #             Request to commit cache to DB. Threading.timer is used

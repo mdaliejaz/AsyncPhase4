@@ -66,24 +66,32 @@ class Coordinator(process):
         else:
             for attr in list(
                     set().union(request.defReadAttrY, request.mightReadAttrY)):
-                v = latestVersionBefore(request.objectX, attr, request.ts)
+                v = latestVersionBefore(request.objectY, attr, request.ts)
                 if v.wts != 0:
                     res[attr] = v.val
         
         return res
-
+    
+    def checkPCA(request, obj):
+        if obj == "X":
+            for attr in list(set().union(request.defReadAttrX, request.mightReadAttrX)):
+                if len(self.PCA[request.objectX][attr]) > 0:
+                    return True
+            return False
+        else:
+            for attr in list(set().union(request.defReadAttrY, request.mightReadAttrY)):
+                if len(self.PCA[request.objectY][attr]) > 0:
+                    return True
+            return False
+        
+    
     def receive(msg=("EVALUATE", request), from_=p):
         '''
-            Subject coordinator instance, receives from 
+            Subject coordinator instance, receives from client / another coord
         '''
-        # logger.info("Subject Coordinator: Received request with following "
-        #             "parameters from Client:"
-        #             "\n\tSubject ID = %s\n\tResource ID = %s\n\tAction = %s",
-        #             str(subjectID),
-        #             str(resourceID),
-        #             str(action))
         
         if request.isClient == True:
+            await(checkPCA(request, "X") == False)
             request.sessionIdX = self.coordSessionID
             if request.fromClient is None:
                 request.fromClient = p
@@ -108,7 +116,7 @@ class Coordinator(process):
 
         else:
             request.sessionIdY = self.coordSessionID
-            
+            await(checkPCA(request, "Y") == False)
             if request.isReadOnly == True:
                 # await check PCA
                 for attr in request.defReadAttrY:
@@ -171,7 +179,6 @@ class Coordinator(process):
         
     def updateCache(objID, response):
         for k,v in response.updates:
-            version = Version(k)
     
             if objID not in self.versionCache:
                 self.versionCache[objID] = {}
@@ -179,8 +186,8 @@ class Coordinator(process):
                 self.versionCache[objID][k] = []
 
                 ver = Version()
-                ver.wts = response.request.ts
-                ver.rts = response.request.ts
+                ver.wts = 0
+                ver.rts = 0
                 ver.value = v
         
             versionCache[objID][k].append(v)
@@ -220,7 +227,7 @@ class Coordinator(process):
                     updateCache(objID, response)
                     
                     # commit the updates
-                    # send (req.updates, to= database)
+                    send(("COMMIT_TO_DB", response), to= dbInstance)
                     
                     # add updates to cachedUpdates
                     # update data structure used by latestVersionBefore
