@@ -84,7 +84,7 @@ class Client(process):
 
         if action in self.mightWriteObjectMap:
             if objectXType in self.mightWriteObjectMap[action]:
-                coordID = (objectX) % self.size
+                coordID = (objectY) % self.size
                 objectX = elem[2]
                 objectXType = elem[3]
                 objectY = elem[0]

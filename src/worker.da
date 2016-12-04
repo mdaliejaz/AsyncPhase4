@@ -7,6 +7,7 @@ import logging.handlers
 from util import PolicyRule
 from util import Response
 import time
+import copy
 
 
 class Worker(process):
@@ -25,7 +26,7 @@ class Worker(process):
         self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
-        self.originalRequest = request
+        self.originalRequest = copy.deepcopy(request)
         if request.objectSwap == True:
             temp = request.objectX
             request.objectX = request.objectY
