@@ -76,8 +76,6 @@ class Client(process):
         mightReadAttrX = []
         mightReadAttrY = []
 
-        print(coordID)
-        print(coordinators[coordID])
         # logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
         #             "%d, action: %s} to coordinator %d", self.num, elem[0],
         #             elem[1], elem[2], coordID)
@@ -107,14 +105,9 @@ class Client(process):
             if objectYType in self.mightReadAttrMap[action]:
                 mightReadAttrY = self.mightReadAttrMap[action][objectYType]
 
-        print(defReadAttrX)
-        print(defReadAttrY)
-        print(mightReadAttrX)
-        print(mightReadAttrY)
         request = Request(requestID, objectX, objectY, action, True,
                           isReadOnly, defReadAttrX, defReadAttrY,
                           mightReadAttrX, mightReadAttrY, objectSwap)
-        print(request)
 
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
@@ -137,7 +130,7 @@ class Client(process):
         #                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
         #                         resourceID, action)
         else:
-            pass
+            print("NO")
         # logger.info("Deny access to client %d for Request{Subject ID: "
         #                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
         #                         resourceID, action)

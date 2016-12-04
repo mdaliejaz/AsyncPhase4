@@ -71,9 +71,10 @@ class Database(process):
         send(('DB_RESPONSE', response), to=p)
 
     def receive(msg=('COMMIT_TO_DB', response), from_=p):
-        pass
-        # for k,v in response.updates.items():
-        #     objectMap[response.updatedObj][k].append((v, response.request.ts))
+        # pass
+        for k,v in response.updates.items():
+            objectMap[str(response.updatedObj)][k].append((v,
+                                                         response.request.ts))
 
     #
     #     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):

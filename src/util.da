@@ -28,7 +28,8 @@ class Request(object):
     def __str__(self):
         return "\n\tRequest ID = {}\n\tObjectX = {" \
                "}\n\tObjectY = {}\n\tAction = {}\n\t" \
-               "Is Client = {}\n\tFrom client = {}\n\tIs Read Only = {}\n\tSessionIdX = {}\n\tSessionIdY = {}\n\tdefReadAttrY = {}\n\tdefReadAttrY = {}\n\tmightReadAttrX = {}\n\tmightReadAttrY = {}\n\tcachedUpdatesX = {}\n\tcachedUpdatesY = {}\n\treadAttrX = {}\n\treadAttrY = {}\n\tts = {}".format(
+               "Is Client = {}\n\tFrom client = {}\n\tIs Read Only = {" \
+               "}\n\tSessionIdX = {}\n\tSessionIdY = {}\n\tdefReadAttrX = {}\n\tdefReadAttrY = {}\n\tmightReadAttrX = {}\n\tmightReadAttrY = {}\n\tcachedUpdatesX = {}\n\tcachedUpdatesY = {}\n\treadAttrX = {}\n\treadAttrY = {}\n\tts = {}".format(
             self.requestID, self.objectX, self.objectY, self.action,
             self.isClient, self.fromClient, self.isReadOnly, self.sessionIdX,
             self.sessionIdY, self.defReadAttrX, self.defReadAttrY,

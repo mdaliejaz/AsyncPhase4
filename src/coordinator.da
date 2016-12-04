@@ -18,6 +18,13 @@ class Version(object):
         self.pendingMightRead = []  # tuple (requestID, req.ts)
         self.value = None
 
+    def __str__(self):
+        return "\n\trts = {}" \
+               "\n\twts = {}" \
+               "\n\tpendingMightRead = {}" \
+               "\n\tvalue = {}".format(self.rts, self.wts,
+                                       self.pendingMightRead, self.value)
+
 
 class Coordinator(process):
     def setup(coordinators, dbInstance, config):
@@ -48,12 +55,12 @@ class Coordinator(process):
         if attr not in self.versionCache[objID]:
             self.versionCache[objID][attr] = []
 
-        for v in versionCache[objID][attr]:
-            if v.wts < ts:
+        for v in reversed(self.versionCache[objID][attr]):
+            if v.wts > 0 and v.wts < ts:
                 return v
 
         v = Version()
-        versionCache[objID][attr].append(v)
+        self.versionCache[objID][attr].append(v)
 
         return v
 
@@ -64,14 +71,13 @@ class Coordinator(process):
                     set().union(request.defReadAttrX, request.mightReadAttrX)):
                 v = latestVersionBefore(request.objectX, attr, request.ts)
                 if v.wts != 0:
-                    res[attr] = v.val
+                    res[attr] = v.value
         else:
             for attr in list(
                     set().union(request.defReadAttrY, request.mightReadAttrY)):
                 v = latestVersionBefore(request.objectY, attr, request.ts)
                 if v.wts != 0:
-                    res[attr] = v.val
-
+                    res[attr] = v.value
         return res
 
     def checkPCA(request, obj):
@@ -102,18 +108,20 @@ class Coordinator(process):
             if request.isReadOnly == True:
                 await(checkPCA(request, "X") == False)
                 for attr in request.defReadAttrX:
-                    latestVersionBefore(request.objectX, attr, request.ts). \
-                        rts = request.ts
+                    latestVersionBefore(request.objectX, attr,
+                                        request.ts).rts = request.ts
 
                 for attr in request.mightReadAttrX:
-                    latestVersionBefore(request.objectX, attr, request.ts). \
-                        pendingMightRead.append((request.requestID, request.ts))
+                    latestVersionBefore(request.objectX, attr,
+                                        request.ts).pendingMightRead.append(
+                        (request.requestID, request.ts))
             else:
                 for attr in list(
                         set().union(request.defReadAttrX,
                                     request.mightReadAttrX)):
-                    latestVersionBefore(request.objectX, attr, request.ts). \
-                        pendingMightRead.append((request.requestID, request.ts))
+                    latestVersionBefore(request.objectX, attr,
+                                        request.ts).pendingMightRead.append(
+                        (request.requestID, request.ts))
 
             request.cachedUpdatesX = getCachedUpdates(request, "X")
 
@@ -123,18 +131,20 @@ class Coordinator(process):
             if request.isReadOnly == True:
                 await(checkPCA(request, "Y") == False)
                 for attr in request.defReadAttrY:
-                    latestVersionBefore(request.objectY, attr, request.ts). \
-                        rts = request.ts
+                    latestVersionBefore(request.objectY, attr,
+                                        request.ts).rts = request.ts
 
                 for attr in request.mightReadAttrY:
-                    latestVersionBefore(request.objectY, attr, request.ts). \
-                        pendingMightRead.append((request.requestID, request.ts))
+                    latestVersionBefore(request.objectY, attr,
+                                        request.ts).pendingMightRead.append(
+                        (request.requestID, request.ts))
             else:
                 for attr in list(
                         set().union(request.defReadAttrY,
                                     request.mightReadAttrY)):
-                    latestVersionBefore(request.objectY, attr, request.ts). \
-                        pendingMightRead.append((request.requestID, request.ts))
+                    latestVersionBefore(request.objectY, attr,
+                                        request.ts).pendingMightRead.append(
+                        (request.requestID, request.ts))
 
             request.cachedUpdatesY = getCachedUpdates(request, "Y")
 
@@ -184,17 +194,18 @@ class Coordinator(process):
 
     def updateCache(objID, response):
         for k, v in response.updates.items():
+            ver = Version()
             if objID not in self.versionCache:
                 self.versionCache[objID] = {}
+
             if k not in self.versionCache[objID]:
                 self.versionCache[objID][k] = []
+            else:
+                ver.wts = response.request.ts
+                # ver.rts?
 
-                ver = Version()
-                ver.wts = 0
-                ver.rts = 0
-                ver.value = v
-
-            versionCache[objID][k].append(v)
+            ver.value = v
+            self.versionCache[objID][k].append(ver)
 
     def receive(msg=('RESULT', response, objID), from_=worker):
         # if response.request.sessionIdX != self.coordSessionID:
