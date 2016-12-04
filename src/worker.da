@@ -95,35 +95,19 @@ class Worker(process):
                                          objectYAttribReqd)
 
         if dbresponse.evaluation == False:
-            readAttrXMap = self.originalRequest.defReadAttrX.copy()
-            readAttrXMap.update(self.originalRequest.mightReadAttrX)
-            self.originalRequest.readAttrX = list(readAttrXMap.keys())
+            self.originalRequest.readAttrX = \
+                self.originalRequest.defReadAttrX + \
+                self.originalRequest.mightReadAttrX
 
-            readAttrYMap = self.originalRequest.defReadAttrY.copy()
-            readAttrYMap.update(self.originalRequest.mightReadAttrY)
-            self.originalRequest.readAttrY = list(readAttrYMap.keys())
+            self.originalRequest.readAttrY = \
+                self.originalRequest.defReadAttrY + \
+                self.originalRequest.mightReadAttrY
 
         response = Response(self.originalRequest, dbresponse.evaluation,
                             updatedObj, rdonlydObj, updates)
 
         logger.info("Sending following Worker Response to Subject "
                     "Coordinator:%s", response)
-
-        # id = int(dbresponse.request.subjectID) % self.size
-        # # send response back to subject co-ordinator
-        # send(('WORKER_RESPONSE', response), to=(coordinators[id]))
-        #
-        # response = Response(request, None, None, None)
-        # response.request = request
-        # response.decision = True
-        # response.updatedObj = None
-
-        # if response.updatedObj == request.objectX:
-        #     response.rdonlydObj = request.objectY
-        # elif response.updatedObj == request.objectY:
-        #     response.rdonlydObj = request.objectX
-        # else:
-        #     response.updatedObj = None
 
         if response.updatedObj is None:
             send(("RESULT_CLIENT", response),
