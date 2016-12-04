@@ -167,7 +167,6 @@ class Coordinator(process):
                 pendingMightRead = [i for i in v.pendingMightRead if
                                     i[0] != request.requestID]
                 v.pendingMightRead = pendingMightRead
-
                 if attr in request.readAttrX:
                     v.rts = request.ts
         else:

@@ -75,6 +75,8 @@ class Client(process):
         defReadAttrY = []
         mightReadAttrX = []
         mightReadAttrY = []
+        mightWriteAttrX = []
+        mightWriteAttrY = []
 
         # logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
         #             "%d, action: %s} to coordinator %d", self.num, elem[0],
@@ -104,10 +106,16 @@ class Client(process):
                 mightReadAttrX = self.mightReadAttrMap[action][objectXType]
             if objectYType in self.mightReadAttrMap[action]:
                 mightReadAttrY = self.mightReadAttrMap[action][objectYType]
+        if action in self.mightWriteObjectMap:
+            if objectXType in self.mightWriteObjectMap[action]:
+                mightWriteAttrX = self.mightWriteObjectMap[action][objectXType]
+            if objectYType in self.mightWriteObjectMap[action]:
+                mightWriteAttrY = self.mightWriteObjectMap[action][objectYType]
 
         request = Request(requestID, objectX, objectY, action, True,
                           isReadOnly, defReadAttrX, defReadAttrY,
-                          mightReadAttrX, mightReadAttrY, objectSwap)
+                          mightReadAttrX, mightReadAttrY, mightWriteAttrX,
+                          mightWriteAttrY, objectSwap)
 
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
@@ -119,8 +127,8 @@ class Client(process):
         self.defReadAttrMap["view"]["person"] = ["position"]
         self.defReadAttrMap["view"]["movie"] = ["viewCount"]
         self.mightReadAttrMap["read"]["bank"] = ["account"]
-        self.mightWriteObjectMap["view"]["movie"] = True
-        self.mightWriteObjectMap["read"]["person"] = True
+        self.mightWriteObjectMap["view"]["movie"] = ["viewCount"]
+        self.mightWriteObjectMap["read"]["person"] = ["history"]
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
