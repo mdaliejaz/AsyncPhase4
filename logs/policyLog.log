@@ -416,3 +416,24 @@
 	Resource ID = 1111
 	Action = read
 	From Client = False
+2016-12-03 18:16:15.597 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/config.ini
+2016-12-03 18:16:15.710 - Log.master - INFO - Number of coordinators = 2
+2016-12-03 18:16:15.710 - Log.master - INFO - Number of clients = 1
+2016-12-03 18:16:15.710 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-03 18:16:15.756 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 18:16:15.757 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 18:16:15.786 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-03 18:16:15.786 - Log.worker - DEBUG - Content of Policy File: {}
+2016-12-03 18:16:15.793 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-03 18:16:15.793 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'777': {'type': [('song', 0)], 'viewCount': [('0', 0)]}, '666': {'movie': [('StarWars', 0)]}, '888': {'type': [('movie', 0)], 'viewCount': [('0', 0)]}, '2222': {'position': [('viewer', 0)]}, '1111': {'position': [('employee', 0)], 'history': [('', 0)]}, '3333': {'position': [('listener', 0)]}, '4444': {'name': [('Tom', 0)], 'viewCount': [('0', 0)]}, '999': {'id': [('bank A', 0)]}}
+2016-12-03 18:16:15.795 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 18:16:15.797 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-03 18:16:15.801 - Log.master - INFO - All processes completed. Terminating...
+2016-12-03 18:16:15.800 - Log.client - INFO - Started Client 1
+2016-12-03 18:16:15.806 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = accc0aad-0f52-4e12-843a-ceb0998a4f66
+	Subject ID = 999
+	Resource ID = 1111
+	Action = read
+	From Client = False

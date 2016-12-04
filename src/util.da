@@ -30,7 +30,10 @@ class Request(object):
                "}\n\tObjectY = {}\n\tAction = {}\n\t" \
                "Is Client = {}\n\tFrom client = {}\n\tIs Read Only = {}\n\tSessionIdX = {}\n\tSessionIdY = {}\n\tdefReadAttrY = {}\n\tdefReadAttrY = {}\n\tmightReadAttrX = {}\n\tmightReadAttrY = {}\n\tcachedUpdatesX = {}\n\tcachedUpdatesY = {}\n\treadAttrX = {}\n\treadAttrY = {}\n\tts = {}".format(
             self.requestID, self.objectX, self.objectY, self.action,
-            self.isClient, self.fromClient, self.isReadOnly, self.sessionIdX, self.sessionIdY, self.defReadAttrX, self.defReadAttrY, self.mightReadAttrX, self.mightReadAttrY, self.cachedUpdatesX, self.cachedUpdatesY, self.readAttrX, self.readAttrY, self.ts)
+            self.isClient, self.fromClient, self.isReadOnly, self.sessionIdX,
+            self.sessionIdY, self.defReadAttrX, self.defReadAttrY,
+            self.mightReadAttrX, self.mightReadAttrY, self.cachedUpdatesX,
+            self.cachedUpdatesY, self.readAttrX, self.readAttrY, self.ts)
 
 
 class DBResponse(object):
@@ -39,21 +42,21 @@ class DBResponse(object):
         sends back to the worker.
     '''
 
-    def __init__(self, request, evaluation, readDbXMap,
-                 readDbYMap):
+    def __init__(self, request, evaluation, readDbObjectXMap,
+                 readDbObjectYMap):
         self.request = request
         self.evaluation = evaluation
         # Maps which contain fields read from DB
         # which are not in cached maps and used for policy evaluation
-        self.readDbXMap = readDbXMap
-        self.readDbXMap = readDbYMap
+        self.readDbObjectXMap = readDbObjectXMap
+        self.readDbObjectYMap = readDbObjectYMap
 
     def __str__(self):
         return "{}\n\tEvaluation Result = {}" \
                "\n\Object X Map read from DB = {}" \
                "\n\Object Y Map read from DB = {}".format(
-            self.request, self.evaluation, self.readDbXMap,
-            self.readDbXMap)
+            self.request, self.evaluation, self.readDbObjectXMap,
+            self.readDbObjectYMap)
 
 
 class Response(object):
@@ -61,12 +64,12 @@ class Response(object):
         Response class which holds 
     '''
 
-    def __init__(self, request, decision, updatedObj, rdonlydObj):
+    def __init__(self, request, decision, updatedObj, rdonlydObj, updates):
         self.request = request
         self.decision = decision
         self.updatedObj = updatedObj
         self.rdonlydObj = rdonlydObj
-        self.updates = {}
+        self.updates = updates
 
     def __str__(self):
         return "{}" \
@@ -84,17 +87,17 @@ class PolicyRule(object):
         explanatory.
     '''
 
-    def __init__(self, subjectCondition, resourceCondition, subjectUpdate,
-                 resourceUpdate):
-        self.subjectCondition = subjectCondition
-        self.resourceCondition = resourceCondition
-        self.subjectUpdate = subjectUpdate
-        self.resourceUpdate = resourceUpdate
+    def __init__(self, objectXCondition, objectYCondition, objectXUpdate,
+                 objectYUpdate):
+        self.objectXCondition = objectXCondition
+        self.objectYCondition = objectYCondition
+        self.objectXUpdate = objectXUpdate
+        self.objectYUpdate = objectYUpdate
 
     def __str__(self):
         return "\n\tSubject Condition = {}" \
                "\n\tResource Condition = {}" \
                "\n\tSubject Update = {}" \
                "\n\tSubject Update = {}".format(
-            self.subjectCondition, self.resourceCondition,
-            self.subjectUpdate, self.resourceUpdate)
+            self.objectXCondition, self.objectYCondition,
+            self.objectXUpdate, self.objectYUpdate)

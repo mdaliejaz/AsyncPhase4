@@ -35,35 +35,35 @@ class Database(process):
         evaluation = True
         objectXID = str(request.objectX)
         objectYID = str(request.objectY)
-  
         # if no subjectID in Db then write it with empty values
         if objectXID not in self.objectMap:
             self.objectMap[objectXID] = {}
         if objectYID not in self.objectMap:
             self.objectMap[objectYID] = {}
-  
+        XMap = {}
+        YMap = {}
+
         try:
-            keyDbReqd = set(self.objectMap[objectXID].keys()) - set(request.cachedUpdatesX.keys())
-            XMap = {}
+            keyDbReqd = set(self.objectMap[objectXID].keys()) - set(
+                request.cachedUpdatesX.keys())
             for k in keyDbReqd:
-                for i,tup in enumerate(objectMap[objectXID][k]):
+                for i, tup in enumerate(objectMap[objectXID][k]):
                     if tup[1] > request.ts:
                         break
-                XMap[k] = objectMap[objectXID][k][i-1][0]
- 
-            keyDbReqd = set(self.objectMap[objectYID].keys()) - set(request.cachedUpdatesY.keys())
-            
-            YMap = {}
+                XMap[k] = objectMap[objectXID][k][i - 1][0]
+
+            keyDbReqd = set(self.objectMap[objectYID].keys()) - set(
+                request.cachedUpdatesY.keys())
             for k in keyDbReqd:
-                for i,tup in enumerate(objectMap[objectYID][k]):
+                for i, tup in enumerate(objectMap[objectYID][k]):
                     if tup[1] > request.ts:
                         break
-                YMap[k] = objectMap[objectYID][k][i-1][0]
-                        
+                YMap[k] = objectMap[objectYID][k][i - 1][0]
+
         except:
             # Should never reach here
             evaluation = False
-  
+
         response = DBResponse(request, evaluation, XMap,
                               YMap)
         logger.info("Sending following response to Worker with updated "
@@ -71,34 +71,35 @@ class Database(process):
         send(('DB_RESPONSE', response), to=p)
 
     def receive(msg=('COMMIT_TO_DB', response), from_=p):
-        for k,v in response.updateMap.items():
-            objectMap[response.request.requestID][k].append((v, response.request.ts))
-         
-     
-#     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
-#         '''
-#             Request to commit cache to DB. Threading.timer is used
-#             to wait for the random amount of time initialized and then
-#             results are written to DB.
-#         '''
-#         logger.info("Received to update database for %s attributes with map: "
-#                     "%s. Accounting DB latency, will wait for latency of "
-#                     "value %s units duration before committing to DB",
-#                     instance, updateMap, str(self.waitTime))
-#         Timer(waitTime, updateFunc, [updateMap, instance]).start()
-# 
-#     def updateFunc(updateMap, instance):
-#         '''
-#             Update into DB function
-#         '''
-#         key = next(iter(updateMap))
-#         value = updateMap[key]
-#         if (instance == "resource"):
-#             self.resourceMap[key].update(value)
-#         else:
-#             self.subjectMap[key].update(value)
-#         logger.info("Successfully updated database for %s attributes "
-#                     "with map: %s", instance, updateMap)
+        pass
+        # for k,v in response.updates.items():
+        #     objectMap[response.updatedObj][k].append((v, response.request.ts))
+
+    #
+    #     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
+    #         '''
+    #             Request to commit cache to DB. Threading.timer is used
+    #             to wait for the random amount of time initialized and then
+    #             results are written to DB.
+    #         '''
+    #         logger.info("Received to update database for %s attributes with map: "
+    #                     "%s. Accounting DB latency, will wait for latency of "
+    #                     "value %s units duration before committing to DB",
+    #                     instance, updateMap, str(self.waitTime))
+    #         Timer(waitTime, updateFunc, [updateMap, instance]).start()
+    #
+    #     def updateFunc(updateMap, instance):
+    #         '''
+    #             Update into DB function
+    #         '''
+    #         key = next(iter(updateMap))
+    #         value = updateMap[key]
+    #         if (instance == "resource"):
+    #             self.resourceMap[key].update(value)
+    #         else:
+    #             self.subjectMap[key].update(value)
+    #         logger.info("Successfully updated database for %s attributes "
+    #                     "with map: %s", instance, updateMap)
 
     def run():
         '''
@@ -111,9 +112,9 @@ class Database(process):
         for object in root.iter('object'):
             objectMap[object.attrib['id']] = {}
             for attributes in object:
-                for k,v in attributes.attrib.items():
-                    objectMap[object.attrib['id']][k] = [(v,0)]
-        
+                for k, v in attributes.attrib.items():
+                    objectMap[object.attrib['id']][k] = [(v, 0)]
+
         logger.info("Initialized DB with:"
                     "\n\Object Attributes = %s", self.objectMap)
         await(received(('done',)))

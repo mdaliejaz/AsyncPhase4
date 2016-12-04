@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <data>
     <object id="1111">
-        <attribute position="employee" history=""/>
+        <attribute type="person" position="employee" history=""/>
     </object>
     <object id="2222">
-        <attribute position="viewer"/>
+        <attribute type="person" position="viewer"/>
     </object>
     <object id="3333">
-        <attribute position="listener"/>
+        <attribute type="person" position="listener"/>
     </object>
     <object id="4444">
-        <attribute name="Tom" viewCount="0"/>
+        <attribute type="person" name="Tom" viewCount="0"/>
     </object>
     <object id="999">
-        <attribute id="bank A"/>
+        <attribute type="bank" account="savings" id="bank A"/>
     </object>
     <object id="888">
         <attribute type="movie" viewCount="0"/>
@@ -22,6 +22,6 @@
         <attribute type="song" viewCount="0"/>
     </object>
     <object id="666">
-        <attribute movie="StarWars"/>
+        <attribute type="movie" movie="StarWars"/>
     </object>
 </data>
