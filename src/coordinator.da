@@ -83,24 +83,22 @@ class Coordinator(process):
 
     def checkPCA(request, obj):
         if obj == "X":
-            try:
-                for attr in list(
-                        set().union(request.defReadAttrX,
-                                    request.mightReadAttrX)):
+            attr_list = request.defReadAttrX + request.mightReadAttrX
+            for attr in attr_list:
+                try:
                     if len(self.PCA[request.objectX][attr]) > 0:
                         return True
-            except:
-                pass
+                except:
+                    pass
             return False
         else:
-            try:
-                for attr in list(
-                        set().union(request.defReadAttrY,
-                                    request.mightReadAttrY)):
+            attr_list = request.defReadAttrY + request.mightReadAttrY
+            for attr in attr_list:
+                try:
                     if len(self.PCA[request.objectY][attr]) > 0:
                         return True
-            except:
-                pass
+                except:
+                    pass
             return False
 
     def receive(msg=("EVALUATE_2", request, swap), from_=p):
@@ -177,7 +175,6 @@ class Coordinator(process):
             for key in request.mightWriteAttrY:
                 if key not in PCA[request.objectY]:
                     PCA[request.objectY][key] = []
-
                 PCA[request.objectY][key].append(request.requestID)
 
         else:
@@ -188,7 +185,6 @@ class Coordinator(process):
             for key in request.mightWriteAttrX:
                 if key not in PCA[request.objectX]:
                     PCA[request.objectX][key] = []
-
                 PCA[request.objectX][key].append(request.requestID)
 
         # request.sessionIdX = self.coordSessionID
@@ -242,7 +238,7 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(attr, v)
+                    # print(attr, v)
 
         if request.objectSwap == True:
             request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -294,8 +290,10 @@ class Coordinator(process):
                         PCA[request.objectY][k].remove(request.requestID)
 
     def readAwaitCheck(objID, updates, ts, reqID):
+        # print(updates)
         for k, _ in updates.items():
             v = latestVersionBefore(objID, k, ts)
+            # print(v)
             if len(v.pendingMightRead) == 0 or (
                             len(v.pendingMightRead) == 1 and
                             v.pendingMightRead[0][
@@ -452,7 +450,7 @@ class Coordinator(process):
             for attr, val in resp.updates.items():
                 v = latestVersionBefore(resp.request.objectY, attr,
                                         resp.request.ts)
-                print(v, "LL")
+                # print(v, "LL")
                 if v.rts > resp.request.ts:
                     return True
                 return False
