@@ -31,6 +31,13 @@
         <action name="read"></action>
     </rule>
 
+    <rule name="viewers collectively can view each movie at most 5 times">
+        <objectXCondition type="person" position="viewer"></objectXCondition>
+        <objectYCondition type="movie" viewCount="&lt;5"></objectYCondition>
+        <action name="write"></action>
+        <objectYUpdate viewCount="++"></objectYUpdate>
+    </rule>
+
     <!--<rule name="write shared attr with read only policy">-->
         <!--<objectXCondition type="viewer" name="Tom"></objectXCondition>-->
         <!--<objectYCondition type="watch" movie="StarWars"-->
@@ -44,14 +51,6 @@
         <!--<objectYCondition type="watch" movie="StarWars"-->
                           <!--viewCount="0"></objectYCondition>-->
         <!--<action name="read"></action>-->
-    <!--</rule>-->
-
-
-    <!--<rule name="viewers collectively can view each movie at most 5 times">-->
-        <!--<objectXCondition type="person" position="viewer"></objectXCondition>-->
-        <!--<objectYCondition type="movie" viewCount="&lt;5"></objectYCondition>-->
-        <!--<action name="view"></action>-->
-        <!--<objectYUpdate viewCount="++"></objectYUpdate>-->
     <!--</rule>-->
 
     <!--<rule name="stress test for 1000 access">-->
