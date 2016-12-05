@@ -189,7 +189,8 @@ class Coordinator(process):
                 PCA[request.objectX][key].append(request.requestID)
 
         # request.sessionIdX = self.coordSessionID
-        request.fromClient = p
+        if request.fromClient is None:
+            request.fromClient = p
         request.ts = time.time()
 
         if request.isReadOnly == True:
@@ -257,6 +258,7 @@ class Coordinator(process):
         #    return  # To check
         # # Implementation #TODO
 
+        # print("in send attr")
         if obj == "X":
             for attr in request.mightReadAttrX:
                 v = latestVersionBefore(request.objectX, attr, request.ts)
@@ -315,6 +317,7 @@ class Coordinator(process):
     def receive(msg=('RESULT', response, objID), from_=worker):
         logger.info("Result received from worker for request:\n%s",
                     response.request)
+        # print("received result from worker")
         rID = None
         if response.request.objectX == objID:
             rID = "Y"
@@ -331,10 +334,10 @@ class Coordinator(process):
         if not conflict:
 
             # await for all pending reads
-            print("response.updates", response.updates)
+            # print("response.updates", response.updates)
             await(readAwaitCheck(objID, response.updates, response.request.ts,
                                  response.request.requestID) == True)
-
+            # print("success")
             conflict = checkConflicts(response)
 
             if not conflict:
@@ -367,8 +370,10 @@ class Coordinator(process):
                     if attr in readAttr:
                         v.rts = response.request.ts
 
+                # print("hello", response.request.fromClient)
                 send(("RESULT_CLIENT", response),
                      to=response.request.fromClient)
+                # print("world")
                 # update read timestamps.
                 send(("SENDATTR", response.request, rID),
                      to=coordinators[getattr(response.request, "object" +
@@ -378,18 +383,45 @@ class Coordinator(process):
                 # restart
                 coordID = None
                 if objID == response.request.objectX:
+                    cleanUpSelfRequest(response.request, "X")
                     coordID = response.request.objectY % len(self.coordinators)
                 else:
+                    cleanUpSelfRequest(response.request, "Y")
                     coordID = response.request.objectX % len(self.coordinators)
+                logger.info("Restart due to inner conflict for request:\n%s",
+                            response.request)
+                print("Restarted due to inner conflict for requestID: %s",
+                      response.request.requestID)
                 send(('EVALUATE', response.request), to=coordinators[coordID])
         else:
             # restart
             coordID = None
             if objID == response.request.objectX:
+                cleanUpSelfRequest(response.request, "X")
                 coordID = response.request.objectY % len(self.coordinators)
             else:
+                cleanUpSelfRequest(response.request, "Y")
                 coordID = response.request.objectX % len(self.coordinators)
+
+            logger.info("Restart due to outer conflict for request:\n%s",
+                        response.request)
+            print("Restarted due to outer conflict for requestID: %s",
+                  response.request.requestID)
             send(('EVALUATE', response.request), to=coordinators[coordID])
+
+    def cleanUpSelfRequest(request, obj):
+        if obj == "X":
+            for attr in request.mightReadAttrX:
+                v = latestVersionBefore(request.objectX, attr, request.ts)
+                pendingMightRead = [i for i in v.pendingMightRead if
+                                    i[0] != request.requestID]
+                v.pendingMightRead = pendingMightRead
+        else:
+            for attr in request.mightReadAttrY:
+                v = latestVersionBefore(request.objectY, attr, request.ts)
+                pendingMightRead = [i for i in v.pendingMightRead if
+                                    i[0] != request.requestID]
+                v.pendingMightRead = pendingMightRead
 
     def checkConflicts(resp):
         for attr, val in resp.updates.items():

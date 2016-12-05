@@ -55,7 +55,7 @@ def main():
     logger.info("All processes completed. Terminating...")
     print("All processes completed. Terminating...")
     # Sleep for maxdb latency to allow db commits to finish
-    time.sleep(int(config.get("setup", "maxDbLatency")) + 1)
-    # wait for all clients to complete
-    send(('done',), to=(dbInstance | coordinators))
-    for c in clients: c.join()
+    # time.sleep(int(config.get("setup", "maxDbLatency")) + 1)
+    # # wait for all clients to complete
+    # send(('done',), to=(dbInstance | coordinators))
+    # for c in clients: c.join()
