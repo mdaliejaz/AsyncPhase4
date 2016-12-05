@@ -15,7 +15,7 @@ class Worker(process):
         Setup up the worker by reading policy file
     '''
 
-    def setup(coordinators, dbInstance, config):
+    def setup(coordinators, dbInstance, config, coordID):
         self.logger = logging.getLogger('Log.' + __name__)
         self.coordinators = coordinators
         self.dbInstance = dbInstance
@@ -23,6 +23,7 @@ class Worker(process):
         self.size = len(coordinators)
         self.policyFile = config.get("setup", "policyFile")
         readPolicy(self.policyFile)
+        self.parentCoordID = coordID
         # self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
@@ -142,13 +143,13 @@ class Worker(process):
             #                      size])
             send(("RESULT_CLIENT", response),
                  to=dbresponse.request.fromClient)
-            send(("SENDATTR", dbresponse.request, "X"),
+            send(("SENDATTR", dbresponse.request, "X", True),
                  to=coordinators[dbresponse.request.objectX % size])
-            send(("SENDATTR", dbresponse.request, "Y"),
+            send(("SENDATTR", dbresponse.request, "Y", True),
                  to=coordinators[dbresponse.request.objectY % size])
         else:
             coordID = response.updatedObj % size
-            send(("RESULT", response, response.updatedObj),
+            send(("RESULT", response, response.updatedObj, self.parentCoordID),
                  to=coordinators[coordID])
 
     def getUpdatedMaps(ruleUpdate, attribMap, objectXAttribReqd,

@@ -37,7 +37,7 @@ class Coordinator(process):
         # new parameters for phase4
         self.versionCache = {}
         self.size = len(coordinators)
-        self.coordSessionID = str(uuid.uuid4() ) # Session id for co-ordinator
+        self.coordSessionID = str(uuid.uuid4())  # Session id for co-ordinator
         self.PCA = {}  # To handle starvation of write requests
 
         self.coordinators = coordinators
@@ -46,7 +46,8 @@ class Coordinator(process):
         self.workers = new(worker.Worker, num=self.nworkerspercoord)
         self.workerList = list(self.workers)
         self.workerSequence = -1
-        setup(self.workers, (self.coordinators, dbInstance, config,))
+        setup(self.workers,
+              (self.coordinators, dbInstance, config, self.coordSessionID,))
         start(self.workers)
 
     def latestVersionBefore(objID, attr, ts):
@@ -149,10 +150,10 @@ class Coordinator(process):
                         set().union(request.defReadAttrX,
                                     request.mightReadAttrX)):
                     v = latestVersionBefore(request.objectX, attr,
-                                        request.ts)
+                                            request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(attr,v)
+                    print(attr, v)
 
             if swap == True:
                 request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -255,7 +256,7 @@ class Coordinator(process):
             send(('EVALUATE_2', request, not (request.objectSwap)),
                  to=coordinators[request.objectY % len(coordinators)])
 
-    def receive(msg=('SENDATTR', request, obj), from_=p):
+    def receive(msg=('SENDATTR', request, obj, coordPred), from_=p):
         # if getattr(request, "sessionId" + obj) != self.coordSessionID:
         #    return  # To check
         # # Implementation #TODO
@@ -271,10 +272,11 @@ class Coordinator(process):
                 if attr in request.readAttrX:
                     v.rts = request.ts
 
-            # Remove from PCA
-            if request.isReadOnly == False:
-                for k in request.mightWriteAttrX:
-                    PCA[request.objectX][k].remove(request.requestID)
+            if coordPred == True:
+                # Remove from PCA
+                if request.isReadOnly == False:
+                    for k in request.mightWriteAttrX:
+                        PCA[request.objectX][k].remove(request.requestID)
         else:
             for attr in request.mightReadAttrY:
                 v = latestVersionBefore(request.objectY, attr, request.ts)
@@ -285,10 +287,11 @@ class Coordinator(process):
                 if attr in request.readAttrY:
                     v.rts = request.ts
 
-            # Remove from PCA    
-            if request.isReadOnly == False:
-                for k in request.mightWriteAttrY:
-                    PCA[request.objectY][k].remove(request.requestID)
+            if coordPred == True:
+                # Remove from PCA
+                if request.isReadOnly == False:
+                    for k in request.mightWriteAttrY:
+                        PCA[request.objectY][k].remove(request.requestID)
 
     def readAwaitCheck(objID, updates, ts, reqID):
         for k, _ in updates.items():
@@ -316,9 +319,18 @@ class Coordinator(process):
             ver.value = v
             self.versionCache[objID][k].append(ver)
 
-    def receive(msg=('RESULT', response, objID), from_=worker):
-        logger.info("[COORD RESULT] Result received from worker for request:\n%s",
-                    response.request)
+    def receive(msg=('RESULT', response, objID, coordID), from_=worker):
+        coordPred = True
+        if coordID != self.coordSessionID:
+            coordPred = False
+            print("Reached non-local coordinator from worker")
+            logger.info("Reached non-local coordinator from worker: local to "
+                        "wroker: %s, reached to: %s", coordID,
+                        self.coordSessionID)
+        # print(coordID, self.coordSessionID)
+        logger.info(
+            "[COORD RESULT] Result received from worker for request:\n%s",
+            response.request)
         # print("received result from worker")
         rID = None
         if response.request.objectX == objID:
@@ -332,7 +344,6 @@ class Coordinator(process):
         #    return  # Check # Important # To implement #TODO
 
         conflict = checkConflicts(response, objID)
-
         if not conflict:
 
             # await for all pending reads
@@ -374,7 +385,14 @@ class Coordinator(process):
 
                 send(("RESULT_CLIENT", response),
                      to=response.request.fromClient)
-                send(("SENDATTR", response.request, rID),
+
+                if coordPred == False:
+                    for k in getattr(response.request, "mightWriteAttr" + obj):
+                        PCA[getattr(response.request, "object" + obj)][
+                            k].remove(
+                            response.request.requestID)
+
+                send(("SENDATTR", response.request, rID, coordPred),
                      to=coordinators[getattr(response.request, "object" +
                                              rID) % size])
 
@@ -425,13 +443,15 @@ class Coordinator(process):
     def checkConflicts(resp, objID):
         if objID == resp.request.objectX:
             for attr, val in resp.updates.items():
-                v = latestVersionBefore(resp.request.objectX, attr, resp.request.ts)
+                v = latestVersionBefore(resp.request.objectX, attr,
+                                        resp.request.ts)
                 if v.rts > resp.request.ts:
                     return True
                 return False
         else:
             for attr, val in resp.updates.items():
-                v = latestVersionBefore(resp.request.objectY, attr, resp.request.ts)
+                v = latestVersionBefore(resp.request.objectY, attr,
+                                        resp.request.ts)
                 print(v, "LL")
                 if v.rts > resp.request.ts:
                     return True

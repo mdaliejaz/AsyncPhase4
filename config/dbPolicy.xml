@@ -9,6 +9,9 @@
     <object id="31">
         <attribute type="incX" viewCount="0"/>
     </object>
+    <object id="41">
+        <attribute type="Tom" viewCount="0"/>
+    </object>
     <object id="12">
         <attribute type="bank" id= "bank A"/>
     </object>
@@ -17,6 +20,9 @@
     </object>
     <object id="32">
         <attribute type="incY" movie="StarWars"/>
+    </object>
+    <object id="42">
+        <attribute type="watch" movie="StarWars"/>
     </object>
 
     <!--<object id="0000">-->
