@@ -159,6 +159,7 @@ class Client(process):
         self.defReadAttrMap["read"]["movie"] = ["viewCount"]
         self.defReadAttrMap["read"]["Tom"] = ["viewCount"]
         self.defReadAttrMap["read"]["watch"] = ["movie"]
+        self.defReadAttrMap["inc1"]["watch"] = ["movie"]
         self.mightReadAttrMap["read"]["person"] = ["history"]
 
         self.defReadAttrMap["write"]["person"] = ["position"]
@@ -171,41 +172,9 @@ class Client(process):
 
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
+        self.mightWriteObjectMap["write"]["viewer"] = ["position"]
         self.mightWriteObjectMap["write"]["Tom"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["watch"] = ["movie"]
-
-
-        # self.defReadAttrMap["write"]["player"] 		= ["position", "history"]
-        # self.defReadAttrMap["read"]["bank"] 		= ["name"]
-        # self.defReadAttrMap["write"]["game"] 		= ["name"]
-        # self.defReadAttrMap["read"]["player"] 		= ["position"]
-        # self.defReadAttrMap["read"]["game"] 		= ["name"]
-        #
-        # self.mightReadAttrMap["write"]["person"] 	= ["history"]
-        # self.mightReadAttrMap["write"]["bank"] 		= ["account"]
-        # self.mightReadAttrMap["write"]["movie"] 	= ["viewcount"]
-        # self.mightReadAttrMap["read"]["player"]		= ["history"]
-        # self.mightReadAttrMap["read"]["movie"] 		= ["viewcount"]
-        # self.mightReadAttrMap["read"]["person"] 	= ["history"]
-        # self.mightReadAttrMap["read"]["viewer"] 	= ["position"]
-        #
-        # self.mightWriteAttrMap["write"]["person"] 	= ["history"]
-        # self.mightWriteAttrMap["write"]["viewer"] 	= ["position"]
-        # self.mightWriteAttrMap["write"]["player"] 	= ["history"]
-        # self.mightWriteAttrMap["write"]["game"] 	= ["name"]
-        #
-        # self.mightWriteObject["write"]["person"] 	= True
-        # self.mightWriteObject["write"]["bank"] 		= False
-        # self.mightWriteObject["write"]["movie"] 	= False
-        # self.mightWriteObject["write"]["viewer"] 	= True
-        # self.mightWriteObject["read"]["person"] 	= False
-        # self.mightWriteObject["read"]["bank"] 		= False
-        # self.mightWriteObject["read"]["movie"] 		= False
-        # self.mightWriteObject["read"]["viewer"] 	= False
-        # self.mightWriteObject["write"]["player"] 	= True
-        # self.mightWriteObject["write"]["game"] 		= True
-        # self.mightWriteObject["read"]["player"] 	= False
-        # self.mightWriteObject["read"]["game"] 		= False
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
