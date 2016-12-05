@@ -26,7 +26,9 @@ class Worker(process):
         # self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
-        time.sleep(request.workerDelay)
+        for i in range(request.workerDelay):
+            time.sleep(1)
+        print("wake after 5 seconds")
         # originalRequest = copy.deepcopy(request)
         # request.originalRequest = originalRequest
         # if request.objectSwap == True:
