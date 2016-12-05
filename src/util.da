@@ -74,8 +74,8 @@ class DBResponse(object):
 
     def __str__(self):
         return "{}\n\tEvaluation Result = {}" \
-               "\n\Object X Map read from DB = {}" \
-               "\n\Object Y Map read from DB = {}".format(
+               "\n\tObject X Map read from DB = {}" \
+               "\n\tObject Y Map read from DB = {}".format(
             self.request, self.evaluation, self.readDbObjectXMap,
             self.readDbObjectYMap)
 
@@ -116,9 +116,9 @@ class PolicyRule(object):
         self.objectYUpdate = objectYUpdate
 
     def __str__(self):
-        return "\n\tSubject Condition = {}" \
-               "\n\tResource Condition = {}" \
-               "\n\tSubject Update = {}" \
-               "\n\tSubject Update = {}".format(
+        return "\n\tObjectX Condition = {}" \
+               "\n\tObjectY Condition = {}" \
+               "\n\tObjectX Update = {}" \
+               "\n\tObjectY Update = {}".format(
             self.objectXCondition, self.objectYCondition,
             self.objectXUpdate, self.objectYUpdate)
