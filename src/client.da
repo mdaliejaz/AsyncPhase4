@@ -159,8 +159,9 @@ class Client(process):
         self.defReadAttrMap["read"]["movie"] = ["viewCount"]
         self.defReadAttrMap["read"]["Tom"] = ["viewCount"]
         self.defReadAttrMap["read"]["watch"] = ["movie"]
-        self.defReadAttrMap["inc1"]["watch"] = ["movie"]
         self.mightReadAttrMap["read"]["person"] = ["history"]
+        self.mightReadAttrMap["read"]["incX"] = ["viewCount"]
+        self.mightReadAttrMap["read"]["incY"] = ["movie"]
 
         self.defReadAttrMap["write"]["person"] = ["position"]
         self.defReadAttrMap["write"]["viewer"] = ["position"]
@@ -169,12 +170,15 @@ class Client(process):
         self.defReadAttrMap["write"]["Tom"] = ["viewCount"]
         self.defReadAttrMap["write"]["watch"] = ["movie"]
         self.mightReadAttrMap["write"]["person"] = ["history"]
+        self.mightReadAttrMap["write"]["incX"] = ["viewCount"]
+        self.mightReadAttrMap["write"]["incY"] = ["movie"]
 
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["viewer"] = ["position"]
         self.mightWriteObjectMap["write"]["Tom"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["watch"] = ["movie"]
+        self.mightWriteObjectMap["write"]["incX"] = ["viewCount"]
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer

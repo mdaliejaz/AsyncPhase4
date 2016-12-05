@@ -6,11 +6,17 @@
     <object id="21">
         <attribute type="viewer" position="viewer" history=""/>
     </object>
+    <object id="31">
+        <attribute type="incX" viewCount="0"/>
+    </object>
     <object id="12">
         <attribute type="bank" id= "bank A"/>
     </object>
     <object id="22">
         <attribute type="movie" viewCount="0"/>
+    </object>
+    <object id="32">
+        <attribute type="incY" movie="StarWars"/>
     </object>
 
     <!--<object id="0000">-->
