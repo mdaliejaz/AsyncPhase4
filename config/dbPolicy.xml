@@ -12,6 +12,9 @@
     <object id="41">
         <attribute type="Tom" viewCount="0"/>
     </object>
+    <object id="51">
+        <attribute type="inc2X" viewCount="0"/>
+    </object>
     <object id="12">
         <attribute type="bank" id= "bank A"/>
     </object>
@@ -23,6 +26,9 @@
     </object>
     <object id="42">
         <attribute type="watch" movie="StarWars"/>
+    </object>
+    <object id="52">
+        <attribute type="inc2Y" movie="StarWars"/>
     </object>
 
     <!--<object id="0000">-->

@@ -242,7 +242,7 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(attr, v)
+                    # print(attr, v)
 
         if request.objectSwap == True:
             request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -294,8 +294,10 @@ class Coordinator(process):
                         PCA[request.objectY][k].remove(request.requestID)
 
     def readAwaitCheck(objID, updates, ts, reqID):
+        # print(updates)
         for k, _ in updates.items():
             v = latestVersionBefore(objID, k, ts)
+            # print(v)
             if len(v.pendingMightRead) == 0 or (
                             len(v.pendingMightRead) == 1 and
                             v.pendingMightRead[0][
@@ -452,7 +454,7 @@ class Coordinator(process):
             for attr, val in resp.updates.items():
                 v = latestVersionBefore(resp.request.objectY, attr,
                                         resp.request.ts)
-                print(v, "LL")
+                # print(v, "LL")
                 if v.rts > resp.request.ts:
                     return True
                 return False

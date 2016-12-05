@@ -162,6 +162,8 @@ class Client(process):
         self.mightReadAttrMap["read"]["person"] = ["history"]
         self.mightReadAttrMap["read"]["incX"] = ["viewCount"]
         self.mightReadAttrMap["read"]["incY"] = ["movie"]
+        self.mightReadAttrMap["read"]["inc2X"] = ["viewCount"]
+        self.mightReadAttrMap["read"]["inc2Y"] = ["movie"]
 
         self.defReadAttrMap["write"]["person"] = ["position"]
         self.defReadAttrMap["write"]["viewer"] = ["position"]
@@ -172,6 +174,8 @@ class Client(process):
         self.mightReadAttrMap["write"]["person"] = ["history"]
         self.mightReadAttrMap["write"]["incX"] = ["viewCount"]
         self.mightReadAttrMap["write"]["incY"] = ["movie"]
+        # self.mightReadAttrMap["write"]["inc2X"] = ["viewCount"]
+        self.mightReadAttrMap["write"]["inc2Y"] = ["movie"]
 
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
@@ -179,6 +183,8 @@ class Client(process):
         self.mightWriteObjectMap["write"]["Tom"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["watch"] = ["movie"]
         self.mightWriteObjectMap["write"]["incX"] = ["viewCount"]
+        # self.mightWriteObjectMap["write"]["inc2X"] = ["viewCount"]
+        self.mightWriteObjectMap["write"]["inc2Y"] = ["movie"]
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
