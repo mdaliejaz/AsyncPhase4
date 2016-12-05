@@ -159,11 +159,15 @@ class Client(process):
         self.defReadAttrMap["read"]["movie"] = ["viewCount"]
         self.defReadAttrMap["read"]["Tom"] = ["viewCount"]
         self.defReadAttrMap["read"]["watch"] = ["movie"]
+        self.defReadAttrMap["read"]["starX"] = ["viewCount"]
+        self.defReadAttrMap["read"]["starY"] = ["movie"]
         self.mightReadAttrMap["read"]["person"] = ["history"]
         self.mightReadAttrMap["read"]["incX"] = ["viewCount"]
         self.mightReadAttrMap["read"]["incY"] = ["movie"]
         self.mightReadAttrMap["read"]["inc2X"] = ["viewCount"]
         self.mightReadAttrMap["read"]["inc2Y"] = ["movie"]
+        self.mightReadAttrMap["read"]["starX"] = ["history"]
+        # self.mightReadAttrMap["read"]["starY"] = ["movie"]
 
         self.defReadAttrMap["write"]["person"] = ["position"]
         self.defReadAttrMap["write"]["viewer"] = ["position"]
@@ -171,11 +175,15 @@ class Client(process):
         self.defReadAttrMap["write"]["movie"] = ["viewCount"]
         self.defReadAttrMap["write"]["Tom"] = ["viewCount"]
         self.defReadAttrMap["write"]["watch"] = ["movie"]
+        self.defReadAttrMap["write"]["starX"] = ["viewCount", "history"]
+        self.defReadAttrMap["write"]["starY"] = ["movie"]
         self.mightReadAttrMap["write"]["person"] = ["history"]
         self.mightReadAttrMap["write"]["incX"] = ["viewCount"]
         self.mightReadAttrMap["write"]["incY"] = ["movie"]
         # self.mightReadAttrMap["write"]["inc2X"] = ["viewCount"]
         self.mightReadAttrMap["write"]["inc2Y"] = ["movie"]
+        # self.mightReadAttrMap["write"]["starX"] = ["history"]
+        # self.mightReadAttrMap["write"]["starY"] = ["movie"]
 
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
@@ -185,6 +193,8 @@ class Client(process):
         self.mightWriteObjectMap["write"]["incX"] = ["viewCount"]
         # self.mightWriteObjectMap["write"]["inc2X"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["inc2Y"] = ["movie"]
+        # self.mightWriteObjectMap["write"]["starX"] = ["history"]
+        self.mightWriteObjectMap["write"]["starY"] = ["movie"]
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer

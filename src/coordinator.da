@@ -83,24 +83,22 @@ class Coordinator(process):
 
     def checkPCA(request, obj):
         if obj == "X":
-            try:
-                for attr in list(
-                        set().union(request.defReadAttrX,
-                                    request.mightReadAttrX)):
+            attr_list = request.defReadAttrX + request.mightReadAttrX
+            for attr in attr_list:
+                try:
                     if len(self.PCA[request.objectX][attr]) > 0:
                         return True
-            except:
-                pass
+                except:
+                    pass
             return False
         else:
-            try:
-                for attr in list(
-                        set().union(request.defReadAttrY,
-                                    request.mightReadAttrY)):
+            attr_list = request.defReadAttrY + request.mightReadAttrY
+            for attr in attr_list:
+                try:
                     if len(self.PCA[request.objectY][attr]) > 0:
                         return True
-            except:
-                pass
+                except:
+                    pass
             return False
 
     def receive(msg=("EVALUATE_2", request, swap), from_=p):
@@ -177,7 +175,6 @@ class Coordinator(process):
             for key in request.mightWriteAttrY:
                 if key not in PCA[request.objectY]:
                     PCA[request.objectY][key] = []
-
                 PCA[request.objectY][key].append(request.requestID)
 
         else:
@@ -188,7 +185,6 @@ class Coordinator(process):
             for key in request.mightWriteAttrX:
                 if key not in PCA[request.objectX]:
                     PCA[request.objectX][key] = []
-
                 PCA[request.objectX][key].append(request.requestID)
 
         # request.sessionIdX = self.coordSessionID

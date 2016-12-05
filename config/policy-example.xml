@@ -83,6 +83,21 @@
         <action name="read"></action>
     </rule>
 
+    <rule name="starvation write">
+        <objectXCondition type="starX" viewCount="&lt;5"
+                          history=""></objectXCondition>
+        <objectYCondition type="starY" movie="StarWars"></objectYCondition>
+        <action name="write"></action>
+        <objectXUpdate viewCount="++"></objectXUpdate>
+    </rule>
+
+    <rule name="starvation read">
+        <objectXCondition type="starX" viewCount="&lt;5"
+                          history=""></objectXCondition>
+        <objectYCondition type="starY" movie="StarWars"></objectYCondition>
+        <action name="read"></action>
+    </rule>
+
 
     <!--<rule name="write shared attr with read only policy">-->
         <!--<objectXCondition type="viewer" name="Tom"></objectXCondition>-->
