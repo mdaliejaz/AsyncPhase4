@@ -1,0 +1,378 @@
+2016-12-05 15:24:30.752 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/IncorrPred1.ini
+2016-12-05 15:24:30.853 - Log.master - INFO - Number of coordinators = 2
+2016-12-05 15:24:30.853 - Log.master - INFO - Number of clients = 2
+2016-12-05 15:24:30.854 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-05 15:24:30.887 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-05 15:24:30.887 - Log.worker - DEBUG - Content of Policy File: {'write': [<util.PolicyRule object at 0x10b353470>, <util.PolicyRule object at 0x10b353f28>, <util.PolicyRule object at 0x10b360ba8>, <util.PolicyRule object at 0x10b360c18>, <util.PolicyRule object at 0x10b360c88>, <util.PolicyRule object at 0x10b360cf8>], 'read': [<util.PolicyRule object at 0x10b353e48>, <util.PolicyRule object at 0x10b360b70>, <util.PolicyRule object at 0x10b360be0>, <util.PolicyRule object at 0x10b360c50>, <util.PolicyRule object at 0x10b360cc0>, <util.PolicyRule object at 0x10b360d30>]}
+2016-12-05 15:24:30.909 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-05 15:24:30.910 - Log.worker - DEBUG - Content of Policy File: {'write': [<util.PolicyRule object at 0x10b11e9b0>, <util.PolicyRule object at 0x10b1254a8>, <util.PolicyRule object at 0x10b131128>, <util.PolicyRule object at 0x10b131198>, <util.PolicyRule object at 0x10b131208>, <util.PolicyRule object at 0x10b131278>], 'read': [<util.PolicyRule object at 0x10b1253c8>, <util.PolicyRule object at 0x10b1310f0>, <util.PolicyRule object at 0x10b131160>, <util.PolicyRule object at 0x10b1311d0>, <util.PolicyRule object at 0x10b131240>, <util.PolicyRule object at 0x10b1312b0>]}
+2016-12-05 15:24:30.920 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-05 15:24:30.921 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'11': {'type': [('person', 0)], 'history': [('', 0)], 'position': [('employee', 0)]}, '51': {'type': [('inc2X', 0)], 'viewCount': [('0', 0)]}, '32': {'type': [('incY', 0)], 'movie': [('StarWars', 0)]}, '41': {'type': [('Tom', 0)], 'viewCount': [('0', 0)]}, '12': {'type': [('bank', 0)], 'id': [('bank A', 0)]}, '22': {'type': [('movie', 0)], 'viewCount': [('0', 0)]}, '52': {'type': [('inc2Y', 0)], 'movie': [('StarWars', 0)]}, '21': {'type': [('viewer', 0)], 'history': [('', 0)], 'position': [('viewer', 0)]}, '42': {'type': [('watch', 0)], 'movie': [('StarWars', 0)]}, '31': {'type': [('incX', 0)], 'viewCount': [('0', 0)]}}
+2016-12-05 15:24:30.922 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-05 15:24:30.922 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-05 15:24:30.924 - Log.master - INFO - All processes completed. Terminating...
+2016-12-05 15:24:30.934 - Log.client - INFO - Started Client 1
+2016-12-05 15:24:30.935 - Log.client - INFO - Sending following request to coordinator
+Request{RequestID: 427a9dab-e235-4610-9ba7-7e0d399a9f5d, Object X: 41, Object Y: 42, action: read}
+2016-12-05 15:24:30.937 - Log.coordinator - INFO - [COORD 1] Request received from client:
+
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = None
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = None
+2016-12-05 15:24:30.939 - Log.coordinator - INFO - [COORD 2] Request received from coord:
+
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = <Client:a9406>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.937884
+2016-12-05 15:24:30.941 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = <Client:a9406>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.937884
+2016-12-05 15:24:30.942 - Log.database - INFO - Received request from Worker to get attributes for following request: 
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = <Client:a9406>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.937884
+2016-12-05 15:24:30.943 - Log.database - INFO - Sending following response to Worker with updated attributes from database:
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = <Client:a9406>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.937884
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'Tom', 'viewCount': '0'}
+\Object Y Map read from DB = {'type': 'watch', 'movie': 'StarWars'}
+2016-12-05 15:24:30.944 - Log.client - INFO - Started Client 2
+2016-12-05 15:24:30.945 - Log.client - INFO - Sending following request to coordinator
+Request{RequestID: 0a34b016-b16d-41af-80be-a1a8df35b212, Object X: 41, Object Y: 42, action: write}
+2016-12-05 15:24:30.946 - Log.coordinator - INFO - [COORD 1] Request received from client:
+
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = None
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = None
+2016-12-05 15:24:30.948 - Log.coordinator - INFO - [COORD 2] Request received from coord:
+
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.947347
+2016-12-05 15:24:35.946 - Log.worker - INFO - Received following DB response:
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = <Client:a9406>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.937884
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'Tom', 'viewCount': '0'}
+\Object Y Map read from DB = {'type': 'watch', 'movie': 'StarWars'}
+2016-12-05 15:24:35.947 - Log.worker - INFO - Sending following Worker Response to Coordinator:
+	Request ID = 427a9dab-e235-4610-9ba7-7e0d399a9f5d
+	ObjectX = 41
+	ObjectY = 42
+	Action = read
+	Is Client = True
+	From client = <Client:a9406>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'viewCount']
+	readAttrY = ['type', 'movie']
+	objectSwap = False
+	ts = 1480969470.937884
+	Decision = True
+	Updated Obj = None
+	Read only Obj = 42
+	Map with updates = {}
+2016-12-05 15:24:35.950 - Log.client - INFO - Allow access to client 1 for Request{RequestID: 427a9dab-e235-4610-9ba7-7e0d399a9f5d, Object X: 41, Object Y: 42, action: read}
+2016-12-05 15:24:35.950 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.947347
+2016-12-05 15:24:35.951 - Log.database - INFO - Received request from Worker to get attributes for following request: 
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.947347
+2016-12-05 15:24:35.951 - Log.database - INFO - Sending following response to Worker with updated attributes from database:
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.947347
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'Tom', 'viewCount': '0'}
+\Object Y Map read from DB = {'type': 'watch', 'movie': 'StarWars'}
+2016-12-05 15:24:35.952 - Log.worker - INFO - Received following DB response:
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480969470.947347
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'Tom', 'viewCount': '0'}
+\Object Y Map read from DB = {'type': 'watch', 'movie': 'StarWars'}
+2016-12-05 15:24:35.952 - Log.worker - INFO - Sending following Worker Response to Coordinator:
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'viewCount']
+	readAttrY = ['type', 'movie']
+	objectSwap = False
+	ts = 1480969470.947347
+	Decision = True
+	Updated Obj = 41
+	Read only Obj = 42
+	Map with updates = {'viewCount': '1'}
+2016-12-05 15:24:35.953 - Log.coordinator - INFO - Reached non-local coordinator from worker: local to wroker: 5e1d6f4b-1a8f-4b79-a069-28663320f6cc, reached to: fef5719d-22e9-4d22-b5ed-06e2079cd69e
+2016-12-05 15:24:35.954 - Log.coordinator - INFO - [COORD RESULT] Result received from worker for request:
+
+	Request ID = 0a34b016-b16d-41af-80be-a1a8df35b212
+	ObjectX = 41
+	ObjectY = 42
+	Action = write
+	Is Client = True
+	From client = <Client:a9405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['viewCount']
+	defReadAttrY = ['movie']
+	mightReadAttrX = []
+	mightReadAttrY = []
+	mightWriteAttrX = ['viewCount']
+	mightWriteAttrY = ['movie']
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'viewCount']
+	readAttrY = ['type', 'movie']
+	objectSwap = False
+	ts = 1480969470.947347
+2016-12-05 15:24:35.956 - Log.client - INFO - Allow access to client 2 for Request{RequestID: 0a34b016-b16d-41af-80be-a1a8df35b212, Object X: 41, Object Y: 42, action: write}
