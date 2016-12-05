@@ -375,3 +375,778 @@ Request{RequestID: 8a78f462-ec68-4abc-8704-cb83d4eee4a6, Object X: 11, Object Y:
 	Map with updates = {}
 2016-12-05 04:14:08.903 - Log.client - INFO - Deny access to client 1 for Request{RequestID: 28623379-d166-4aa2-84d3-1e40798f0123, Object X: 11, Object Y: 12, action: read}
 2016-12-05 04:14:08.905 - Log.client - INFO - Allow access to client 2 for Request{RequestID: 8a78f462-ec68-4abc-8704-cb83d4eee4a6, Object X: 11, Object Y: 12, action: write}
+2016-12-05 12:15:40.033 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/IncorrPred1.ini
+2016-12-05 12:15:40.129 - Log.master - INFO - Number of coordinators = 2
+2016-12-05 12:15:40.130 - Log.master - INFO - Number of clients = 2
+2016-12-05 12:15:40.130 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-05 12:15:40.176 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-05 12:15:40.176 - Log.worker - DEBUG - Content of Policy File: {'write': [<util.PolicyRule object at 0x103667cf8>, <util.PolicyRule object at 0x103667d30>, <util.PolicyRule object at 0x10366f4e0>, <util.PolicyRule object at 0x10366f550>], 'read': [<util.PolicyRule object at 0x103667e10>, <util.PolicyRule object at 0x10366f4a8>, <util.PolicyRule object at 0x10366f518>, <util.PolicyRule object at 0x10366f588>]}
+2016-12-05 12:15:40.197 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-05 12:15:40.198 - Log.worker - DEBUG - Content of Policy File: {'write': [<util.PolicyRule object at 0x1033b6898>, <util.PolicyRule object at 0x1033c02e8>, <util.PolicyRule object at 0x103425a58>, <util.PolicyRule object at 0x103425ac8>], 'read': [<util.PolicyRule object at 0x1033c03c8>, <util.PolicyRule object at 0x103425a20>, <util.PolicyRule object at 0x103425a90>, <util.PolicyRule object at 0x103425b00>]}
+2016-12-05 12:15:40.207 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-05 12:15:40.208 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'22': {'viewCount': [('0', 0)], 'type': [('movie', 0)]}, '21': {'history': [('', 0)], 'type': [('viewer', 0)], 'position': [('viewer', 0)]}, '12': {'type': [('bank', 0)], 'id': [('bank A', 0)]}, '11': {'history': [('', 0)], 'type': [('person', 0)], 'position': [('employee', 0)]}}
+2016-12-05 12:15:40.209 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-05 12:15:40.209 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-05 12:15:40.210 - Log.master - INFO - All processes completed. Terminating...
+2016-12-05 12:15:40.221 - Log.client - INFO - Started Client 1
+2016-12-05 12:15:40.222 - Log.client - INFO - Sending following request to coordinator
+Request{RequestID: 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937, Object X: 11, Object Y: 12, action: read}
+2016-12-05 12:15:40.225 - Log.coordinator - INFO - [COORD 1] Request received from client:
+
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = None
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = None
+2016-12-05 12:15:40.227 - Log.coordinator - INFO - [COORD 2] Request received from coord:
+
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = <Client:cb006>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480958140.226055
+2016-12-05 12:15:40.229 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = <Client:cb006>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480958140.226055
+2016-12-05 12:15:40.231 - Log.client - INFO - Started Client 2
+2016-12-05 12:15:40.232 - Log.client - INFO - Sending following request to coordinator
+Request{RequestID: 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561, Object X: 11, Object Y: 12, action: write}
+2016-12-05 12:15:40.233 - Log.database - INFO - Received request from Worker to get attributes for following request: 
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = <Client:cb006>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480958140.226055
+2016-12-05 12:15:40.234 - Log.coordinator - INFO - [COORD 1] Request received from client:
+
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = None
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = None
+2016-12-05 12:15:40.233 - Log.database - INFO - Sending following response to Worker with updated attributes from database:
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = <Client:cb006>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480958140.226055
+	Evaluation Result = True
+\Object X Map read from DB = {'history': '', 'type': 'person', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:15:40.234 - Log.coordinator - INFO - [COORD 2] Request received from coord:
+
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958140.234326
+2016-12-05 12:15:40.236 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958140.234326
+2016-12-05 12:15:40.238 - Log.database - INFO - Received request from Worker to get attributes for following request: 
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958140.234326
+2016-12-05 12:15:40.238 - Log.database - INFO - Sending following response to Worker with updated attributes from database:
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958140.234326
+	Evaluation Result = True
+\Object X Map read from DB = {'history': '', 'type': 'person', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:15:40.239 - Log.worker - INFO - Received following DB response:
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958140.234326
+	Evaluation Result = True
+\Object X Map read from DB = {'history': '', 'type': 'person', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:15:40.239 - Log.worker - INFO - Sending following Worker Response to Coordinator:
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['history', 'type', 'position']
+	readAttrY = ['id', 'type']
+	objectSwap = True
+	ts = 1480958140.234326
+	Decision = True
+	Updated Obj = 11
+	Read only Obj = 12
+	Map with updates = {'history': 'bank A'}
+2016-12-05 12:15:40.243 - Log.coordinator - INFO - [COORD RESULT] Result received from worker for request:
+
+	Request ID = 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb005>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['history', 'type', 'position']
+	readAttrY = ['id', 'type']
+	objectSwap = True
+	ts = 1480958140.234326
+2016-12-05 12:15:45.237 - Log.worker - INFO - Received following DB response:
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = <Client:cb006>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = False
+	ts = 1480958140.226055
+	Evaluation Result = True
+\Object X Map read from DB = {'history': '', 'type': 'person', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:15:45.238 - Log.worker - INFO - Sending following Worker Response to Coordinator:
+	Request ID = 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937
+	ObjectX = 11
+	ObjectY = 12
+	Action = read
+	Is Client = True
+	From client = <Client:cb006>
+	Is Read Only = True
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = []
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['position', 'history']
+	readAttrY = ['id']
+	objectSwap = False
+	ts = 1480958140.226055
+	Decision = False
+	Updated Obj = None
+	Read only Obj = None
+	Map with updates = {}
+2016-12-05 12:15:45.241 - Log.client - INFO - Deny access to client 1 for Request{RequestID: 6e6536a5-e2f5-4ca3-bab5-d19a6ad09937, Object X: 11, Object Y: 12, action: read}
+2016-12-05 12:15:45.243 - Log.client - INFO - Allow access to client 2 for Request{RequestID: 5c8cc8d2-1c17-4664-a5c1-fd6fa97d6561, Object X: 11, Object Y: 12, action: write}
+2016-12-05 12:17:10.443 - Log.master - INFO - Starting the DistAlgo Project with config file: ../config/IncorrPred1.ini
+2016-12-05 12:17:10.540 - Log.master - INFO - Number of coordinators = 2
+2016-12-05 12:17:10.541 - Log.master - INFO - Number of clients = 2
+2016-12-05 12:17:10.541 - Log.master - INFO - Number of workers per coordinator = 1
+2016-12-05 12:17:10.584 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-05 12:17:10.584 - Log.worker - DEBUG - Content of Policy File: {'read': [<util.PolicyRule object at 0x10fdcde10>, <util.PolicyRule object at 0x10fdd44a8>, <util.PolicyRule object at 0x10fdd4518>, <util.PolicyRule object at 0x10fdd4588>], 'write': [<util.PolicyRule object at 0x10fdcd710>, <util.PolicyRule object at 0x10fdcdd30>, <util.PolicyRule object at 0x10fdd44e0>, <util.PolicyRule object at 0x10fdd4550>]}
+2016-12-05 12:17:10.604 - Log.worker - INFO - Started worker to evaluate policy in file: ../config/policy-example.xml
+2016-12-05 12:17:10.604 - Log.worker - DEBUG - Content of Policy File: {'read': [<util.PolicyRule object at 0x10fb25390>, <util.PolicyRule object at 0x10fb8a9e8>, <util.PolicyRule object at 0x10fb8aa58>, <util.PolicyRule object at 0x10fb8aac8>], 'write': [<util.PolicyRule object at 0x10fb1bd68>, <util.PolicyRule object at 0x10fb252b0>, <util.PolicyRule object at 0x10fb8aa20>, <util.PolicyRule object at 0x10fb8aa90>]}
+2016-12-05 12:17:10.614 - Log.database - INFO - Started Database Instance with dbInitFile = ../config/dbPolicy.xml, Min DB Latency = 1 and Max DB Latency = 1
+2016-12-05 12:17:10.615 - Log.database - INFO - Initialized DB with:
+\Object Attributes = {'22': {'type': [('movie', 0)], 'viewCount': [('0', 0)]}, '21': {'type': [('viewer', 0)], 'history': [('', 0)], 'position': [('viewer', 0)]}, '12': {'type': [('bank', 0)], 'id': [('bank A', 0)]}, '11': {'type': [('person', 0)], 'history': [('', 0)], 'position': [('employee', 0)]}}
+2016-12-05 12:17:10.615 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-05 12:17:10.615 - Log.coordinator - INFO - Starting Coordinator with 1 workers
+2016-12-05 12:17:10.617 - Log.master - INFO - All processes completed. Terminating...
+2016-12-05 12:17:10.628 - Log.client - INFO - Started Client 1
+2016-12-05 12:17:10.629 - Log.client - INFO - Sending following request to coordinator
+Request{RequestID: 11c0c23c-4b42-49f7-986a-860a39fdc35c, Object X: 11, Object Y: 12, action: write}
+2016-12-05 12:17:10.631 - Log.coordinator - INFO - [COORD 1] Request received from client:
+
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = None
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = None
+2016-12-05 12:17:10.633 - Log.coordinator - INFO - [COORD 2] Request received from coord:
+
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.632701
+2016-12-05 12:17:10.634 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.632701
+2016-12-05 12:17:10.636 - Log.database - INFO - Received request from Worker to get attributes for following request: 
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.632701
+2016-12-05 12:17:10.637 - Log.database - INFO - Sending following response to Worker with updated attributes from database:
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.632701
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'person', 'history': '', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:17:10.637 - Log.client - INFO - Started Client 2
+2016-12-05 12:17:10.638 - Log.client - INFO - Sending following request to coordinator
+Request{RequestID: 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1, Object X: 11, Object Y: 12, action: write}
+2016-12-05 12:17:10.640 - Log.coordinator - INFO - [COORD 1] Request received from client:
+
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = None
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = None
+2016-12-05 12:17:10.640 - Log.coordinator - INFO - [COORD 2] Request received from coord:
+
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.640399
+2016-12-05 12:17:15.639 - Log.worker - INFO - Received following DB response:
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.632701
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'person', 'history': '', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:17:15.640 - Log.worker - INFO - Sending following Worker Response to Coordinator:
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'history', 'position']
+	readAttrY = ['type', 'id']
+	objectSwap = True
+	ts = 1480958230.632701
+	Decision = True
+	Updated Obj = 11
+	Read only Obj = 12
+	Map with updates = {'history': 'bank A'}
+2016-12-05 12:17:15.642 - Log.worker - INFO - Sending message to initiate database read for attributes not in cache for Request:
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.640399
+2016-12-05 12:17:15.642 - Log.coordinator - INFO - [COORD RESULT] Result received from worker for request:
+
+	Request ID = 11c0c23c-4b42-49f7-986a-860a39fdc35c
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb406>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'history', 'position']
+	readAttrY = ['type', 'id']
+	objectSwap = True
+	ts = 1480958230.632701
+2016-12-05 12:17:15.643 - Log.database - INFO - Received request from Worker to get attributes for following request: 
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.640399
+2016-12-05 12:17:15.643 - Log.database - INFO - Sending following response to Worker with updated attributes from database:
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.640399
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'person', 'history': '', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:17:15.644 - Log.worker - INFO - Received following DB response:
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = []
+	readAttrY = []
+	objectSwap = True
+	ts = 1480958230.640399
+	Evaluation Result = True
+\Object X Map read from DB = {'type': 'person', 'history': '', 'position': 'employee'}
+\Object Y Map read from DB = {'type': 'bank', 'id': 'bank A'}
+2016-12-05 12:17:15.645 - Log.worker - INFO - Sending following Worker Response to Coordinator:
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'history', 'position']
+	readAttrY = ['type', 'id']
+	objectSwap = True
+	ts = 1480958230.640399
+	Decision = True
+	Updated Obj = 11
+	Read only Obj = 12
+	Map with updates = {'history': 'bank A'}
+2016-12-05 12:17:15.646 - Log.coordinator - INFO - [COORD RESULT] Result received from worker for request:
+
+	Request ID = 0e4cbc20-dfc9-4668-93bd-c3cad0e019a1
+	ObjectX = 11
+	ObjectY = 12
+	Action = write
+	Is Client = True
+	From client = <Client:cb405>
+	Is Read Only = False
+	SessionIdX = None
+	SessionIdY = None
+	defReadAttrX = ['position']
+	defReadAttrY = ['id']
+	mightReadAttrX = ['history']
+	mightReadAttrY = []
+	mightWriteAttrX = ['history']
+	mightWriteAttrY = []
+	cachedUpdatesX = {}
+	cachedUpdatesY = {}
+	readAttrX = ['type', 'history', 'position']
+	readAttrY = ['type', 'id']
+	objectSwap = True
+	ts = 1480958230.640399

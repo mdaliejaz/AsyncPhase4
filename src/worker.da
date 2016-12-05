@@ -67,16 +67,19 @@ class Worker(process):
 
         ruleMatch = False
         for rule in policyMap[dbresponse.request.action]:
-            if (validateRule(rule.objectXCondition,
-                             objectXAttribReqd,
-                             objectXAttribReqd,
-                             objectYAttribReqd) and
-                    validateRule(rule.objectYCondition,
-                                 objectYAttribReqd,
+            try:
+                if (validateRule(rule.objectXCondition,
                                  objectXAttribReqd,
-                                 objectYAttribReqd)):
-                ruleMatch = True
-                break
+                                 objectXAttribReqd,
+                                 objectYAttribReqd) and
+                        validateRule(rule.objectYCondition,
+                                     objectYAttribReqd,
+                                     objectXAttribReqd,
+                                     objectYAttribReqd)):
+                    ruleMatch = True
+                    break
+            except:
+                continue
 
         rdonlydObj = None
         updatedObj = None

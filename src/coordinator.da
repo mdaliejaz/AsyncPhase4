@@ -37,7 +37,7 @@ class Coordinator(process):
         # new parameters for phase4
         self.versionCache = {}
         self.size = len(coordinators)
-        self.coordSessionID = uuid.uuid4()  # Session id for co-ordinator
+        self.coordSessionID = str(uuid.uuid4() ) # Session id for co-ordinator
         self.PCA = {}  # To handle starvation of write requests
 
         self.coordinators = coordinators
@@ -104,9 +104,9 @@ class Coordinator(process):
 
     def receive(msg=("EVALUATE_2", request, swap), from_=p):
         '''
-            Subject coordinator instance, receives from client / another coord
+            Subject coordinator instance, receives from another coord
         '''
-        logger.info("Request received from coord:\n%s", request)
+        logger.info("[COORD 2] Request received from coord:\n%s", request)
 
         if request.isReadOnly == True:
 
@@ -148,9 +148,11 @@ class Coordinator(process):
                 for attr in list(
                         set().union(request.defReadAttrX,
                                     request.mightReadAttrX)):
-                    latestVersionBefore(request.objectX, attr,
-                                        request.ts).pendingMightRead.append(
+                    v = latestVersionBefore(request.objectX, attr,
+                                        request.ts)
+                    v.pendingMightRead.append(
                         (request.requestID, request.ts))
+                    print(attr,v)
 
             if swap == True:
                 request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -164,7 +166,7 @@ class Coordinator(process):
         '''
             Subject coordinator instance, receives from client / another coord
         '''
-        logger.info("Request received from client:\n%s", request)
+        logger.info("[COORD 1] Request received from client:\n%s", request)
         if request.objectSwap == True:
             await(checkPCA(request, "Y") == False)
 
@@ -239,7 +241,7 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
+                    print(attr, v)
 
         if request.objectSwap == True:
             request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -315,7 +317,7 @@ class Coordinator(process):
             self.versionCache[objID][k].append(ver)
 
     def receive(msg=('RESULT', response, objID), from_=worker):
-        logger.info("Result received from worker for request:\n%s",
+        logger.info("[COORD RESULT] Result received from worker for request:\n%s",
                     response.request)
         # print("received result from worker")
         rID = None
@@ -329,7 +331,7 @@ class Coordinator(process):
         # if getattr(response.request, "sessionId" + obj) != self.coordSessionID:
         #    return  # Check # Important # To implement #TODO
 
-        conflict = checkConflicts(response)
+        conflict = checkConflicts(response, objID)
 
         if not conflict:
 
@@ -338,7 +340,7 @@ class Coordinator(process):
             await(readAwaitCheck(objID, response.updates, response.request.ts,
                                  response.request.requestID) == True)
             # print("success")
-            conflict = checkConflicts(response)
+            conflict = checkConflicts(response, objID)
 
             if not conflict:
                 updateCache(objID, response)
@@ -370,11 +372,8 @@ class Coordinator(process):
                     if attr in readAttr:
                         v.rts = response.request.ts
 
-                # print("hello", response.request.fromClient)
                 send(("RESULT_CLIENT", response),
                      to=response.request.fromClient)
-                # print("world")
-                # update read timestamps.
                 send(("SENDATTR", response.request, rID),
                      to=coordinators[getattr(response.request, "object" +
                                              rID) % size])
@@ -390,7 +389,7 @@ class Coordinator(process):
                     coordID = response.request.objectX % len(self.coordinators)
                 logger.info("Restart due to inner conflict for request:\n%s",
                             response.request)
-                print("Restarted due to inner conflict for requestID: %s",
+                print("Restarted due to inner conflict for requestID:",
                       response.request.requestID)
                 send(('EVALUATE', response.request), to=coordinators[coordID])
         else:
@@ -405,7 +404,7 @@ class Coordinator(process):
 
             logger.info("Restart due to outer conflict for request:\n%s",
                         response.request)
-            print("Restarted due to outer conflict for requestID: %s",
+            print("Restarted due to outer conflict for requestID:",
                   response.request.requestID)
             send(('EVALUATE', response.request), to=coordinators[coordID])
 
@@ -423,12 +422,20 @@ class Coordinator(process):
                                     i[0] != request.requestID]
                 v.pendingMightRead = pendingMightRead
 
-    def checkConflicts(resp):
-        for attr, val in resp.updates.items():
-            v = latestVersionBefore(resp.request.objectX, attr, resp.request.ts)
-            if v.rts > resp.request.ts:
-                return True
-            return False
+    def checkConflicts(resp, objID):
+        if objID == resp.request.objectX:
+            for attr, val in resp.updates.items():
+                v = latestVersionBefore(resp.request.objectX, attr, resp.request.ts)
+                if v.rts > resp.request.ts:
+                    return True
+                return False
+        else:
+            for attr, val in resp.updates.items():
+                v = latestVersionBefore(resp.request.objectY, attr, resp.request.ts)
+                print(v, "LL")
+                if v.rts > resp.request.ts:
+                    return True
+                return False
 
     def run():
         logger.info("Starting Coordinator with %d workers",
