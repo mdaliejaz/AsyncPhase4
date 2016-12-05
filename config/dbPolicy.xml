@@ -15,7 +15,7 @@
     <object id="999">
         <attribute type="bank" account="savings" id="bank A"/>
     </object>
-    <object id="888">
+    <object id="887">
         <attribute type="movie" viewCount="0"/>
     </object>
     <object id="777">

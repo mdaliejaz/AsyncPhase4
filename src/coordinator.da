@@ -142,21 +142,18 @@ class Coordinator(process):
                         (request.requestID, request.ts))
 
             request.cachedUpdatesX = getCachedUpdates(request, "X")
-            
+
         else:
-            
-            # await(checkPCA(request, "Y") == False)
-            
             # Populate PCA
-            if request.objectY not in PCA:
-                PCA[request.objectY] = {}
-                
-            for key in request.mightWriteAttrY:
-                
-                if key not in PCA[request.objectY]:
-                   PCA[request.objectY][key] = []
-                
-                PCA[request.objectY][key].append(request.requestID)
+            # if request.objectY not in PCA:
+            #     PCA[request.objectY] = {}
+            #
+            # for key in request.mightWriteAttrY:
+            #
+            #     if key not in PCA[request.objectY]:
+            #        PCA[request.objectY][key] = []
+            #
+            #     PCA[request.objectY][key].append(request.requestID)
             
             request.sessionIdY = self.coordSessionID
 
