@@ -144,16 +144,6 @@ class Coordinator(process):
             request.cachedUpdatesX = getCachedUpdates(request, "X")
 
         else:
-            # Populate PCA
-            # if request.objectY not in PCA:
-            #     PCA[request.objectY] = {}
-            #
-            # for key in request.mightWriteAttrY:
-            #
-            #     if key not in PCA[request.objectY]:
-            #        PCA[request.objectY][key] = []
-            #
-            #     PCA[request.objectY][key].append(request.requestID)
             
             request.sessionIdY = self.coordSessionID
 
@@ -259,17 +249,6 @@ class Coordinator(process):
 
         if not conflict:
 
-            # Add to PCA
-            if objID not in self.PCA:
-                self.PCA[objID] = {}
-
-            for k, v in response.updates.items():
-                if k not in self.PCA[objID]:
-                    self.PCA[objID][k] = []
-
-                PCA[objID][k].append(
-                    (response.request.requestID, response.request.ts))
-
             # await for all pending reads
             await(readAwaitCheck(objID, response.updates, response.request.ts,
                                  response.request.requestID) == True)
@@ -281,9 +260,6 @@ class Coordinator(process):
 
                 # commit the updates
                 send(("COMMIT_TO_DB", response), to=dbInstance)
-
-                # add updates to cachedUpdates
-                # update data structure used by latestVersionBefore
 
                 # Update read timestamps
                 if objID == response.request.objectX:
