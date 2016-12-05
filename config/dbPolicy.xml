@@ -3,7 +3,7 @@
     <object id="11">
         <attribute type="person" position= "employee" history=""/>
     </object>
-    <object id="21">
+    <object id="12">
         <attribute type="bank" id= "bank A"/>
     </object>
 

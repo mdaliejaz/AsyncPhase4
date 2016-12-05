@@ -16,20 +16,20 @@
         <action name="read"></action>
     </rule>
 
-    <!--<rule name="access bank B first time">-->
-        <!--<objectXCondition type="person" position="employee"-->
-                          <!--history=""></objectXCondition>-->
-        <!--<objectYCondition type="bank" id="bank B"></objectYCondition>-->
-        <!--<action name="read"></action>-->
-        <!--<objectXUpdate history="bank B"></objectXUpdate>-->
-    <!--</rule>-->
+    <rule name="access bank B first time">
+        <objectXCondition type="person" position="employee"
+                          history=""></objectXCondition>
+        <objectYCondition type="bank" id="bank B"></objectYCondition>
+        <action name="write"></action>
+        <objectXUpdate history="bank B"></objectXUpdate>
+    </rule>
 
-    <!--<rule name="access bank B again">-->
-        <!--<objectXCondition type="person" position="employee"-->
-                          <!--history="bank B"></objectXCondition>-->
-        <!--<objectYCondition type="bank" id="bank B"></objectYCondition>-->
-        <!--<action name="read"></action>-->
-    <!--</rule>-->
+    <rule name="access bank B again">
+        <objectXCondition type="person" position="employee"
+                          history="bank B"></objectXCondition>
+        <objectYCondition type="bank" id="bank B"></objectYCondition>
+        <action name="read"></action>
+    </rule>
 
     <!--<rule name="write shared attr with read only policy">-->
         <!--<objectXCondition type="viewer" name="Tom"></objectXCondition>-->

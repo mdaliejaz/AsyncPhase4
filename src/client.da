@@ -152,12 +152,17 @@ class Client(process):
         # self.mightWriteObjectMap["read"]["person"] = ["history"]
         # self.mightWriteObjectMap["write"]["watch"] = ["watch"]
 
-        self.defReadAttrMap["write"]["person"] = ["position", "history"]
-        self.defReadAttrMap["write"]["bank"] = ["id"]
         self.defReadAttrMap["read"]["person"] = ["position"]
-        self.mightReadAttrMap["read"]["person"] = ["history"]
         self.defReadAttrMap["read"]["bank"] = ["id"]
+        self.mightReadAttrMap["read"]["person"] = ["history"]
+
+        self.defReadAttrMap["write"]["person"] = ["position"]
+        self.defReadAttrMap["write"]["bank"] = ["id"]
+        self.mightReadAttrMap["write"]["person"] = ["history"]
+
         self.mightWriteObjectMap["write"]["person"] = ["history"]
+
+
         # self.defReadAttrMap["write"]["player"] 		= ["position", "history"]
         # self.defReadAttrMap["read"]["bank"] 		= ["name"]
         # self.defReadAttrMap["write"]["game"] 		= ["name"]
