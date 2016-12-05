@@ -112,17 +112,18 @@ class Coordinator(process):
             if request.objectX not in PCA:
                 PCA[request.objectX] = {}
                 
-            for key in request.mightWriteAttrX[request.objectX]:
+            for key in request.mightWriteAttrX:
                 if key not in PCA[request.objectX]:
                    PCA[request.objectX][key] = []
             
                 PCA[request.objectX][key].append(request.requestID)
             
+            
             request.sessionIdX = self.coordSessionID
             if request.fromClient is None:
                 request.fromClient = p
             request.ts = time.time()
-
+            
             if request.isReadOnly == True:
                 for attr in request.defReadAttrX:
                     latestVersionBefore(request.objectX, attr,
@@ -141,19 +142,21 @@ class Coordinator(process):
                         (request.requestID, request.ts))
 
             request.cachedUpdatesX = getCachedUpdates(request, "X")
-
+            
         else:
+            
             # await(checkPCA(request, "Y") == False)
             
             # Populate PCA
             if request.objectY not in PCA:
                 PCA[request.objectY] = {}
                 
-            for key in request.mightWriteAttrY[request.objectY]:
+            for key in request.mightWriteAttrY:
+                
                 if key not in PCA[request.objectY]:
                    PCA[request.objectY][key] = []
-            
-                PCA[request.objectX][key].append(request.requestID)
+                
+                PCA[request.objectY][key].append(request.requestID)
             
             request.sessionIdY = self.coordSessionID
 
