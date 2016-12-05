@@ -92,16 +92,20 @@ class Client(process):
         requestID = uuid.uuid4()
 
         if action in self.mightWriteObjectMap:
-            if objectXType in self.mightWriteObjectMap[action]:
-                coordID = (objectY) % self.size
-                objectX = elem[2]
-                objectXType = elem[3]
-                objectY = elem[0]
-                objectYType = elem[1]
-                isReadOnly = False
-                objectSwap = True
-            elif objectYType in self.mightWriteObjectMap[action]:
-                isReadOnly = False
+            if objectXType in self.mightWriteObjectMap[action] and \
+                            objectYType in self.mightWriteObjectMap[action]:
+                pass
+            else:
+                if objectXType in self.mightWriteObjectMap[action]:
+                    coordID = (objectY) % self.size
+                    objectX = elem[2]
+                    objectXType = elem[3]
+                    objectY = elem[0]
+                    objectYType = elem[1]
+                    isReadOnly = False
+                    objectSwap = True
+                elif objectYType in self.mightWriteObjectMap[action]:
+                    isReadOnly = False
 
         if action in self.defReadAttrMap:
             if objectXType in self.defReadAttrMap[action]:
