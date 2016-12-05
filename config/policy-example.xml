@@ -32,12 +32,30 @@
     </rule>
 
     <rule name="viewers collectively can view each movie at most 5 times">
-        <objectXCondition type="person" position="viewer"></objectXCondition>
+        <objectXCondition type="viewer" position="viewer"></objectXCondition>
         <objectYCondition type="movie" viewCount="&lt;5"></objectYCondition>
         <action name="write"></action>
         <objectYUpdate viewCount="++"></objectYUpdate>
     </rule>
 
+    <rule name="read movie count for the viewers">
+        <objectXCondition type="viewer" position="viewer"></objectXCondition>
+        <objectYCondition type="movie" viewCount="0"></objectYCondition>
+        <action name="read"></action>
+    </rule>
+
+    <rule name="Tom can watch Star Wars max 5 times">
+        <objectXCondition type="Tom" viewCount="&lt;5"></objectXCondition>
+        <objectYCondition type="watch" movie="starWars"></objectYCondition>
+        <action name="write"></action>
+        <objectXUpdate viewCount="++"></objectXUpdate>
+    </rule>
+
+    <rule name="how many times has Tom watched StarWars">
+        <objectXCondition type="Tom" viewCount="&lt;5"></objectXCondition>
+        <objectYCondition type="watch" movie="starWars"></objectYCondition>
+        <action name="read"></action>
+    </rule>
     <!--<rule name="write shared attr with read only policy">-->
         <!--<objectXCondition type="viewer" name="Tom"></objectXCondition>-->
         <!--<objectYCondition type="watch" movie="StarWars"-->

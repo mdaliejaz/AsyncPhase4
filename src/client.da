@@ -154,16 +154,25 @@ class Client(process):
         # self.mightWriteObjectMap["write"]["watch"] = ["watch"]
 
         self.defReadAttrMap["read"]["person"] = ["position"]
+        self.defReadAttrMap["read"]["viewer"] = ["position"]
         self.defReadAttrMap["read"]["bank"] = ["id"]
+        self.defReadAttrMap["read"]["movie"] = ["viewCount"]
+        self.defReadAttrMap["read"]["Tom"] = ["viewCount"]
+        self.defReadAttrMap["read"]["watch"] = ["movie"]
         self.mightReadAttrMap["read"]["person"] = ["history"]
 
         self.defReadAttrMap["write"]["person"] = ["position"]
+        self.defReadAttrMap["write"]["viewer"] = ["position"]
         self.defReadAttrMap["write"]["bank"] = ["id"]
         self.defReadAttrMap["write"]["movie"] = ["viewCount"]
+        self.defReadAttrMap["write"]["Tom"] = ["viewCount"]
+        self.defReadAttrMap["write"]["watch"] = ["movie"]
         self.mightReadAttrMap["write"]["person"] = ["history"]
 
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
+        self.mightWriteObjectMap["write"]["Tom"] = ["viewCount"]
+        self.mightWriteObjectMap["write"]["watch"] = ["movie"]
 
 
         # self.defReadAttrMap["write"]["player"] 		= ["position", "history"]

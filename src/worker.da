@@ -45,8 +45,7 @@ class Worker(process):
             Receives response from DB, validates rules and send updated
             attributes to subject co-ordinator.
         '''
-        # for i in range(dbresponse.request.workerDelay):
-        #     time.sleep(1)
+        time.sleep(dbresponse.request.workerDelay)
         logger.info("Received following DB response:%s", dbresponse)
         objectXAttribReqd = dbresponse.readDbObjectXMap.copy()
         objectXAttribReqd.update(dbresponse.request.cachedUpdatesX)
@@ -129,8 +128,6 @@ class Worker(process):
                     "Coordinator:%s", response)
 
         if response.updatedObj is None:
-            for i in range(dbresponse.request.workerDelay):
-                time.sleep(1)
             # print("updated obj", response.updatedObj)
             # send(("RESULT_CLIENT", response),
             #      to=dbresponse.request.originalRequest.fromClient)
@@ -147,8 +144,6 @@ class Worker(process):
             send(("SENDATTR", dbresponse.request, "Y"),
                  to=coordinators[dbresponse.request.objectY % size])
         else:
-            for i in range(dbresponse.request.workerDelay):
-                time.sleep(1)
             coordID = response.updatedObj % size
             send(("RESULT", response, response.updatedObj),
                  to=coordinators[coordID])
@@ -182,7 +177,6 @@ class Worker(process):
             we replace the $ atrribute with the value present in maps.
         '''
         for k in conditions.keys():
-            # attribSet.add(k)
             policyVal = conditions[k]
             if conditions[k].startswith('$'):
                 policyVal = checkDollar(conditions[k],
