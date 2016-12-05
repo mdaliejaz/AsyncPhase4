@@ -133,13 +133,18 @@ class Client(process):
         # if timeout rescedule
 
     def staticAnalysis():
-        self.defReadAttrMap["read"]["person"] = ["position", "history"]
-        self.defReadAttrMap["read"]["bank"] = ["id"]
-        self.defReadAttrMap["view"]["person"] = ["position"]
-        self.defReadAttrMap["view"]["movie"] = ["viewCount"]
+        # self.defReadAttrMap["read"]["person"] = ["position", "history"]
+        # self.defReadAttrMap["read"]["bank"] = ["id"]
+        # self.defReadAttrMap["view"]["person"] = ["position"]
+        # self.defReadAttrMap["view"]["movie"] = ["viewCount"]
+        self.defReadAttrMap["read"]["viewer"] = ["name"]
+        self.defReadAttrMap["read"]["watch"] = ["movie", "viewCount"]
+        self.defReadAttrMap["write"]["viewer"] = ["name"]
+        self.defReadAttrMap["write"]["watch"] = ["movie", "watch"]
         self.mightReadAttrMap["read"]["bank"] = ["account"]
-        self.mightWriteObjectMap["view"]["movie"] = ["viewCount"]
-        self.mightWriteObjectMap["read"]["person"] = ["history"]
+        # self.mightWriteObjectMap["view"]["movie"] = ["viewCount"]
+        # self.mightWriteObjectMap["read"]["person"] = ["history"]
+        self.mightWriteObjectMap["write"]["watch"] = ["watch"]
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
