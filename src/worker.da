@@ -27,15 +27,15 @@ class Worker(process):
 
     def receive(msg=('WORKER_ASSIGN', request)):
         time.sleep(request.workerDelay)
-        originalRequest = copy.deepcopy(request)
-        request.originalRequest = originalRequest
-        if request.objectSwap == True:
-            temp = request.objectX
-            request.objectX = request.objectY
-            request.objectY = temp
-            temp = request.cachedUpdatesX
-            request.cachedUpdatesX = request.cachedUpdatesY
-            request.cachedUpdatesY = temp
+        # originalRequest = copy.deepcopy(request)
+        # request.originalRequest = originalRequest
+        # if request.objectSwap == True:
+        #     temp = request.objectX
+        #     request.objectX = request.objectY
+        #     request.objectY = temp
+        #     temp = request.cachedUpdatesX
+        #     request.cachedUpdatesX = request.cachedUpdatesY
+        #     request.cachedUpdatesY = temp
 
         logger.info("Sending message to initiate database read for attributes "
                     "not in cache for Request:%s", request)
@@ -52,16 +52,18 @@ class Worker(process):
         objectYAttribReqd = dbresponse.readDbObjectYMap.copy()
         objectYAttribReqd.update(dbresponse.request.cachedUpdatesY)
 
-        if dbresponse.request.originalRequest.objectSwap == True:
-            dbresponse.request.originalRequest.readAttrX = list(
-                objectYAttribReqd.keys())
-            dbresponse.request.originalRequest.readAttrY = list(
-                objectXAttribReqd.keys())
-        else:
-            dbresponse.request.originalRequest.readAttrX = list(
-                objectXAttribReqd.keys())
-            dbresponse.request.originalRequest.readAttrY = list(
-                objectYAttribReqd.keys())
+        # if dbresponse.request.originalRequest.objectSwap == True:
+        #     dbresponse.request.originalRequest.readAttrX = list(
+        #         objectYAttribReqd.keys())
+        #     dbresponse.request.originalRequest.readAttrY = list(
+        #         objectXAttribReqd.keys())
+        # else:
+        #     dbresponse.request.originalRequest.readAttrX = list(
+        #         objectXAttribReqd.keys())
+        #     dbresponse.request.originalRequest.readAttrY = list(
+        #         objectYAttribReqd.keys())
+        dbresponse.request.readAttrX = list(objectXAttribReqd.keys())
+        dbresponse.request.readAttrY = list(objectYAttribReqd.keys())
 
         ruleMatch = False
         for rule in policyMap[dbresponse.request.action]:
@@ -101,16 +103,24 @@ class Worker(process):
                                          objectXAttribReqd,
                                          objectYAttribReqd)
 
+        # if dbresponse.evaluation == False:
+        #     dbresponse.request.originalRequest.readAttrX = \
+        #         dbresponse.request.originalRequest.defReadAttrX + \
+        #         dbresponse.request.originalRequest.mightReadAttrX
+        #
+        #     dbresponse.request.originalRequest.readAttrY = \
+        #         dbresponse.request.originalRequest.defReadAttrY + \
+        #         dbresponse.request.originalRequest.mightReadAttrY
         if dbresponse.evaluation == False:
-            dbresponse.request.originalRequest.readAttrX = \
-                dbresponse.request.originalRequest.defReadAttrX + \
-                dbresponse.request.originalRequest.mightReadAttrX
+            dbresponse.request.readAttrX = dbresponse.request.defReadAttrX + \
+                                           dbresponse.request.mightReadAttrX
+            dbresponse.request.readAttrY = dbresponse.request.defReadAttrY + \
+                                           dbresponse.request.mightReadAttrY
 
-            dbresponse.request.originalRequest.readAttrY = \
-                dbresponse.request.originalRequest.defReadAttrY + \
-                dbresponse.request.originalRequest.mightReadAttrY
-
-        response = Response(dbresponse.request.originalRequest,
+        # response = Response(dbresponse.request.originalRequest,
+        #                     dbresponse.evaluation,
+        #                     updatedObj, rdonlydObj, updates)
+        response = Response(dbresponse.request,
                             dbresponse.evaluation,
                             updatedObj, rdonlydObj, updates)
 
@@ -118,14 +128,20 @@ class Worker(process):
                     "Coordinator:%s", response)
 
         if response.updatedObj is None:
+            # send(("RESULT_CLIENT", response),
+            #      to=dbresponse.request.originalRequest.fromClient)
+            # send(("SENDATTR", dbresponse.request.originalRequest, "X"),
+            #      to=coordinators[dbresponse.request.originalRequest.objectX %
+            #                      size])
+            # send(("SENDATTR", dbresponse.request.originalRequest, "Y"),
+            #      to=coordinators[dbresponse.request.originalRequest.objectY %
+            #                      size])
             send(("RESULT_CLIENT", response),
-                 to=dbresponse.request.originalRequest.fromClient)
-            send(("SENDATTR", dbresponse.request.originalRequest, "X"),
-                 to=coordinators[dbresponse.request.originalRequest.objectX %
-                                 size])
-            send(("SENDATTR", dbresponse.request.originalRequest, "Y"),
-                 to=coordinators[dbresponse.request.originalRequest.objectY %
-                                 size])
+                 to=dbresponse.request.fromClient)
+            send(("SENDATTR", dbresponse.request, "X"),
+                 to=coordinators[dbresponse.request.objectX % size])
+            send(("SENDATTR", dbresponse.request, "Y"),
+                 to=coordinators[dbresponse.request.objectY % size])
         else:
             send(("RESULT", response, response.updatedObj),
                  to=coordinators[response.updatedObj % size])

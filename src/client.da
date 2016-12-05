@@ -94,16 +94,17 @@ class Client(process):
         if action in self.mightWriteObjectMap:
             if objectXType in self.mightWriteObjectMap[action] and \
                             objectYType in self.mightWriteObjectMap[action]:
-                pass
+                isReadOnly = False
             else:
                 if objectXType in self.mightWriteObjectMap[action]:
-                    coordID = (objectY) % self.size
-                    objectX = elem[2]
-                    objectXType = elem[3]
-                    objectY = elem[0]
-                    objectYType = elem[1]
-                    isReadOnly = False
+                    # coordID = (objectY) % self.size
+                    # objectX = elem[2]
+                    # objectXType = elem[3]
+                    # objectY = elem[0]
+                    # objectYType = elem[1]
+                    # isReadOnly = False
                     objectSwap = True
+                    isReadOnly = False
                 elif objectYType in self.mightWriteObjectMap[action]:
                     isReadOnly = False
 
@@ -153,7 +154,8 @@ class Client(process):
 
         self.defReadAttrMap["write"]["person"] = ["position", "history"]
         self.defReadAttrMap["write"]["bank"] = ["id"]
-        self.defReadAttrMap["read"]["person"] = ["position", "history"]
+        self.defReadAttrMap["read"]["person"] = ["position"]
+        self.mightReadAttrMap["read"]["person"] = ["history"]
         self.defReadAttrMap["read"]["bank"] = ["id"]
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         # self.defReadAttrMap["write"]["player"] 		= ["position", "history"]

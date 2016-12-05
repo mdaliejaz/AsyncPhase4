@@ -47,13 +47,14 @@ class Request(object):
                "cachedUpdatesY = {}\n\t" \
                "readAttrX = {}\n\t" \
                "readAttrY = {}\n\t" \
+               "objectSwap = {}\n\t" \
                "ts = {}".format(
             self.requestID, self.objectX, self.objectY, self.action,
             self.isClient, self.fromClient, self.isReadOnly, self.sessionIdX,
             self.sessionIdY, self.defReadAttrX, self.defReadAttrY,
             self.mightReadAttrX, self.mightReadAttrY, self.mightWriteAttrX,
             self.mightWriteAttrY, self.cachedUpdatesX, self.cachedUpdatesY,
-            self.readAttrX, self.readAttrY, self.ts)
+            self.readAttrX, self.readAttrY, self.objectSwap, self.ts)
 
 
 class DBResponse(object):
