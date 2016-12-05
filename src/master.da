@@ -44,7 +44,7 @@ def main():
     # Setup each of the clients
     num = 1
     for client in clients:
-        setup(client, (listcoord, config, num))
+        setup(client, (listcoord, config, num, dbInstance))
         num = num + 1
 
     start(dbInstance)

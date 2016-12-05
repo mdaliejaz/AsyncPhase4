@@ -57,6 +57,14 @@
         <action name="read"></action>
     </rule>
 
+    <rule name="stress write">
+        <objectXCondition type="stressX"
+                          viewCount="&lt;1000"></objectXCondition>
+        <objectYCondition type="stressY" movie="StarWars"></objectYCondition>
+        <action name="write"></action>
+        <objectXUpdate viewCount="++"></objectXUpdate>
+    </rule>
+
     <rule name="inner conflict wrong prediction write">
         <objectXCondition type="inc2X" viewCount="&lt;5"></objectXCondition>
         <objectYCondition type="inc2Y" movie="StarWars"></objectYCondition>

@@ -151,7 +151,7 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(attr, v)
+                    # print(attr, v)
 
             if swap == True:
                 request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -271,8 +271,11 @@ class Coordinator(process):
             if coordPred == True:
                 # Remove from PCA
                 if request.isReadOnly == False:
-                    for k in request.mightWriteAttrX:
-                        PCA[request.objectX][k].remove(request.requestID)
+                    try:
+                        for k in request.mightWriteAttrX:
+                            PCA[request.objectX][k].remove(request.requestID)
+                    except:
+                        pass
         else:
             for attr in request.mightReadAttrY:
                 v = latestVersionBefore(request.objectY, attr, request.ts)
@@ -286,8 +289,11 @@ class Coordinator(process):
             if coordPred == True:
                 # Remove from PCA
                 if request.isReadOnly == False:
-                    for k in request.mightWriteAttrY:
-                        PCA[request.objectY][k].remove(request.requestID)
+                    try:
+                        for k in request.mightWriteAttrY:
+                            PCA[request.objectY][k].remove(request.requestID)
+                    except:
+                        pass
 
     def readAwaitCheck(objID, updates, ts, reqID):
         # print(updates)
@@ -343,7 +349,6 @@ class Coordinator(process):
 
         conflict = checkConflicts(response, objID)
         if not conflict:
-
             # await for all pending reads
             # print("response.updates", response.updates)
             await(readAwaitCheck(objID, response.updates, response.request.ts,
@@ -386,9 +391,11 @@ class Coordinator(process):
 
                 if coordPred == False:
                     for k in getattr(response.request, "mightWriteAttr" + obj):
-                        PCA[getattr(response.request, "object" + obj)][
-                            k].remove(
-                            response.request.requestID)
+                        try:
+                            PCA[getattr(response.request, "object" + obj)][
+                                k].remove(response.request.requestID)
+                        except:
+                            pass
 
                 send(("SENDATTR", response.request, rID, coordPred),
                      to=coordinators[getattr(response.request, "object" +

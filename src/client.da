@@ -12,7 +12,7 @@ import uuid
 
 
 class Client(process):
-    def setup(coordinators, config, num):
+    def setup(coordinators, config, num, dbInstance):
         '''
             Client setup. Generates a sequence of request and puts into a
             queue.
@@ -24,6 +24,7 @@ class Client(process):
         self.defReadAttrMap = collections.defaultdict(dict)
         self.mightReadAttrMap = collections.defaultdict(dict)
         self.mightWriteObjectMap = collections.defaultdict(dict)
+        self.dbInstance = dbInstance
         staticAnalysis()
 
         sequenceList = []
@@ -158,7 +159,9 @@ class Client(process):
         self.defReadAttrMap["read"]["bank"] = ["id"]
         self.defReadAttrMap["read"]["movie"] = ["viewCount"]
         self.defReadAttrMap["read"]["Tom"] = ["viewCount"]
+        self.defReadAttrMap["read"]["stressX"] = ["viewCount"]
         self.defReadAttrMap["read"]["watch"] = ["movie"]
+        self.defReadAttrMap["read"]["stressY"] = ["movie"]
         self.defReadAttrMap["read"]["starX"] = ["viewCount"]
         self.defReadAttrMap["read"]["starY"] = ["movie"]
         self.mightReadAttrMap["read"]["person"] = ["history"]
@@ -174,7 +177,9 @@ class Client(process):
         self.defReadAttrMap["write"]["bank"] = ["id"]
         self.defReadAttrMap["write"]["movie"] = ["viewCount"]
         self.defReadAttrMap["write"]["Tom"] = ["viewCount"]
+        self.defReadAttrMap["write"]["stressX"] = ["viewCount"]
         self.defReadAttrMap["write"]["watch"] = ["movie"]
+        self.defReadAttrMap["write"]["stressY"] = ["movie"]
         self.defReadAttrMap["write"]["starX"] = ["viewCount", "history"]
         self.defReadAttrMap["write"]["starY"] = ["movie"]
         self.mightReadAttrMap["write"]["person"] = ["history"]
@@ -189,7 +194,9 @@ class Client(process):
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["viewer"] = ["position"]
         self.mightWriteObjectMap["write"]["Tom"] = ["viewCount"]
+        self.mightWriteObjectMap["write"]["stressX"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["watch"] = ["movie"]
+        self.mightWriteObjectMap["write"]["stressY"] = ["movie"]
         self.mightWriteObjectMap["write"]["incX"] = ["viewCount"]
         # self.mightWriteObjectMap["write"]["inc2X"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["inc2Y"] = ["movie"]
@@ -212,6 +219,7 @@ class Client(process):
                         self.num, response.request.requestID,
                         response.request.objectX, response.request.objectY,
                         response.request.action)
+        send(('DUMP_DB',), to=self.dbInstance)
 
         sendToSubjectCoordinator()
 

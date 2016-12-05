@@ -101,6 +101,10 @@ class Database(process):
     #         logger.info("Successfully updated database for %s attributes "
     #                     "with map: %s", instance, updateMap)
 
+    def receive(msg=('DUMP_DB',), from_=p):
+        logger.info("Dumping final contents of DB:"
+                    "\n\Object Attributes = %s", self.objectMap)
+
     def run():
         '''
             Read from dbInit xml file and store in object maps

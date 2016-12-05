@@ -18,6 +18,9 @@
     <object id="61">
         <attribute type="starX" viewCount="0" history=""/>
     </object>
+    <object id="71">
+        <attribute type="stressX" viewCount="0"/>
+    </object>
     <object id="12">
         <attribute type="bank" id= "bank A"/>
     </object>
@@ -35,6 +38,9 @@
     </object>
     <object id="62">
         <attribute type="starY" movie="StarWars" history=""/>
+    </object>
+    <object id="72">
+        <attribute type="stressY" movie="StarWars"/>
     </object>
 
     <!--<object id="0000">-->
