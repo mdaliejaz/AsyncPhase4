@@ -26,6 +26,7 @@ class Worker(process):
         self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
+        time.sleep(request.workerDelay)
         self.originalRequest = copy.deepcopy(request)
         if request.objectSwap == True:
             temp = request.objectX

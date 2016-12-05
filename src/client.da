@@ -34,10 +34,16 @@ class Client(process):
             sequenceList = sequence.split(',')
 
         for seq in sequenceList:
-            requestQueue.put([int(config.get(seq, "objectX")), config.get(
-                seq, "objectXType"), int(config.get(seq, "objectY")),
+            try:
+                workerDelay = int(config.get(seq, "workerDelay"))
+            except:
+                workerDelay = 0
+            requestQueue.put([int(config.get(seq, "objectX")),
+                              config.get(seq, "objectXType"),
+                              int(config.get(seq, "objectY")),
                               config.get(seq, "objectYType"),
-                              config.get(seq, "action")])
+                              config.get(seq, "action"),
+                              workerDelay])
         # Mark the end of queue
         requestQueue.put(None)
 
@@ -77,6 +83,7 @@ class Client(process):
         mightReadAttrY = []
         mightWriteAttrX = []
         mightWriteAttrY = []
+        workerDelay = elem[5]
 
         # logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
         #             "%d, action: %s} to coordinator %d", self.num, elem[0],
@@ -115,7 +122,7 @@ class Client(process):
         request = Request(requestID, objectX, objectY, action, True,
                           isReadOnly, defReadAttrX, defReadAttrY,
                           mightReadAttrX, mightReadAttrY, mightWriteAttrX,
-                          mightWriteAttrY, objectSwap)
+                          mightWriteAttrY, objectSwap, workerDelay)
 
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
