@@ -82,16 +82,22 @@ class Coordinator(process):
 
     def checkPCA(request, obj):
         if obj == "X":
-            for attr in list(
-                    set().union(request.defReadAttrX, request.mightReadAttrX)):
-                if len(self.PCA[request.objectX][attr]) > 0:
-                    return True
+            try:
+                for attr in list(
+                        set().union(request.defReadAttrX, request.mightReadAttrX)):
+                    if len(self.PCA[request.objectX][attr]) > 0:
+                        return True
+            except:
+                pass
             return False
         else:
-            for attr in list(
-                    set().union(request.defReadAttrY, request.mightReadAttrY)):
-                if len(self.PCA[request.objectY][attr]) > 0:
-                    return True
+            try:
+                for attr in list(
+                        set().union(request.defReadAttrY, request.mightReadAttrY)):
+                    if len(self.PCA[request.objectY][attr]) > 0:
+                        return True
+            except:
+                pass
             return False
 
     def receive(msg=("EVALUATE", request), from_=p):
@@ -100,13 +106,24 @@ class Coordinator(process):
         '''
 
         if request.isClient == True:
+            await(checkPCA(request, "X") == False)
+            
+            # Populate PCA
+            if request.objectX not in PCA:
+                PCA[request.objectX] = {}
+                
+            for key in request.mightWriteAttrX[request.objectX]:
+                if key not in PCA[request.objectX]:
+                   PCA[request.objectX][key] = []
+            
+                PCA[request.objectX][key].append(request.requestID)
+            
             request.sessionIdX = self.coordSessionID
             if request.fromClient is None:
                 request.fromClient = p
             request.ts = time.time()
 
             if request.isReadOnly == True:
-                await(checkPCA(request, "X") == False)
                 for attr in request.defReadAttrX:
                     latestVersionBefore(request.objectX, attr,
                                         request.ts).rts = request.ts
@@ -126,10 +143,21 @@ class Coordinator(process):
             request.cachedUpdatesX = getCachedUpdates(request, "X")
 
         else:
+            # await(checkPCA(request, "Y") == False)
+            
+            # Populate PCA
+            if request.objectY not in PCA:
+                PCA[request.objectY] = {}
+                
+            for key in request.mightWriteAttrY[request.objectY]:
+                if key not in PCA[request.objectY]:
+                   PCA[request.objectY][key] = []
+            
+                PCA[request.objectX][key].append(request.requestID)
+            
             request.sessionIdY = self.coordSessionID
 
             if request.isReadOnly == True:
-                await(checkPCA(request, "Y") == False)
                 for attr in request.defReadAttrY:
                     latestVersionBefore(request.objectY, attr,
                                         request.ts).rts = request.ts
@@ -170,6 +198,11 @@ class Coordinator(process):
 
                 if attr in request.readAttrX:
                     v.rts = request.ts
+                    
+            # Remove from PCA
+            if request.isReadOnly == False:
+                for k in request.mightWriteAttrX:
+                    PCA[request.objectX][k].remove(request.requestID)
         else:
             for attr in request.mightReadAttrY:
                 v = latestVersionBefore(request.objectY, attr, request.ts)
@@ -179,6 +212,11 @@ class Coordinator(process):
 
                 if attr in request.readAttrY:
                     v.rts = request.ts
+                
+            # Remove from PCA    
+            if request.isReadOnly == False:
+                for k in request.mightWriteAttrY:
+                    PCA[request.objectY][k].remove(request.requestID)
 
     def readAwaitCheck(objID, updates, ts, reqID):
         for k, _ in updates.items():
@@ -202,7 +240,6 @@ class Coordinator(process):
                 self.versionCache[objID][k] = []
             else:
                 ver.wts = response.request.ts
-                # ver.rts?
 
             ver.value = v
             self.versionCache[objID][k].append(ver)
@@ -280,21 +317,7 @@ class Coordinator(process):
                      to=coordinators[getattr(response.request, "object" +
                                              rID) % size])
 
-                # remove from PCA
-                for k, v in response.updates.items():
-                    li = PCA[objID][k]
-                    new_li = [i for i in li if
-                              i[0] != response.request.requestID]
-                    self.PCA[objID][k] = new_li
-
-
             else:
-                # remove from PCA
-                for k, v in response.updates.items():
-                    li = PCA[objID][k]
-                    new_li = [i for i in li if
-                              i[0] != response.request.requestID]
-                    self.PCA[objID][k] = new_li
 
                 # restart
                 coordID = response.request.objectX % len(self.coordinators)
