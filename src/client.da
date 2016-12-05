@@ -89,7 +89,7 @@ class Client(process):
         #             "%d, action: %s} to coordinator %d", self.num, elem[0],
         #             elem[1], elem[2], coordID)
 
-        requestID = uuid.uuid4()
+        requestID = str(uuid.uuid4())
 
         if action in self.mightWriteObjectMap:
             if objectXType in self.mightWriteObjectMap[action] and \
@@ -134,6 +134,7 @@ class Client(process):
                     "Object Y: %d, action: %s}",
                     request.requestID, request.objectX, request.objectY,
                     request.action)
+        print(request)
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
         # if timeout rescedule
