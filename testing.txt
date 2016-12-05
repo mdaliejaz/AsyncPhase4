@@ -117,208 +117,135 @@
     Number of denied accesses:  0   (grep on log: "Deny access")
     Number of conflicts:        1   (grep on log: "conflict")
 
-5.  Request evaluation uses '$resource.Attribute' or '$subject.Attribute' value
+5.  Delayed Commit with incorrect coordinator prediction.
 
-    Config File:    dollarValue.ini
-    Log File:       dollarValue.log
-
-    Description:
-    Scenario:   Access bank A first time and Access bank A again
-                Number of Clients:          2
-                Number of requests sent:    1 (per client)
-                Request:                    1 (Client 1)
-                    Subject Attributes:         position="employee" history=""
-                    Resource Attributes:        id="bank A"
-                    Action:                     name="read"
-                Request:                    2 (Client 2)
-                    Subject Attributes:         position="employee"
-                                                        history="$resource.id"
-                    Resource Attributes:        id="bank A"
-                    Action:                     name="read"
-                Both should be allowed access
-    Request 1 from Client 1 is serviced for action read. When Request 2
-    comes, history is no longer empty. The history value is then evaluated
-    based on $resource.id which happens to be equal to bank A. Thus Request 2
-    is also allowed. A conflict might happen in this scenario if both
-    requests arrive at same time and are considered based on policy of Access
-    bank A first time. But a restart on conflict, results in second policy
-    evaluation and hence allowed access.
-
-    Artificial Delays inserted:
-    None
-
-    Outcome:
-    The test passed as expected.
-    Number of allowed accesses: 2   (grep on log: "Allow access")
-    Number of denied accesses:  0   (grep on log: "Deny access")
-    Number of conflicts:        1   (grep on log: "Conflict Happened",
-                                                   happens since both
-                                                   requests start evaluationg
-                                                   for first policy - expected)
-
-    DB updated:
-        Initial Snapshot    (part of DB relevant to this example)
-            Subject Attributes  = {'1111': {'position': 'employee',
-                                                'history': ''}}
-	        Resource Attributes = {'999': {'id': 'bank A'}}
-	    Final Snapshot      (part of DB relevant to this example)
-	        Subject Attributes  = {'1111': {'position': 'employee',
-	                                            'history': 'bank A'}}
-	        Resource Attributes = {'999': {'id': 'bank A'}}
-
-
-6.  Request evaluation should not be delayed for requests from different
-    subject and/or resource ID
-
-    Config File:    requestQueueDiffSubject.ini
-    Log File:       requestQueueDiffSubject.log
+    Config File:    IncorrPred1.ini
+    Log File:       IncorrPred1.log
 
     Description:
-    Scenario:   Access bank A first time and Listeners collectively can
-                listen to a song maximum 5 times
+    The client incorrectly predicts the coordinator to send the initial request to.
+    This results in worker sending reply to coordinator which is non-local.
+    
+    Scenario:   
                 Number of Clients:          2
                 Number of requests sent:    1 (per client)
-                Request:                    1 (Client 1)
-                    Subject Attributes:         position="employee" history=""
-                    Resource Attributes:        id="bank A"
-                    Action:                     name="view"
-                Request:                    2 (Client 2)
-                    Subject Attributes:         position="listener"
-                    Resource Attributes:        type="song" viewCount="&lt;5"
-                    Action:                     name="view"
-                Both should be allowed access
-    Request 1 from Client 1 takes more time to evaluate but it does not stall
-    the Request 2 response evaluation as it's for a different Subject and
-    Resource ID.
+                
+				[request1]
+				objectX = 41
+				objectXType = Tom
+				objectY = 42
+				objectYType = watch
+				action = read
+				workerDelay = 5
+				
+				[request2]
+				objectX = 41
+				objectXType = Tom
+				objectY = 42
+				objectYType = watch
+				action = write
 
     Artificial Delays inserted:
     Yes.
-    A flag 'responseQueueDelay' is used to delay response evaluation for
-    Request 1 by 1 second. This ensures that response for Request 2 is
-    generated before than that for Request 1. The service of response for
-    Request 2 is done without waiting for response for Request 1 to be serviced.
 
     Outcome:
-    The test passed as expected.
-    Number of allowed accesses: 1   (grep on log: "Allow access")
-    Number of denied accesses:  1   (grep on log: "Deny access", bacause of
-                                                   wrong policy)
-    Number of conflicts:        0   (grep on log: "Conflict Happened")
-
-    DB updated:
-        Initial Snapshot    (part of DB relevant to this example)
-            Subject Attributes  = {'1111': {'position': 'employee',
-                                                'history': ''}
-                                   '3333': {'position': 'listener'}}
-	        Resource Attributes = {'999': {'id': 'bank A'}
-	                               '777': {'viewCount': '0', 'type': 'song'}}
-	    Final Snapshot      (part of DB relevant to this example)
-	        Subject Attributes  = {'1111': {'position': 'employee',
-	                                            'history': ''}
-	                               '3333': {'position': 'listener'}}
-	        Resource Attributes = {'999': {'id': 'bank A'}
-	                               '777': {'viewCount': '1', 'type': 'song'}}
-
-    Servicing order of Requests can be seen on console and also by grep in
-    log with 'Request Queue Demo:'
+    The test passed as expected. Grep on Log for "Reached non-local coordinator from worker"
+    
+    Number of allowed accesses: 2   (grep on log: "Allow access")
+    Number of denied accesses:  0   (grep on log: "Deny access")
 
 
-7.  Stress Test
+6.  Inner Conflict (MightReadAttr) with incorrect coordinator prediction.
 
-    Config File:    stressTest.ini
-    Log File:       stressTest.log
+    Config File:    IncorrPred-innerConflict.ini
+    Log File:       IncorrPred-innerConflict.log
 
     Description:
-    Scenario:   Lots of different requests are generated
-                Number of Clients:          10
-                Number of requests sent:    1100
-                Request:                    1   (>1000 requests)
-                    Subject Attributes:         position="viewer"
-                    Resource Attributes:        type="movie"
-                                                        viewCount="&lt;1000"
-                    Action:                     name="stressTest"
-                Request:                    2
-                    Subject Attributes:         position="employee" history=""
-                    Resource Attributes:        id="bank A"
-                    Action:                     name="read"
-                Request:                    3
-                    Subject Attributes:         position="employee"
-                                                        history="$resource.id"
-                    Resource Attributes:        id="bank A"
-                    Action:                     name="read"
-                Request:                    4
-                    Subject Attributes:         position="listener"
-                    Resource Attributes:        type="song" viewCount="&lt;5"
-                    Action:                     name="view"
-                There should be a total of 1100 responses sent to Client
-    There are more than 1000 requests of Request type 1. The value in final
-    DB snapshot should reflect viewCount to be 1000.
+    The client incorrectly predicts the coordinator to send the initial request to.
+    This results in worker sending reply to coordinator which is non-local. Also
+    there is a conflict detected due to MightReadAttr read by read request and 
+    worker updating it 
+    
+    Scenario:   
+                Number of Clients:          2
+                Number of requests sent:    1 (per client)
+                
+				[request1]
+				objectX = 51
+				objectXType = inc2X
+				objectY = 52
+				objectYType = inc2Y
+				action = write
+				workerDelay = 2
+				
+				[request2]
+				objectX = 51
+				objectXType = inc2X
+				objectY = 52
+				objectYType = inc2Y
+				action = read
+				workerDelay = 4
 
     Artificial Delays inserted:
-    None
+    Yes.
 
     Outcome:
-    The test passed as expected.
-    Number of allowed accesses: 1033   (grep on log: "Allow access")
-    Number of denied accesses:    67   (grep on log: "Deny access")
-    Total number of accesses:   1100   (= Total number of sent requests)
+    The test passed as expected. Grep on Log for "Reached non-local coordinator from worker"
+    Also grep for "Restart"
+    
+    Number of allowed accesses: 2   (grep on log: "Allow access")
+    Number of denied accesses:  0   (grep on log: "Deny access")
 
-    DB updated:
-        Initial Snapshot    (part of DB relevant to this example)
-            Subject Attributes = {'1111': {'position': 'employee',
-                                                'history': ''},
-                                  '3333': {'position': 'listener'},
-                                  '2222': {'position': 'viewer'}}
-            Resource Attributes = {'999': {'id': 'bank A'},
-                                   '666': {'movie': 'StarWars'},
-                                   '777': {'viewCount': '0', 'type': 'song'},
-                                   '888': {'viewCount': '0', 'type': 'movie'}}
-	    Final Snapshot      (part of DB relevant to this example)
-	        Subject Attributes = {'1111': {'position': 'employee',
-	                                            'history': 'bank A'},
-                                  '3333': {'position': 'listener'},
-                                  '2222': {'position': 'viewer'}}
-            Resource Attributes = {'999': {'id': 'bank A'},
-                                   '666': {'movie': 'StarWars'},
-                                   '777': {'viewCount': '5', 'type': 'song'},
-                                   '888': {'viewCount': '1000', 'type': 'movie'}}
+7. Starvation prevention
 
-    The final viewCount confirms that all the requests got serviced.
-    The final viewCount on movie confirms that the >=1000 requests on movie
-    were served.
+    Config File:    starvation.ini
+    Log File:       starvation.log
 
-
-8.  Generation of random sequence of Requests
-
-    The previous test scenario 7 uses random sequence generator to generate
-    >=1000 requests on movies and we see that those many requests are generated.
-    So this test scenario is covered by test scenario 7.
-
-
-9.  Database min/max Latency
-
-    All the previous test have been implemented with minDbLatency = 1 and
-    maxDbLatency = 5. A random value between the two is generated and
-    considered as the latency.
-
-    This can be seen by grep on any of the logs from previous test scenarios.
-    The latency would be equal to the time difference between the following
-    two greps:
-    1.  Subject Coordinator: Sending message to DB to commit the updated
-                                                            subject attributes
-        OR
-        Resource Coordinator: Sending message to DB to commit the updated
-                                                            resource attributes
-    AND
-    2.  Successfully updated database for subject attributes with map
-        OR
-        Successfully updated database for resource attributes with map
+    Description:
+    
+	The write request from client 2 has an artifical delay of 7 seconds and it
+	also updates it potentially conflicting atrributes cache (PCA). The read
+	request from client 3 has to wait on this PCA to be emptied as its union of
+	mightReadAttr and defReadAttr is present in the PCA of request from client 2
+    
+    Scenario:   
+                Number of Clients:          3
+                Number of requests sent:    1 (per client)
+                
+				[client1]
+				sequence = request1
+				
+				[client2]
+				sequence = request2
+				
+				[client3]
+				sequence = request1
+				
+				[request1]
+				objectX = 61
+				objectXType = starX
+				objectY = 62
+				objectYType = starY
+				action = read
+				workerDelay = 1
+				
+				[request2]
+				objectX = 61
+				objectXType = starX
+				objectY = 62
+				objectYType = starY
+				action = write
+				workerDelay = 7
 
 
-10. Graceful shutdown of the application
+    Artificial Delays inserted:
+    Yes.
 
-    From all the above test cases it could be confirmed that the application
-    shuts down gracefully. After the execution in all the Client processes
-    finish, they join in the master process. Once all the Client processes
-    join, the master process sends a done signal to other processes leading
-    to a graceful shutdown.
+    Outcome:
+    The test passed as expected. The 3rd clients read request had to wait for the write
+    to complete. This is seen from timestamps in the log
+    
+    Number of allowed accesses: 3   (grep on log: "Allow access")
+    Number of denied accesses:  0   (grep on log: "Deny access")
+    
+8.  Stress Test
