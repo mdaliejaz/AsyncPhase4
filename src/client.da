@@ -128,6 +128,11 @@ class Client(process):
                           mightReadAttrX, mightReadAttrY, mightWriteAttrX,
                           mightWriteAttrY, objectSwap, workerDelay)
 
+        logger.info("Sending following request to coordinator\n"
+                    "Request{RequestID: %s, Object X: %d, "
+                    "Object Y: %d, action: %s}",
+                    request.requestID, request.objectX, request.objectY,
+                    request.action)
         send(('EVALUATE', request), to=coordinators[coordID])
         # start timer
         # if timeout rescedule
@@ -137,27 +142,68 @@ class Client(process):
         # self.defReadAttrMap["read"]["bank"] = ["id"]
         # self.defReadAttrMap["view"]["person"] = ["position"]
         # self.defReadAttrMap["view"]["movie"] = ["viewCount"]
-        self.defReadAttrMap["read"]["viewer"] = ["name"]
-        self.defReadAttrMap["read"]["watch"] = ["movie", "viewCount"]
-        self.defReadAttrMap["write"]["viewer"] = ["name"]
-        self.defReadAttrMap["write"]["watch"] = ["movie", "watch"]
-        self.mightReadAttrMap["read"]["bank"] = ["account"]
+        # self.defReadAttrMap["read"]["viewer"] = ["name"]
+        # self.defReadAttrMap["read"]["watch"] = ["movie", "viewCount"]
+        # self.defReadAttrMap["write"]["viewer"] = ["name"]
+        # self.defReadAttrMap["write"]["watch"] = ["movie", "watch"]
+        # self.mightReadAttrMap["read"]["bank"] = ["account"]
         # self.mightWriteObjectMap["view"]["movie"] = ["viewCount"]
         # self.mightWriteObjectMap["read"]["person"] = ["history"]
-        self.mightWriteObjectMap["write"]["watch"] = ["watch"]
+        # self.mightWriteObjectMap["write"]["watch"] = ["watch"]
+
+        self.defReadAttrMap["write"]["person"] = ["position", "history"]
+        self.defReadAttrMap["write"]["bank"] = ["id"]
+        self.defReadAttrMap["read"]["person"] = ["position", "history"]
+        self.defReadAttrMap["read"]["bank"] = ["id"]
+        self.mightWriteObjectMap["write"]["person"] = ["history"]
+        # self.defReadAttrMap["write"]["player"] 		= ["position", "history"]
+        # self.defReadAttrMap["read"]["bank"] 		= ["name"]
+        # self.defReadAttrMap["write"]["game"] 		= ["name"]
+        # self.defReadAttrMap["read"]["player"] 		= ["position"]
+        # self.defReadAttrMap["read"]["game"] 		= ["name"]
+        #
+        # self.mightReadAttrMap["write"]["person"] 	= ["history"]
+        # self.mightReadAttrMap["write"]["bank"] 		= ["account"]
+        # self.mightReadAttrMap["write"]["movie"] 	= ["viewcount"]
+        # self.mightReadAttrMap["read"]["player"]		= ["history"]
+        # self.mightReadAttrMap["read"]["movie"] 		= ["viewcount"]
+        # self.mightReadAttrMap["read"]["person"] 	= ["history"]
+        # self.mightReadAttrMap["read"]["viewer"] 	= ["position"]
+        #
+        # self.mightWriteAttrMap["write"]["person"] 	= ["history"]
+        # self.mightWriteAttrMap["write"]["viewer"] 	= ["position"]
+        # self.mightWriteAttrMap["write"]["player"] 	= ["history"]
+        # self.mightWriteAttrMap["write"]["game"] 	= ["name"]
+        #
+        # self.mightWriteObject["write"]["person"] 	= True
+        # self.mightWriteObject["write"]["bank"] 		= False
+        # self.mightWriteObject["write"]["movie"] 	= False
+        # self.mightWriteObject["write"]["viewer"] 	= True
+        # self.mightWriteObject["read"]["person"] 	= False
+        # self.mightWriteObject["read"]["bank"] 		= False
+        # self.mightWriteObject["read"]["movie"] 		= False
+        # self.mightWriteObject["read"]["viewer"] 	= False
+        # self.mightWriteObject["write"]["player"] 	= True
+        # self.mightWriteObject["write"]["game"] 		= True
+        # self.mightWriteObject["read"]["player"] 	= False
+        # self.mightWriteObject["read"]["game"] 		= False
 
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
         if response.decision:
             print("YES")
-        # logger.info("Allow access to client %d for Request{Subject ID: "
-        #                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
-        #                         resourceID, action)
+            logger.info("Allow access to client %d for Request{RequestID: %s, "
+                        "Object X: %d, Object Y: %d, action: %s}",
+                        self.num, response.request.requestID,
+                        response.request.objectX, response.request.objectY,
+                        response.request.action)
         else:
             print("NO")
-        # logger.info("Deny access to client %d for Request{Subject ID: "
-        #                         "%d, Resource ID: %d, action: %s}", self.num, subjectID,
-        #                         resourceID, action)
+            logger.info("Deny access to client %d for Request{RequestID: %s, "
+                        "Object X: %d, Object Y: %d, action: %s}",
+                        self.num, response.request.requestID,
+                        response.request.objectX, response.request.objectY,
+                        response.request.action)
 
         sendToSubjectCoordinator()
 

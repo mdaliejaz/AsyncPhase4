@@ -1,53 +1,50 @@
 <?xml version="1.0"?>
 <!-- sample policy.  CSE 535, Fall 2016, Scott Stoller.  2016-10-03 -->
 <policy>
-
     <rule name="access bank A first time">
         <objectXCondition type="person" position="employee"
                           history=""></objectXCondition>
-        <objectYCondition type="bank" id="bank A"
-                          account="savings"></objectYCondition>
-        <action name="read"></action>
+        <objectYCondition type="bank" id="bank A"></objectYCondition>
         <objectXUpdate history="bank A"></objectXUpdate>
+        <action name="write"></action>
     </rule>
 
     <rule name="access bank A again">
         <objectXCondition type="person" position="employee"
                           history="$resource.id"></objectXCondition>
-        <objectYCondition type="bank" id="bank A"
-                          account="savings"></objectYCondition>
+        <objectYCondition type="bank" id="bank A"></objectYCondition>
         <action name="read"></action>
     </rule>
 
-    <rule name="access bank B first time">
-        <objectXCondition type="person" position="employee"
-                          history=""></objectXCondition>
-        <objectYCondition type="bank" id="bank B"></objectYCondition>
-        <action name="read"></action>
-        <objectXUpdate history="bank B"></objectXUpdate>
-    </rule>
+    <!--<rule name="access bank B first time">-->
+        <!--<objectXCondition type="person" position="employee"-->
+                          <!--history=""></objectXCondition>-->
+        <!--<objectYCondition type="bank" id="bank B"></objectYCondition>-->
+        <!--<action name="read"></action>-->
+        <!--<objectXUpdate history="bank B"></objectXUpdate>-->
+    <!--</rule>-->
 
-    <rule name="access bank B again">
-        <objectXCondition type="person" position="employee"
-                          history="bank B"></objectXCondition>
-        <objectYCondition type="bank" id="bank B"></objectYCondition>
-        <action name="read"></action>
-    </rule>
+    <!--<rule name="access bank B again">-->
+        <!--<objectXCondition type="person" position="employee"-->
+                          <!--history="bank B"></objectXCondition>-->
+        <!--<objectYCondition type="bank" id="bank B"></objectYCondition>-->
+        <!--<action name="read"></action>-->
+    <!--</rule>-->
 
-    <rule name="write shared attr with read only policy">
-        <objectXCondition type="viewer" name="Tom"></objectXCondition>
-        <objectYCondition type="watch" movie="StarWars"
-                          viewCount="&lt;5"></objectYCondition>
-        <objectYUpdate viewCount="++"></objectYUpdate>
-        <action name="write"></action>
-    </rule>
+    <!--<rule name="write shared attr with read only policy">-->
+        <!--<objectXCondition type="viewer" name="Tom"></objectXCondition>-->
+        <!--<objectYCondition type="watch" movie="StarWars"-->
+                          <!--viewCount="&lt;5"></objectYCondition>-->
+        <!--<objectYUpdate viewCount="++"></objectYUpdate>-->
+        <!--<action name="write"></action>-->
+    <!--</rule>-->
 
-    <rule name="read only policy">
-        <objectXCondition type="viewer" name="Tom"></objectXCondition>
-        <objectYCondition type="watch" movie="StarWars"
-                          viewCount="0"></objectYCondition>
-        <action name="read"></action>
-    </rule>
+    <!--<rule name="read only policy">-->
+        <!--<objectXCondition type="viewer" name="Tom"></objectXCondition>-->
+        <!--<objectYCondition type="watch" movie="StarWars"-->
+                          <!--viewCount="0"></objectYCondition>-->
+        <!--<action name="read"></action>-->
+    <!--</rule>-->
 
 
     <!--<rule name="viewers collectively can view each movie at most 5 times">-->

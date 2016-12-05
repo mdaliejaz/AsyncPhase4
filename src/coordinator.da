@@ -105,6 +105,7 @@ class Coordinator(process):
             Subject coordinator instance, receives from client / another coord
         '''
 
+        logger.info("Request received from client:\n%s", request)
         if request.isClient == True:
             await(checkPCA(request, "X") == False)
             
@@ -234,6 +235,8 @@ class Coordinator(process):
             self.versionCache[objID][k].append(ver)
 
     def receive(msg=('RESULT', response, objID), from_=worker):
+        logger.info("Result received from worker for request:\n%s",
+                    response.request)
         rID = None
         if response.request.objectX == objID:
             rID = "Y"
@@ -293,7 +296,6 @@ class Coordinator(process):
                                              rID) % size])
 
             else:
-
                 # restart
                 coordID = response.request.objectX % len(self.coordinators)
                 send(('EVALUATE', response.request), to=coordinators[coordID])

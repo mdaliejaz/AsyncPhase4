@@ -23,11 +23,12 @@ class Worker(process):
         self.size = len(coordinators)
         self.policyFile = config.get("setup", "policyFile")
         readPolicy(self.policyFile)
-        self.originalRequest = None
+        # self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
         time.sleep(request.workerDelay)
-        self.originalRequest = copy.deepcopy(request)
+        originalRequest = copy.deepcopy(request)
+        request.originalRequest = originalRequest
         if request.objectSwap == True:
             temp = request.objectX
             request.objectX = request.objectY
@@ -51,12 +52,16 @@ class Worker(process):
         objectYAttribReqd = dbresponse.readDbObjectYMap.copy()
         objectYAttribReqd.update(dbresponse.request.cachedUpdatesY)
 
-        if self.originalRequest.objectSwap == True:
-            self.originalRequest.readAttrX = list(objectYAttribReqd.keys())
-            self.originalRequest.readAttrY = list(objectXAttribReqd.keys())
+        if dbresponse.request.originalRequest.objectSwap == True:
+            dbresponse.request.originalRequest.readAttrX = list(
+                objectYAttribReqd.keys())
+            dbresponse.request.originalRequest.readAttrY = list(
+                objectXAttribReqd.keys())
         else:
-            self.originalRequest.readAttrX = list(objectXAttribReqd.keys())
-            self.originalRequest.readAttrY = list(objectYAttribReqd.keys())
+            dbresponse.request.originalRequest.readAttrX = list(
+                objectXAttribReqd.keys())
+            dbresponse.request.originalRequest.readAttrY = list(
+                objectYAttribReqd.keys())
 
         ruleMatch = False
         for rule in policyMap[dbresponse.request.action]:
@@ -97,15 +102,16 @@ class Worker(process):
                                          objectYAttribReqd)
 
         if dbresponse.evaluation == False:
-            self.originalRequest.readAttrX = \
-                self.originalRequest.defReadAttrX + \
-                self.originalRequest.mightReadAttrX
+            dbresponse.request.originalRequest.readAttrX = \
+                dbresponse.request.originalRequest.defReadAttrX + \
+                dbresponse.request.originalRequest.mightReadAttrX
 
-            self.originalRequest.readAttrY = \
-                self.originalRequest.defReadAttrY + \
-                self.originalRequest.mightReadAttrY
+            dbresponse.request.originalRequest.readAttrY = \
+                dbresponse.request.originalRequest.defReadAttrY + \
+                dbresponse.request.originalRequest.mightReadAttrY
 
-        response = Response(self.originalRequest, dbresponse.evaluation,
+        response = Response(dbresponse.request.originalRequest,
+                            dbresponse.evaluation,
                             updatedObj, rdonlydObj, updates)
 
         logger.info("Sending following Worker Response to Subject "
@@ -113,11 +119,13 @@ class Worker(process):
 
         if response.updatedObj is None:
             send(("RESULT_CLIENT", response),
-                 to=self.originalRequest.fromClient)
-            send(("SENDATTR", self.originalRequest, "X"),
-                 to=coordinators[self.originalRequest.objectX % size])
-            send(("SENDATTR", self.originalRequest, "Y"),
-                 to=coordinators[self.originalRequest.objectY % size])
+                 to=dbresponse.request.originalRequest.fromClient)
+            send(("SENDATTR", dbresponse.request.originalRequest, "X"),
+                 to=coordinators[dbresponse.request.originalRequest.objectX %
+                                 size])
+            send(("SENDATTR", dbresponse.request.originalRequest, "Y"),
+                 to=coordinators[dbresponse.request.originalRequest.objectY %
+                                 size])
         else:
             send(("RESULT", response, response.updatedObj),
                  to=coordinators[response.updatedObj % size])

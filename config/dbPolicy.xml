@@ -1,33 +1,40 @@
 <?xml version="1.0"?>
 <data>
-    <object id="0000">
-        <attribute type="person" position="employee" history=""/>
+    <object id="11">
+        <attribute type="person" position= "employee" history=""/>
     </object>
-    <object id="2222">
-        <attribute type="person" position="viewer"/>
+    <object id="21">
+        <attribute type="bank" id= "bank A"/>
     </object>
-    <object id="4444">
-        <attribute type="person" position="listener"/>
-    </object>
-    <object id="6666">
-        <attribute type="person" name="Tom" viewCount="0"/>
-    </object>
-    <object id="8888">
-        <attribute type="viewer" name="Tom"/>
-    </object>
-    <object id="111">
-        <attribute type="bank" account="savings" id="bank A"/>
-    </object>
-    <object id="333">
-        <attribute type="movie" viewCount="0"/>
-    </object>
-    <object id="555">
-        <attribute type="song" viewCount="0"/>
-    </object>
-    <object id="777">
-        <attribute type="movie" movie="StarWars"/>
-    </object>
-    <object id="999">
-        <attribute type="watch" movie="StarWars" viewCount="0"/>
-    </object>
+
+    <!--<object id="0000">-->
+        <!--<attribute type="person" position="employee" history=""/>-->
+    <!--</object>-->
+    <!--<object id="2222">-->
+        <!--<attribute type="person" position="viewer"/>-->
+    <!--</object>-->
+    <!--<object id="4444">-->
+        <!--<attribute type="person" position="listener"/>-->
+    <!--</object>-->
+    <!--<object id="6666">-->
+        <!--<attribute type="person" name="Tom" viewCount="0"/>-->
+    <!--</object>-->
+    <!--<object id="8888">-->
+        <!--<attribute type="viewer" name="Tom"/>-->
+    <!--</object>-->
+    <!--<object id="111">-->
+        <!--<attribute type="bank" account="savings" id="bank A"/>-->
+    <!--</object>-->
+    <!--<object id="333">-->
+        <!--<attribute type="movie" viewCount="0"/>-->
+    <!--</object>-->
+    <!--<object id="555">-->
+        <!--<attribute type="song" viewCount="0"/>-->
+    <!--</object>-->
+    <!--<object id="777">-->
+        <!--<attribute type="movie" movie="StarWars"/>-->
+    <!--</object>-->
+    <!--<object id="999">-->
+        <!--<attribute type="watch" movie="StarWars" viewCount="0"/>-->
+    <!--</object>-->
 </data>
