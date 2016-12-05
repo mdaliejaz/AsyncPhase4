@@ -56,7 +56,7 @@ class Coordinator(process):
             self.versionCache[objID][attr] = []
 
         for v in reversed(self.versionCache[objID][attr]):
-            if v.wts > 0 and v.wts < ts:
+            if v.wts < ts:
                 return v
 
         v = Version()
@@ -106,7 +106,6 @@ class Coordinator(process):
         '''
         logger.info("Request received from coord:\n%s", request)
         
-        print("evaluate 2") 
         if request.isReadOnly == True:
                 
             if swap == True:
@@ -120,7 +119,7 @@ class Coordinator(process):
                                         request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(v)
+                    # print(attr, v)
             else:
                 
                 for attr in request.defReadAttrX:
@@ -132,7 +131,7 @@ class Coordinator(process):
                                         request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))  
-                    print(v)                  
+                    # print(attr, v)                  
                                     
                                         
         else:
@@ -205,7 +204,7 @@ class Coordinator(process):
                                         request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(v)
+                    # print(attr, v)
             else:
                 
                 for attr in request.defReadAttrX:
@@ -217,7 +216,7 @@ class Coordinator(process):
                                         request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(v)              
+                    # print(attr, v)
                                     
                                     
         else:
@@ -229,7 +228,7 @@ class Coordinator(process):
                                         request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    print(v)
+                    # print(attr, v)
             else:
                  for attr in list(
                         set().union(request.defReadAttrX,
@@ -238,7 +237,7 @@ class Coordinator(process):
                                         request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))  
-                    print(v)                 
+                    # print(attr, v)
 
         if request.objectSwap == True:
             request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -265,7 +264,7 @@ class Coordinator(process):
                 pendingMightRead = [i for i in v.pendingMightRead if
                                     i[0] != request.requestID]
                 v.pendingMightRead = pendingMightRead
-                print(v)
+                # print(attr, v)
                 if attr in request.readAttrX:
                     v.rts = request.ts
                     
@@ -279,7 +278,7 @@ class Coordinator(process):
                 pendingMightRead = [i for i in v.pendingMightRead if
                                     i[0] != request.requestID]
                 v.pendingMightRead = pendingMightRead
-                print(v)
+                # print(attr, v)
                 if attr in request.readAttrY:
                     v.rts = request.ts
                 
@@ -334,6 +333,7 @@ class Coordinator(process):
         if not conflict:
 
             # await for all pending reads
+            print("response.updates", response.updates)
             await(readAwaitCheck(objID, response.updates, response.request.ts,
                                  response.request.requestID) == True)
 

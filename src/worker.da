@@ -26,9 +26,6 @@ class Worker(process):
         # self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
-        for i in range(request.workerDelay):
-            time.sleep(1)
-        print("wake after 5 seconds")
         # originalRequest = copy.deepcopy(request)
         # request.originalRequest = originalRequest
         # if request.objectSwap == True:
@@ -48,6 +45,8 @@ class Worker(process):
             Receives response from DB, validates rules and send updated
             attributes to subject co-ordinator.
         '''
+        for i in range(dbresponse.request.workerDelay):
+            time.sleep(1)
         logger.info("Received following DB response:%s", dbresponse)
         objectXAttribReqd = dbresponse.readDbObjectXMap.copy()
         objectXAttribReqd.update(dbresponse.request.cachedUpdatesX)

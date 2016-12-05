@@ -201,14 +201,14 @@ class Client(process):
     def receive(msg=('RESULT_CLIENT', response)):
         # stop timer
         if response.decision:
-            print("YES")
+            print("YES ", response.request.requestID)
             logger.info("Allow access to client %d for Request{RequestID: %s, "
                         "Object X: %d, Object Y: %d, action: %s}",
                         self.num, response.request.requestID,
                         response.request.objectX, response.request.objectY,
                         response.request.action)
         else:
-            print("NO")
+            print("NO", response.request.requestID)
             logger.info("Deny access to client %d for Request{RequestID: %s, "
                         "Object X: %d, Object Y: %d, action: %s}",
                         self.num, response.request.requestID,
@@ -218,6 +218,7 @@ class Client(process):
         sendToSubjectCoordinator()
 
     def run():
+        time.sleep(num/100)
         logger.info("Started Client %d", self.num)
         sendToSubjectCoordinator()
         await(self.exit == True)
