@@ -1,8 +1,43 @@
                               Test Cases
                             =============
 
-1.  
+1.  No block Normal request
 
+    Config File:    noBlock.ini
+    Log File:       noBlock.log
+
+    Description:
+    Write request put to delay, but read still goes through
+    without waiting. Write request restarted due to outer conflict.
+    
+    Scenario:
+                Number of Clients:          2
+                Number of requests sent:    1 (per client)
+                
+				[request1]
+				objectX = 11
+				objectXType = person
+				objectY = 12
+				objectYType = bank
+				action = write
+				workerDelay = 5
+				
+				[request2]
+				objectX = 11
+				objectXType = person
+				objectY = 12
+				objectYType = bank
+				action = read
+
+    Artificial Delays inserted:
+    Write request 5 seconds
+
+    Outcome:
+    The test passed as expected. Read did not have to wait, write waits
+    restarts and then reply sent to client.
+    
+    Number of allowed accesses: 1   (grep on log: "Allow access")
+    Number of denied accesses:  1   (grep on log: "Deny access")
 
 2.  Delayed Commit.
 
@@ -13,7 +48,7 @@
     Read request is delayed at worker so the write request waits for the read to complete.
     Scenario:
                 Number of Clients:          2
-                Number of requests sent:    2 (per client)
+                Number of requests sent:    1 (per client)
                 
                 Request:
                 [request1]
@@ -249,3 +284,50 @@
     Number of denied accesses:  0   (grep on log: "Deny access")
     
 8.  Stress Test
+
+	Config File:    stress.ini
+    Log File:       stress.log
+
+    Description:
+    
+	A total of more than 1000 requests in random order are sent from 3 clients
+    
+    Scenario:   
+                Number of Clients:          3
+                Number of requests sent:    1103 (total)
+                
+				[client1]
+				sequence = random
+				numReq = 1010
+				requestList = request1
+				seed = 42
+				
+				[client2]
+				sequence = random
+				numReq = 100
+				requestList = request2
+				seed = 42
+				
+				[client3]
+				sequence = request1,request2,request1
+				
+				[request1]
+				objectX = 71
+				objectXType = stressX
+				objectY = 72
+				objectYType = stressY
+				action = write
+				
+				[request2]
+				objectX = 61
+				objectXType = starX
+				objectY = 62
+				objectYType = starY
+				action = write
+
+    Artificial Delays inserted:
+    No.
+
+    Outcome:
+    The test passed as expected. All requests run to completion and this can ber verfied
+    by checking the DB contents.
