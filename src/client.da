@@ -86,10 +86,6 @@ class Client(process):
         mightWriteAttrY = []
         workerDelay = elem[5]
 
-        # logger.info("Client %d sending Request{Subject ID: %d, Resource ID: "
-        #             "%d, action: %s} to coordinator %d", self.num, elem[0],
-        #             elem[1], elem[2], coordID)
-
         requestID = str(uuid.uuid4())
 
         if action in self.mightWriteObjectMap:
@@ -98,12 +94,6 @@ class Client(process):
                 isReadOnly = False
             else:
                 if objectXType in self.mightWriteObjectMap[action]:
-                    # coordID = (objectY) % self.size
-                    # objectX = elem[2]
-                    # objectXType = elem[3]
-                    # objectY = elem[0]
-                    # objectYType = elem[1]
-                    # isReadOnly = False
                     objectSwap = True
                     isReadOnly = False
                 elif objectYType in self.mightWriteObjectMap[action]:
@@ -135,24 +125,9 @@ class Client(process):
                     "Object Y: %d, action: %s}",
                     request.requestID, request.objectX, request.objectY,
                     request.action)
-        print(request)
         send(('EVALUATE', request), to=coordinators[coordID])
-        # start timer
-        # if timeout rescedule
 
     def staticAnalysis():
-        # self.defReadAttrMap["read"]["person"] = ["position", "history"]
-        # self.defReadAttrMap["read"]["bank"] = ["id"]
-        # self.defReadAttrMap["view"]["person"] = ["position"]
-        # self.defReadAttrMap["view"]["movie"] = ["viewCount"]
-        # self.defReadAttrMap["read"]["viewer"] = ["name"]
-        # self.defReadAttrMap["read"]["watch"] = ["movie", "viewCount"]
-        # self.defReadAttrMap["write"]["viewer"] = ["name"]
-        # self.defReadAttrMap["write"]["watch"] = ["movie", "watch"]
-        # self.mightReadAttrMap["read"]["bank"] = ["account"]
-        # self.mightWriteObjectMap["view"]["movie"] = ["viewCount"]
-        # self.mightWriteObjectMap["read"]["person"] = ["history"]
-        # self.mightWriteObjectMap["write"]["watch"] = ["watch"]
 
         self.defReadAttrMap["read"]["person"] = ["position"]
         self.defReadAttrMap["read"]["viewer"] = ["position"]
@@ -170,7 +145,6 @@ class Client(process):
         self.mightReadAttrMap["read"]["inc2X"] = ["viewCount"]
         self.mightReadAttrMap["read"]["inc2Y"] = ["movie"]
         self.mightReadAttrMap["read"]["starX"] = ["history"]
-        # self.mightReadAttrMap["read"]["starY"] = ["movie"]
 
         self.defReadAttrMap["write"]["person"] = ["position"]
         self.defReadAttrMap["write"]["viewer"] = ["position"]
@@ -185,10 +159,7 @@ class Client(process):
         self.mightReadAttrMap["write"]["person"] = ["history"]
         self.mightReadAttrMap["write"]["incX"] = ["viewCount"]
         self.mightReadAttrMap["write"]["incY"] = ["movie"]
-        # self.mightReadAttrMap["write"]["inc2X"] = ["viewCount"]
         self.mightReadAttrMap["write"]["inc2Y"] = ["movie"]
-        # self.mightReadAttrMap["write"]["starX"] = ["history"]
-        # self.mightReadAttrMap["write"]["starY"] = ["movie"]
 
         self.mightWriteObjectMap["write"]["person"] = ["history"]
         self.mightWriteObjectMap["write"]["movie"] = ["viewCount"]
@@ -198,13 +169,10 @@ class Client(process):
         self.mightWriteObjectMap["write"]["watch"] = ["movie"]
         self.mightWriteObjectMap["write"]["stressY"] = ["movie"]
         self.mightWriteObjectMap["write"]["incX"] = ["viewCount"]
-        # self.mightWriteObjectMap["write"]["inc2X"] = ["viewCount"]
         self.mightWriteObjectMap["write"]["inc2Y"] = ["movie"]
-        # self.mightWriteObjectMap["write"]["starX"] = ["history"]
         self.mightWriteObjectMap["write"]["starY"] = ["movie"]
 
     def receive(msg=('RESULT_CLIENT', response)):
-        # stop timer
         if response.decision:
             print("YES ", response.request.requestID)
             logger.info("Allow access to client %d for Request{RequestID: %s, "
