@@ -35,7 +35,7 @@ class Database(process):
         evaluation = True
         objectXID = str(request.objectX)
         objectYID = str(request.objectY)
-        # if no subjectID in Db then write it with empty values
+        # if no objectID in Db then write it with empty values
         if objectXID not in self.objectMap:
             self.objectMap[objectXID] = {}
         if objectYID not in self.objectMap:
@@ -74,32 +74,6 @@ class Database(process):
         for k,v in response.updates.items():
             objectMap[str(response.updatedObj)][k].append((v,
                                                          response.request.ts))
-
-    #
-    #     def receive(msg=('COMMIT_TO_DB', updateMap, instance), from_=p):
-    #         '''
-    #             Request to commit cache to DB. Threading.timer is used
-    #             to wait for the random amount of time initialized and then
-    #             results are written to DB.
-    #         '''
-    #         logger.info("Received to update database for %s attributes with map: "
-    #                     "%s. Accounting DB latency, will wait for latency of "
-    #                     "value %s units duration before committing to DB",
-    #                     instance, updateMap, str(self.waitTime))
-    #         Timer(waitTime, updateFunc, [updateMap, instance]).start()
-    #
-    #     def updateFunc(updateMap, instance):
-    #         '''
-    #             Update into DB function
-    #         '''
-    #         key = next(iter(updateMap))
-    #         value = updateMap[key]
-    #         if (instance == "resource"):
-    #             self.resourceMap[key].update(value)
-    #         else:
-    #             self.subjectMap[key].update(value)
-    #         logger.info("Successfully updated database for %s attributes "
-    #                     "with map: %s", instance, updateMap)
 
     def receive(msg=('DUMP_DB',), from_=p):
         logger.info("Dumping final contents of DB:"

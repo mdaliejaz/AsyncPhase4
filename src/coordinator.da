@@ -120,7 +120,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
             else:
 
                 for attr in request.defReadAttrX:
@@ -132,8 +131,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)                  
-
 
         else:
             if swap == True:
@@ -151,7 +148,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
 
             if swap == True:
                 request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -187,7 +183,6 @@ class Coordinator(process):
                     PCA[request.objectX][key] = []
                 PCA[request.objectX][key].append(request.requestID)
 
-        # request.sessionIdX = self.coordSessionID
         if request.fromClient is None:
             request.fromClient = p
         request.ts = time.time()
@@ -205,7 +200,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
             else:
 
                 for attr in request.defReadAttrX:
@@ -217,8 +211,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
-
 
         else:
             if request.objectSwap == True:
@@ -229,7 +221,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
             else:
                 for attr in list(
                         set().union(request.defReadAttrX,
@@ -238,7 +229,6 @@ class Coordinator(process):
                                             request.ts)
                     v.pendingMightRead.append(
                         (request.requestID, request.ts))
-                    # print(attr, v)
 
         if request.objectSwap == True:
             request.cachedUpdatesY = getCachedUpdates(request, "Y")
@@ -253,18 +243,12 @@ class Coordinator(process):
                  to=coordinators[request.objectY % len(coordinators)])
 
     def receive(msg=('SENDATTR', request, obj, coordPred), from_=p):
-        # if getattr(request, "sessionId" + obj) != self.coordSessionID:
-        #    return  # To check
-        # # Implementation #TODO
-
-        # print("in send attr")
         if obj == "X":
             for attr in request.mightReadAttrX:
                 v = latestVersionBefore(request.objectX, attr, request.ts)
                 pendingMightRead = [i for i in v.pendingMightRead if
                                     i[0] != request.requestID]
                 v.pendingMightRead = pendingMightRead
-                # print(attr, v)
                 if attr in request.readAttrX:
                     v.rts = request.ts
 
@@ -282,7 +266,6 @@ class Coordinator(process):
                 pendingMightRead = [i for i in v.pendingMightRead if
                                     i[0] != request.requestID]
                 v.pendingMightRead = pendingMightRead
-                # print(attr, v)
                 if attr in request.readAttrY:
                     v.rts = request.ts
 
@@ -296,10 +279,8 @@ class Coordinator(process):
                         pass
 
     def readAwaitCheck(objID, updates, ts, reqID):
-        # print(updates)
         for k, _ in updates.items():
             v = latestVersionBefore(objID, k, ts)
-            # print(v)
             if len(v.pendingMightRead) == 0 or (
                             len(v.pendingMightRead) == 1 and
                             v.pendingMightRead[0][
@@ -331,11 +312,9 @@ class Coordinator(process):
             logger.info("Reached non-local coordinator from worker: local to "
                         "wroker: %s, reached to: %s", coordID,
                         self.coordSessionID)
-        # print(coordID, self.coordSessionID)
         logger.info(
             "[COORD RESULT] Result received from worker for request:\n%s",
             response.request)
-        # print("received result from worker")
         rID = None
         if response.request.objectX == objID:
             rID = "Y"
@@ -344,16 +323,11 @@ class Coordinator(process):
             rID = "X"
             obj = "Y"
 
-        # if getattr(response.request, "sessionId" + obj) != self.coordSessionID:
-        #    return  # Check # Important # To implement #TODO
-
         conflict = checkConflicts(response, objID)
         if not conflict:
             # await for all pending reads
-            # print("response.updates", response.updates)
             await(readAwaitCheck(objID, response.updates, response.request.ts,
                                  response.request.requestID) == True)
-            # print("success")
             conflict = checkConflicts(response, objID)
 
             if not conflict:
@@ -457,7 +431,6 @@ class Coordinator(process):
             for attr, val in resp.updates.items():
                 v = latestVersionBefore(resp.request.objectY, attr,
                                         resp.request.ts)
-                # print(v, "LL")
                 if v.rts > resp.request.ts:
                     return True
                 return False
