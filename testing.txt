@@ -331,3 +331,18 @@
     Outcome:
     The test passed as expected. All requests run to completion and this can ber verfied
     by checking the DB contents.
+    
+    
+    
+Performance Evaluation:
+
+We measured the performance for 1000 write requests of phase2 and phase4 implmentations:
+Setup was 
+1 coordinator
+1 worker per coord
+1 client
+1000 write requests
+Time in phase 2 (Avg) : 0.012 seconds
+Time in phase 4 (Avg) : 0.005 seconds
+
+We see that there is definite improvement in phase4 over phase2.
