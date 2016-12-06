@@ -24,18 +24,8 @@ class Worker(process):
         self.policyFile = config.get("setup", "policyFile")
         readPolicy(self.policyFile)
         self.parentCoordID = coordID
-        # self.originalRequest = None
 
     def receive(msg=('WORKER_ASSIGN', request)):
-        # originalRequest = copy.deepcopy(request)
-        # request.originalRequest = originalRequest
-        # if request.objectSwap == True:
-        #     temp = request.objectX
-        #     request.objectX = request.objectY
-        #     request.objectY = temp
-        #     temp = request.cachedUpdatesX
-        #     request.cachedUpdatesX = request.cachedUpdatesY
-        #     request.cachedUpdatesY = temp
 
         logger.info("Sending message to initiate database read for attributes "
                     "not in cache for Request:%s", request)
@@ -53,16 +43,6 @@ class Worker(process):
         objectYAttribReqd = dbresponse.readDbObjectYMap.copy()
         objectYAttribReqd.update(dbresponse.request.cachedUpdatesY)
 
-        # if dbresponse.request.originalRequest.objectSwap == True:
-        #     dbresponse.request.originalRequest.readAttrX = list(
-        #         objectYAttribReqd.keys())
-        #     dbresponse.request.originalRequest.readAttrY = list(
-        #         objectXAttribReqd.keys())
-        # else:
-        #     dbresponse.request.originalRequest.readAttrX = list(
-        #         objectXAttribReqd.keys())
-        #     dbresponse.request.originalRequest.readAttrY = list(
-        #         objectYAttribReqd.keys())
         dbresponse.request.readAttrX = list(objectXAttribReqd.keys())
         dbresponse.request.readAttrY = list(objectYAttribReqd.keys())
 
@@ -107,23 +87,12 @@ class Worker(process):
                                          objectXAttribReqd,
                                          objectYAttribReqd)
 
-        # if dbresponse.evaluation == False:
-        #     dbresponse.request.originalRequest.readAttrX = \
-        #         dbresponse.request.originalRequest.defReadAttrX + \
-        #         dbresponse.request.originalRequest.mightReadAttrX
-        #
-        #     dbresponse.request.originalRequest.readAttrY = \
-        #         dbresponse.request.originalRequest.defReadAttrY + \
-        #         dbresponse.request.originalRequest.mightReadAttrY
         if dbresponse.evaluation == False:
             dbresponse.request.readAttrX = dbresponse.request.defReadAttrX + \
                                            dbresponse.request.mightReadAttrX
             dbresponse.request.readAttrY = dbresponse.request.defReadAttrY + \
                                            dbresponse.request.mightReadAttrY
 
-        # response = Response(dbresponse.request.originalRequest,
-        #                     dbresponse.evaluation,
-        #                     updatedObj, rdonlydObj, updates)
         response = Response(dbresponse.request,
                             dbresponse.evaluation,
                             updatedObj, rdonlydObj, updates)
@@ -132,15 +101,6 @@ class Worker(process):
                     "Coordinator:%s", response)
 
         if response.updatedObj is None:
-            # print("updated obj", response.updatedObj)
-            # send(("RESULT_CLIENT", response),
-            #      to=dbresponse.request.originalRequest.fromClient)
-            # send(("SENDATTR", dbresponse.request.originalRequest, "X"),
-            #      to=coordinators[dbresponse.request.originalRequest.objectX %
-            #                      size])
-            # send(("SENDATTR", dbresponse.request.originalRequest, "Y"),
-            #      to=coordinators[dbresponse.request.originalRequest.objectY %
-            #                      size])
             send(("RESULT_CLIENT", response),
                  to=dbresponse.request.fromClient)
             send(("SENDATTR", dbresponse.request, "X", True),
@@ -248,7 +208,6 @@ class Worker(process):
     def run():
         logger.info("Started worker to evaluate policy in file: %s",
                     self.policyFile)
-        # Can we print the map in a better way!
         logger.debug("Content of Policy File: %s", self.policyMap)
         # Wait till "done" is received to kill gracefully.
         await(received(('done',)))
